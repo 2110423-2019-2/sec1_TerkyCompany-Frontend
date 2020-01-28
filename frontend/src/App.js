@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
+
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class App extends Component {
 
   render() {
     if (this.state.isLoading) return null
+    console.log("hello Homepage")
     return (
       <div className="App">
         <header className="App-header">
