@@ -1,0 +1,22 @@
+#flex-container {
+  display: flex;
+  height: 100vh;
+}
+
+.side-menu {
+  display:flex;
+  background-color: #ffffff;
+  flex-grow: 2;
+  margin: 0px;
+  padding: 0px;
+  font-size: 30px;
+}
+
+.show-list {
+  display:flex;
+  background-color: #fff1db;
+  flex-grow: 8;
+  margin: 0px;
+  padding: 0px;
+  font-size: 30px;
+}
