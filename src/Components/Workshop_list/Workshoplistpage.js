@@ -20,8 +20,24 @@ class Workshoplistpage extends Component {
         return (
             <div>
                 <div class="flex-container" id="flex-container">
-                    <div class="side-menu">1</div>
-                    <div class="show-list">2</div>
+                    <div className="side-menu">
+                        <div id="textzone">
+                            <ul id="link-side">
+                                <li><a id="link-side" href="#">My Workshop</a></li>
+                                <li><a id="link-side" href="#">Certificate</a></li>
+                                <li><a id="link-side" href="#">Payment</a></li>
+                                <li><a id="link-side" href="#">Confirmation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="show-list">
+                        <div className="list-header">
+                            <h1 id = "my-workshop-title">My Workshop</h1>
+                        </div>
+                        <div className="dropdown-divider"></div>
+                        <div className="list-body">
+                        </div>
+                    </div>
                 </div>
             </div>
         )
