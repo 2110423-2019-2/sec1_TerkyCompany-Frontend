@@ -21,22 +21,22 @@ class Footer extends Component {
                 <div class="flex-container">
                     <div id="col-1">
                         <div>
-                            <h4>Our Workshops</h4>
-                            <ul id="link-footer">
-                                <li><a id="link-footer" href="#">Tech</a></li>
-                                <li><a id="link-footer" href="#">Art</a></li>
-                                <li><a id="link-footer" href="#">Economic</a></li>
-                            </ul>
+                            <h3>Our Workshops</h3>
+                            <div id="link-footer">
+                                <div><a id="link-footer" href="#">Tech</a></div>
+                                <div><a id="link-footer" href="#">Art</a></div>
+                                <div><a id="link-footer" href="#">Economic</a></div>
+                            </div>
                         </div>
                     </div>
 
                     <div id="col-1">
                         <div>
-                            <h4>Collaberating with us</h4>
-                            <ul id="link-footer">
-                                <li><a id="link-footer" href="#">Collaborating with Matcher</a></li>
-                                <li><a id="link-footer" href="#">About us</a></li>
-                            </ul>
+                            <h3>Collaborating with us</h3>
+                            <div id="link-footer">
+                                <div><a id="link-footer" href="#">Collaborating with Matcher</a></div>
+                                <div><a id="link-footer" href="#">About us</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
