@@ -4,6 +4,7 @@ import About from './Components/About';
 import React, { Component } from 'react';
 import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
+import Workshopeditorpage from './Components/Workshop_editor/WorkshopEditorPage';
 import Footer from './Components/Footer/Footer';
 
 
@@ -21,6 +22,7 @@ class Routes extends Component {
                         <Route exact path="/" component={App} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
+                        <Route exact path="/workshopeditor" component={Workshopeditorpage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
