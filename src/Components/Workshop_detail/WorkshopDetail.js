@@ -1,9 +1,9 @@
 import React from 'react';
 import './WorkshopDetail.css';
 import WorkshopDetailHeader from './WorkshopDetailHeader';
+import WorkshopDetailBody from './WorksopDeatailBody';
 
 class WorkshopDetail extends React.Component {
-    
     constructor(props){
         super(props);
         this.state = {
@@ -42,6 +42,7 @@ class WorkshopDetail extends React.Component {
         return (
             <div>
                 <WorkshopDetailHeader workshop={this.state.workshop} />
+                <WorkshopDetailBody workshop={this.state.workshop} />
             </div>
         );
     }
