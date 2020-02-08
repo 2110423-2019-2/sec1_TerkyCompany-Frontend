@@ -48,68 +48,45 @@ class Workshoplistpage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <label>
-                                Workshop's Name
-                                <input type="text" name="workshopname" />
-                            </label>
+                            <label className="attribute">Workshop's Name</label>
+                            <input type="text" name="workshopname" />
                             <br />
-                            <label>
-                                Date
-                                <input type="date" name="date" />
-                            </label>
+                            <label>Date</label>
+                            <input type="date" name="date" />
                             <br />
-                            <label>
-                                Start Time
-                                <input type="Time" name="starttime" />
-                            </label>
-                            <label>
-                                End Time
-                                <input type="Time" name="endtime" />
-                            </label>
+                            <label>Start Time</label>
+                            <input type="Time" name="starttime" />
+                            <label>End Time</label>
+                            <input type="Time" name="endtime" />
                             <br />
-                            <label>
-                                Capacity
-                                <input type="number" min = "1" name="starttime" />
-                            </label>
-                            <label>
-                                Cost
-                                <input type="number" name="cost" />
-                                THB
-                            </label>
+                            <label>Capacity</label>
+                            <input type="number" min = "1" name="starttime" />
+                            <label>Cost</label>
+                            <input type="number" name="cost" />
+                            <label>THB</label>
                             <br />
-                            <label>
-                                Place 
-                                <br />
-                                <textarea name="place" rows="4" cols="50"/>
-                            </label>
+                            <label>Place</label>
                             <br />
-                            <label>
-                            Deadline Date
-                                <input type="date" name="daedlinedead" />
-                            </label>
+                            <textarea name="place" rows="4" cols="50"/>
                             <br />
-                            <label>
-                            Deadline Time
-                                <input type="time" name="daedlinetime" />
-                            </label>
+                            <label>Deadline Date</label>
+                            <input type="date" name="daedlinedead" />
                             <br />
-                            <label>
-                                Description
-                                <br />
-                                <textarea name="description" rows="4" cols="50"/>
-                            </label>
+                            <label>Deadline Time</label>
+                            <input type="time" name="daedlinetime" />
                             <br />
-                            <label>
-                                Tags
-                                <br />
-                                <textarea name="tags" rows="2" cols="50"/>
-                            </label>
+                            <label>Description</label>
+                            <br />
+                            <textarea name="description" rows="4" cols="50"/>
+                            <br />
+                            <label>Tags</label>
+                            <textarea name="tags" rows="2" cols="50"/>
                             <br />
                             </form>
                         </div>
                         <div className="button-body">
-                                <button onClick={() => this.cancelclick()}>Cancel</button>
-                                <button onClick={() => this.submitclick()}>Submit</button>
+                                <button className="mybutton" onClick={() => this.cancelclick()}>Cancel</button>
+                                <button className="mybutton" onClick={() => this.submitclick()}>Submit</button>
                         </div>
                     </div>
                 </div>

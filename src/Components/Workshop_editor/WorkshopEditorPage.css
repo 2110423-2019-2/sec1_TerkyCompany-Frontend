@@ -56,3 +56,29 @@
   .button-body {
     font-size: 25px; 
   }
+
+  .mybutton {
+    background-color:#cc670a;
+    border-radius:20px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+    margin: 10px;
+  }
+
+  .myButton:hover {
+    background-color:#E48D26;
+  }
+
+  .myButton:active {
+    position:relative;
+    top:1px;
+  }
+
+  .attribute {
+    margin: 10px;
+  }
+  
