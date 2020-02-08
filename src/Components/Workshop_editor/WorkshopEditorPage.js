@@ -48,7 +48,7 @@ class Workshoplistpage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <label className="attribute">Workshop's Name</label>
+                            <label>Workshop's Name</label>
                             <input type="text" name="workshopname" />
                             <br />
                             <label>Date</label>
@@ -80,13 +80,14 @@ class Workshoplistpage extends Component {
                             <textarea name="description" rows="4" cols="50"/>
                             <br />
                             <label>Tags</label>
+                            <br />
                             <textarea name="tags" rows="2" cols="50"/>
                             <br />
                             </form>
                         </div>
-                        <div className="button-body">
-                                <button className="mybutton" onClick={() => this.cancelclick()}>Cancel</button>
-                                <button className="mybutton" onClick={() => this.submitclick()}>Submit</button>
+                        <div id="button-body">
+                            <button className="mybutton" onClick={() => this.submitclick()}>Submit</button>
+                            <button className="mybutton" onClick={() => this.cancelclick()}>Cancel</button>
                         </div>
                     </div>
                 </div>
