@@ -47,7 +47,12 @@
     font-size: 30px;
   }
 
-  .list-body {
+  .form-body {
     font-size: 20px; 
     color: #cc670a;
+    margin-top: 50px;
+  }
+
+  .button-body {
+    font-size: 25px; 
   }

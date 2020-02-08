@@ -11,6 +11,17 @@ class Workshoplistpage extends Component {
         }
     }
 
+    submitclick() {
+        console.log("submit clicked")
+        console.log(window.location.host)
+    }
+
+    cancelclick() {
+        console.log("cancel clicked")
+        console.log(window.location.host)
+    }
+
+
     componentDidMount() {
     }
 
@@ -35,7 +46,7 @@ class Workshoplistpage extends Component {
                             <h1 id = "my-workshop-title">Edit Workshop</h1>
                         </div>
                         <div className="dropdown-divider"></div>
-                        <div className="list-body">
+                        <div className="form-body">
                         <form>
                             <label>
                                 Workshop's Name
@@ -69,9 +80,36 @@ class Workshoplistpage extends Component {
                             <label>
                                 Place 
                                 <br />
-                                <textarea name="place" />
+                                <textarea name="place" rows="4" cols="50"/>
                             </label>
+                            <br />
+                            <label>
+                            Deadline Date
+                                <input type="date" name="daedlinedead" />
+                            </label>
+                            <br />
+                            <label>
+                            Deadline Time
+                                <input type="time" name="daedlinetime" />
+                            </label>
+                            <br />
+                            <label>
+                                Description
+                                <br />
+                                <textarea name="description" rows="4" cols="50"/>
+                            </label>
+                            <br />
+                            <label>
+                                Tags
+                                <br />
+                                <textarea name="tags" rows="2" cols="50"/>
+                            </label>
+                            <br />
                             </form>
+                        </div>
+                        <div className="button-body">
+                                <button onClick={() => this.cancelclick()}>Cancel</button>
+                                <button onClick={() => this.submitclick()}>Submit</button>
                         </div>
                     </div>
                 </div>
