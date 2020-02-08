@@ -21,10 +21,14 @@
     justify-content: center;
     flex-direction: column;
     background-color: rgba(204, 115, 10, 0.12);
+    padding: 2%;
 }
 .header-detail {
-    margin: auto;
-    align-self: center;
+    align-self: left;
+    margin: 0.5em;
+    font-family: B612;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .body {
@@ -41,12 +45,4 @@
     align-self: center;
     justify-content: center;
     margin: auto;
-}
-
-.description {
-    margin: 2% 10%;
-}
-
-.topic {
-    font-size: 1.5rem;
 }
