@@ -32,11 +32,46 @@ class Workshoplistpage extends Component {
                     </div>
                     <div className="show-list">
                         <div className="list-header">
-                            <h1 id = "my-workshop-title">My Workshop</h1>
+                            <h1 id = "my-workshop-title">Edit Workshop</h1>
                         </div>
                         <div className="dropdown-divider"></div>
                         <div className="list-body">
-                            <h1>helloboy</h1>
+                        <form>
+                            <label>
+                                Workshop's Name
+                                <input type="text" name="workshopname" />
+                            </label>
+                            <br />
+                            <label>
+                                Date
+                                <input type="date" name="date" />
+                            </label>
+                            <br />
+                            <label>
+                                Start Time
+                                <input type="Time" name="starttime" />
+                            </label>
+                            <label>
+                                End Time
+                                <input type="Time" name="endtime" />
+                            </label>
+                            <br />
+                            <label>
+                                Capacity
+                                <input type="number" min = "1" name="starttime" />
+                            </label>
+                            <label>
+                                Cost
+                                <input type="number" name="cost" />
+                                THB
+                            </label>
+                            <br />
+                            <label>
+                                Place 
+                                <br />
+                                <textarea name="place" />
+                            </label>
+                            </form>
                         </div>
                     </div>
                 </div>
