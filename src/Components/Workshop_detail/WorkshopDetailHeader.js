@@ -16,7 +16,7 @@ class WorkshopDetailHeader extends React.Component {
     render() {
         const workshop = this.props.workshop;
         return(
-            <div className='header' id='container'>
+            <div className='header'>
                 <div className='header-image' id='box'>
                     <img src={workshop.pictureUrl} width='1000em' height='400em' />
                 </div>

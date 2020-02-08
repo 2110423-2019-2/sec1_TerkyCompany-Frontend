@@ -1,5 +1,6 @@
 import React from 'react';
 import './WorkshopDetailBody.css';
+import Instructor from './Instructor';
 
 class WorkshopDetailBody extends React.Component {
     constructor(props){
@@ -13,14 +14,19 @@ class WorkshopDetailBody extends React.Component {
     }
 
     render() {
-        const workshop = this.props.workshop;
         return (
-            <div className='body' id='container'>
-                <div className='body-details' id='box'>
+            <div className='body'>
+                <div className='body-details'>
                     <div className='description'>
                         <strong className='topic'>Description</strong><br/>
-                        &emsp;&emsp;&emsp;{workshop.description}
+                        &emsp;&emsp;&emsp;{this.props.workshop.description}
                     </div>
+                </div>
+                <div className='body-instructors'>
+                    <div className='topic'>
+                        Instructor<br/><br/>
+                    </div>
+                    <Instructor workshop={this.props.workshop}/>
                 </div>
             </div>
 

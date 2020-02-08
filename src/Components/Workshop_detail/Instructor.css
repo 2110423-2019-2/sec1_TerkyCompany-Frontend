@@ -1,0 +1,20 @@
+.instructor {
+    display: flex;
+    justify-content: left;
+    margin: 0;
+}
+
+.instructor-image {
+    border-radius: 100px;
+}
+
+.instructor-name {
+    font-family: B612;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.instructor-detail {
+    margin: 2%;
+    align-self: center;
+}
