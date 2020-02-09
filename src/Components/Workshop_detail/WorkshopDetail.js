@@ -26,6 +26,7 @@ class WorkshopDetail extends React.Component {
                 'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie',
                 instructorName: 'Mr.Abe Yaranaika senpai',
                 instructorImageSrc: 'https://image.dek-d.com/27/0254/1102/t_114820530',
+                tags: ['eiei','hoho','bobo']
             }
         }
     }
