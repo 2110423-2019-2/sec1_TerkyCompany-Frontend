@@ -46,3 +46,7 @@
   padding: 100px;
   font-size: 30px;
 }
+
+#list-body {
+  flex-wrap: wrap;
+}
