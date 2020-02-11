@@ -5,6 +5,11 @@
     font-weight: normal;
 }
 
+.body-details {
+    display: flex;
+    justify-content: left;
+}
+
 .topic {
     font-size: 1.5rem;
     font-family: B612;
@@ -14,7 +19,7 @@
 
 .body{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
 }
 
