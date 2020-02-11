@@ -51,6 +51,9 @@ class Workshoplistpage extends Component {
                             <label>Workshop's Name</label>
                             <input type="text" name="workshopname" />
                             <br />
+                            <label>Workshop's Profile Picture</label>
+                            <input type="file" name="workshoppic" />
+                            <br />
                             <label>Date</label>
                             <input type="date" name="date" />
                             <br />
