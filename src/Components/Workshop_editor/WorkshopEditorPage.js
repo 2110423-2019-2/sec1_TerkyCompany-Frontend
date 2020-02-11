@@ -1,19 +1,47 @@
 import React, { Component } from 'react';
 import './WorkshopEditorPage.css';
+import TextBox from './TextBox';
 
-
-class Workshoplistpage extends Component {
+class WorkshopEditorPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isLoading: false,
-
+            workshop :{
+                name: this.props.name,
+                pic: this.props.pic,
+                date: this.props.date,
+                startTime: this.props.startTime,
+                endTime: this.props.endTime,
+                capacity: this.props.capacity,
+                cost: this.props.cost,
+                place: this.props.place,
+                daedlineDate: this.props.daedlineDate,
+                daedlineTime: this.daedlineTime
+                
+            }
         }
     }
 
     submitclick() {
         console.log("submit clicked")
         console.log(window.location.host)
+        this.setState({
+            workshop:{
+                name:document.getElementsByClassName("workshopName")[0].value,
+                pic:document.getElementsByClassName("workshopPic")[0].value,
+                date:document.getElementsByClassName("date")[0].value,
+                startTime:document.getElementsByClassName("startTime")[0].value,
+                endTime:document.getElementsByClassName("endTime")[0].value,
+                capacity:document.getElementsByClassName("capacity")[0].value,
+                cost:document.getElementsByClassName("cost")[0].value,
+                place:document.getElementsByClassName("place")[0].value,
+                deadlineDate:document.getElementsByClassName("deadlineDate")[0].value,
+                deadlineTime:document.getElementsByClassName("deadlineTime")[0].value,
+            }
+        })
+        console.log(document.getElementsByClassName("workshopName")[0].value)
+        console.log(this.state);
     }
 
     cancelclick() {
@@ -27,7 +55,7 @@ class Workshoplistpage extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log("hello Workshoplist")
+        console.log("hello Workshopeditor")
         return (
             <div>
                 <div class="flex-container" id="flex-container">
@@ -48,35 +76,28 @@ class Workshoplistpage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <label>Workshop's Name</label>
-                            <input type="text" name="workshopname" />
-                            <br />
-                            <label>Workshop's Profile Picture</label>
-                            <input type="file" name="workshoppic" />
-                            <br />
-                            <label>Date</label>
-                            <input type="date" name="date" />
-                            <br />
+                            <TextBox titleName="Workshop's Name" typeName="text" className="workshopName" />               
+                            <TextBox titleName="Workshop's Profile Picture's Name" typeName="file" className="workshopPic" />
+                            <TextBox titleName="Date" typeName="date" className="date" />
                             <label>Start Time</label>
-                            <input type="Time" name="starttime" />
+                            <input type="Time" className="startTime" />
                             <label>End Time</label>
-                            <input type="Time" name="endtime" />
+                            <input type="Time" className="endTime" />
                             <br />
                             <label>Capacity</label>
-                            <input type="number" min = "1" name="starttime" />
+                            <input type="number" min = "1" className="capacity" />
                             <label>Cost</label>
-                            <input type="number" name="cost" />
+                            <input type="number" className="cost" />
                             <label>THB</label>
                             <br />
                             <label>Place</label>
                             <br />
-                            <textarea name="place" rows="4" cols="50"/>
+                            <textarea className="place" rows="4" cols="50"/>
                             <br />
-                            <label>Deadline Date</label>
-                            <input type="date" name="daedlinedead" />
-                            <br />
+                            <label>Daedline Date</label>
+                            <input type="date" className="deadlineDate" />
                             <label>Deadline Time</label>
-                            <input type="time" name="daedlinetime" />
+                            <input type="time" className="deadlineTime" />
                             <br />
                             <label>Description</label>
                             <br />
@@ -89,8 +110,8 @@ class Workshoplistpage extends Component {
                             </form>
                         </div>
                         <div id="button-body">
-                            <button className="mybutton" onClick={() => this.submitclick()}>Submit</button>
-                            <button className="mybutton" onClick={() => this.cancelclick()}>Cancel</button>
+                            <button className="myButton" onClick={() => this.submitclick()}>Submit</button>
+                            <button className="myButton" onClick={() => this.cancelclick()}>Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -99,4 +120,4 @@ class Workshoplistpage extends Component {
     }
 }
 
-export default Workshoplistpage;
+export default WorkshopEditorPage;
