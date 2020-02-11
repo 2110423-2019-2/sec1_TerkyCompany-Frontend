@@ -9,24 +9,18 @@ class WorkshopDetail extends React.Component {
         this.state = {
             isLoading: false,
             workshop: {
-                name: "Jojo's pose training",
-                place: '@Barn por mueng',
+                name: "Scrum workshop",
+                place: 'Chula',
                 startTime: '10.00',
                 endTime: '12.00',
-                pictureUrl: 'https://steamuserimages-a.akamaihd.net/ugc/934932188035608878/D6FEE6A44BB9A268648C65F015737C7A8828D993/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true',
+                pictureUrl: 'test.jpg',
                 cost: 5000,
                 notAvailableSeat: 20,
                 totalSeat: 50,
-                description: 'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie  tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie'+
-                'tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pietagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie tagina bobo gago yolo yolo choco choco pie',
-                instructorName: 'Mr.Abe Yaranaika senpai',
-                instructorImageSrc: 'https://image.dek-d.com/27/0254/1102/t_114820530',
-                tags: ['eiei','hoho','bobo']
+                description: 'dddddddslkvmfgkbnlvkngltkbmflkbgmld bml mlkdfbglfkbm;elfm lfdmblekfb lrbkm lrblkrmhvvrrhrgjrgrjbgn hetftyel;vkhye;dyvhlyhhyyyhygtgtgtgtgtgtdddddddddddddddddddddd ddddddddddddddd ddddddddddddddddddd d d ddddddddddd ddddddddddddddddddddddddcfccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
+                instructorName: 'Mr.SSS SSSSSSS',
+                instructorImageSrc: 'test.jpg',
+                tags: ['skill','tech','SE']
             }
         }
     }
