@@ -6,12 +6,11 @@
     height: 520px;
     padding: 20px;
     margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: 0 center;
+    margin-left: 1.5em;
     border-radius: 10px;
     flex-direction: column;
     transition: margin-top 0.3s;
+    align-self: left;
 }
 
 .workshop-item:hover {
