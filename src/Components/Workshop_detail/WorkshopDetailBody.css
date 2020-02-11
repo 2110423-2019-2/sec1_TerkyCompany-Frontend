@@ -1,0 +1,34 @@
+.description {
+    margin: 2% 10%;
+    font-family: B612;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.topic {
+    font-size: 1.5rem;
+    font-family: B612;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.body-instructors {
+    margin: 0;
+    padding: 1% 10%;
+}
+
+.body-tag {
+    display: flex;
+    margin: 0;
+    padding: 1% 10%;
+}
+
+#tag-topic {
+    align-self: center;
+}

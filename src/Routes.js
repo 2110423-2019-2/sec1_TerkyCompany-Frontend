@@ -2,10 +2,12 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import App from './Components/Homepage/App';
 import About from './Components/About';
 import React, { Component } from 'react';
+
+import WorkshopDetail from './Components/Workshop_detail/WorkshopDetail';
+
 import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
 import Footer from './Components/Footer/Footer';
-
 
 class Routes extends Component {
     render() {
@@ -19,6 +21,7 @@ class Routes extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/" component={App} />
+                        <Route exact path="/workshop-detail" component={WorkshopDetail} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
                     </Switch>
