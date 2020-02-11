@@ -17,8 +17,8 @@ class Footer extends Component {
         if (this.state.isLoading) return null
         console.log("hello footer")
         return (
-            <div class="footer" >
-                <div class="flex-container">
+            <div className="footer" >
+                <div className="flex-container">
                     <div id="col-1">
                         <div>
                             <h3>Our Workshops</h3>

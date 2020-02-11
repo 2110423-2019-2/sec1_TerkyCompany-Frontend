@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Workshoplistpage.css';
+import WorkshopItem from '../WorkshopItem/WorkshopItem';
 
 
 class Workshoplistpage extends Component {
@@ -19,7 +20,7 @@ class Workshoplistpage extends Component {
         console.log("hello Workshoplist")
         return (
             <div>
-                <div class="flex-container" id="flex-container">
+                <div className="flex-container" id="flex-container">
                     <div className="side-menu">
                         <div id="textzone">
                             <ul id="link-side">
@@ -35,7 +36,19 @@ class Workshoplistpage extends Component {
                             <h1 id = "my-workshop-title">My Workshop</h1>
                         </div>
                         <div className="dropdown-divider"></div>
-                        <div className="list-body">
+                        <div className="flex-container" id="list-body" >
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            <WorkshopItem />
+                            
                         </div>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ class Menubar extends Component {
             <div className="Menubar">
                 <nav className="navbar navbar-expand-sm navbar-light justify-content-between">
                     <a class="navbar-brand" href="/">
-                        <img src="./../Homepage/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" />
+                        {/* <img src="./../Homepage/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="" /> */}
                         Matcher
                     </a>
                     <ul className="navbar-nav">
