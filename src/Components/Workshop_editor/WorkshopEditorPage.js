@@ -104,9 +104,13 @@ class WorkshopEditorPage extends Component {
                             <textarea name="description" rows="4" cols="50"/>
                             <br />
                             <label>Tags</label>
-                            <br />
-                            <textarea name="tags" rows="2" cols="50"/>
-                            <br />
+                            <select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100">
+                                <option>United Kingdom</option>
+                                <option>United States</option>
+                                <option>France</option>
+                                <option>Germany</option>
+                                <option>Italy</option>
+                            </select>
                             </form>
                         </div>
                         <div id="button-body">
@@ -119,5 +123,4 @@ class WorkshopEditorPage extends Component {
         )
     }
 }
-
 export default WorkshopEditorPage;
