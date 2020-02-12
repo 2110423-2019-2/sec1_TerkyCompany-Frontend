@@ -3,7 +3,7 @@
 }
 
 #intro {
-  height: 30%;
+  height: 35%;
   display: flex;
 	flex-wrap: wrap;
   flex-direction: row;
@@ -12,7 +12,7 @@
 #text {
   margin-top: 3em;
   margin-left: 3em;
-  margin-right: 2em;
+  margin-right: 1em;
   font-size: 45px;
   word-wrap: break-word;
 }
@@ -22,14 +22,14 @@
   padding-right: 0.1em;
   padding-top : 0.5em;
   background-image: linear-gradient(to right, rgb(252, 243, 165), white);
-  width: 60%;
+  width: 50%;
 }
 
 .right-intro {
   /* background-color: seagreen; */
   background-image: url("homepage-intro.jpg");
   background-size: 100% 100%;
-  width : 40%;
+  width : 50%;
 }
 
 #hot-content {
