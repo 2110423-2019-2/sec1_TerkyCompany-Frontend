@@ -41,7 +41,7 @@ class WorkshopEditorPage extends Component {
                 place:document.getElementsByClassName("place")[0].value,
                 deadlineDate:document.getElementsByClassName("deadlineDate")[0].value,
                 deadlineTime:document.getElementsByClassName("deadlineTime")[0].value,
-            }
+            },
         })
         console.log(document.getElementsByClassName("workshopName")[0].value)
         console.log(this.state);
@@ -50,15 +50,6 @@ class WorkshopEditorPage extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
-    }
-
-    onSelect(selectedList, selectedItem) {
-        console.log(selectedItem);
-        
-    }
-    
-    onRemove(selectedList, removedItem) {
-        console.log(removedItem);
     }
 
     componentDidMount() {
@@ -119,8 +110,6 @@ class WorkshopEditorPage extends Component {
                             options={this.state.options}
                             selectedValues={this.state.selectedValue} 
                             displayValue="name"
-                            onSelect={this.onSelect()}
-                            onRemove={this.onRemove()}
                             closeIcon="close"
                             />
                             </form>
