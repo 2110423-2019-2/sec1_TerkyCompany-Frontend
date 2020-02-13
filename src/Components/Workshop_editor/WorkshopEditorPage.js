@@ -28,6 +28,7 @@ class WorkshopEditorPage extends Component {
                 tags:null
             },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
+            selectedValue: [{name: 'Srigar', id: 1},],
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -90,7 +91,6 @@ class WorkshopEditorPage extends Component {
         let content = this.state.content ;
         content.tags = selectedList;
         this.setState({errMsg:err, content:content});
-        console.log(selectedList);
     }
 
     submitclick() {
@@ -131,7 +131,7 @@ class WorkshopEditorPage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <TextBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
+                            <TextBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} value="Workshop's name" />
                             <br />
                             <TextBox label="Workshop's profile picture"    name="workshopPic"  type="input" inputType="file"   onChange={this.handleChange} errMsg="" />
                             <br />

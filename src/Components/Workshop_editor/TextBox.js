@@ -15,7 +15,7 @@ class TextBox extends Component {
             return (
                 <span>
                     <label>{this.props.label}</label>
-                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name}/>
+                    <input  type={this.props.inputType} value={this.props.value} min={this.props.min} onChange={this.props.onChange} name={this.props.name}/>
                     {this.props.errMsg.length > 0 && <span>{this.props.errMsg}</span>}
                 </span>
             )
