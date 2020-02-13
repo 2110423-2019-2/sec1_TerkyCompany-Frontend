@@ -11,12 +11,24 @@ class TextBox extends Component {
     
     render() {
         if (this.state.isLoading) return null
-        return (
-            <div>
-            <label>{this.props.titleName}</label>
-            <input type={this.props.typeName} className={this.props.className} />
-            </div>
-        )
+        if(this.props.type === "input") {
+            return (
+                <span>
+                    <label>{this.props.label}</label>
+                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name}/>
+                    {this.props.errMsg.length > 0 && <span>{this.props.errMsg}</span>}
+                </span>
+            )
+        }
+        if(this.props.type === "text") {
+            return (
+                <div>
+                    <label>{this.props.label}</label>
+                    <br />
+                    <textarea rows={this.props.row} cols={this.props.col} onChange={this.props.onChange} name={this.props.name}/>
+                </div>
+            )
+        }
     }
 }
 

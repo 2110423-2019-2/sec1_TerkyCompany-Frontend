@@ -8,42 +8,94 @@ class WorkshopEditorPage extends Component {
         super(props)
         this.state = {
             isLoading: false,
-            workshop :{
-                name: this.props.name,
-                pic: this.props.pic,
-                date: this.props.date,
-                startTime: this.props.startTime,
-                endTime: this.props.endTime,
-                capacity: this.props.capacity,
-                cost: this.props.cost,
-                place: this.props.place,
-                daedlineDate: this.props.daedlineDate,
-                daedlineTime: this.daedlineTime
-                
+            errMsg: {
+                workshopName: '',
+                cap: '',
+                cost: '',
+            },
+            content:{
+                workshopName:null,
+                workshopPic:null,
+                date:null,
+                sTime:null,
+                eTime:null,
+                cap:0,
+                cost:0,
+                place:null,
+                ddate:null,
+                dtime:null,
+                description:null,
+                tags:null
             },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
-            selectedValue: [{name: 'Srigar', id: 1}],
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (e) => {
+        e.preventDefault() ;
+        const {name,value} = e.target; 
+        let err = this.state.errMsg ;
+        let content = this.state.content ;
+        switch(name) {
+            case "workshopName":
+                err.workshopName = value.length < 5 ? "Workshop's name must be at least 5 character" : '' ;
+                content.workshopName = value ;
+                break
+            case "workshopPic" :
+                content.workshopPic = value ;
+                break
+            case "date" :
+                content.date = value ;
+                break
+            case "sTime" :
+                content.sTime = value ;
+                break
+            case "eTime" :
+                content.eTime = value ;
+                break
+            case "cap":
+                err.cap = (value < 0 || value > 1000) ? "Capacity must be number between 0-1000" : '' ;
+                content.cap = value ;
+                break
+            case "cost":
+                err.cost = value < 0 ? "Cost must be positive number" : '' ;
+                content.cost = value ;
+                break
+            case "place" :
+                content.place = value ;
+                break
+            case "ddate" :
+                content.ddate = value ;
+                break
+            case "dtime" :
+                content.dtime = value ;
+                break
+            case "description" :
+                content.description = value ;
+                break
+            case "tags" :
+                content.tags = e.selectedValue;
+                break
+            default:
+                console.log(name)
+                break;
+        }
+        this.setState({errMsg:err, content:content});
+    }
+
+    onSelect = (selectedList, selectedItem) => {
+        console.log(this);
+        let err = this.state.errMsg ;
+        let content = this.state.content ;
+        content.tags = selectedList;
+        this.setState({errMsg:err, content:content});
+        console.log(selectedList);
     }
 
     submitclick() {
         console.log("submit clicked")
         console.log(window.location.host)
-        this.setState({
-            workshop:{
-                name:document.getElementsByClassName("workshopName")[0].value,
-                pic:document.getElementsByClassName("workshopPic")[0].value,
-                date:document.getElementsByClassName("date")[0].value,
-                startTime:document.getElementsByClassName("startTime")[0].value,
-                endTime:document.getElementsByClassName("endTime")[0].value,
-                capacity:document.getElementsByClassName("capacity")[0].value,
-                cost:document.getElementsByClassName("cost")[0].value,
-                place:document.getElementsByClassName("place")[0].value,
-                deadlineDate:document.getElementsByClassName("deadlineDate")[0].value,
-                deadlineTime:document.getElementsByClassName("deadlineTime")[0].value,
-            },
-        })
-        console.log(document.getElementsByClassName("workshopName")[0].value)
         console.log(this.state);
     }
 
@@ -53,6 +105,7 @@ class WorkshopEditorPage extends Component {
     }
 
     componentDidMount() {
+        
     }
 
     render() {
@@ -78,40 +131,25 @@ class WorkshopEditorPage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <TextBox titleName="Workshop's Name" typeName="text" className="workshopName" />               
-                            <TextBox titleName="Workshop's Profile Picture's Name" typeName="file" className="workshopPic" />
-                            <TextBox titleName="Date" typeName="date" className="date" />
-                            <label>Start Time</label>
-                            <input type="Time" className="startTime" />
-                            <label>End Time</label>
-                            <input type="Time" className="endTime" />
+                            <TextBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
                             <br />
-                            <label>Capacity</label>
-                            <input type="number" min = "1" className="capacity" />
-                            <label>Cost</label>
-                            <input type="number" className="cost" />
-                            <label>THB</label>
+                            <TextBox label="Workshop's profile picture"    name="workshopPic"  type="input" inputType="file"   onChange={this.handleChange} errMsg="" />
                             <br />
-                            <label>Place</label>
+                            <TextBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
                             <br />
-                            <textarea className="place" rows="4" cols="50"/>
+                            <TextBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
+                            <TextBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
                             <br />
-                            <label>Daedline Date</label>
-                            <input type="date" className="deadlineDate" />
-                            <label>Deadline Time</label>
-                            <input type="time" className="deadlineTime" />
+                            <TextBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap}  onChange={this.handleChange} min="1" />
+                            <TextBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} onChange={this.handleChange} min="1" />
                             <br />
-                            <label>Description</label>
+                            <TextBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Location of the workshop"/>
+                            <TextBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
+                            <TextBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
                             <br />
-                            <textarea name="description" rows="4" cols="50" />
-                            <br />
+                            <TextBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Briefly explain the workshop"/>
                             <label>Tags</label>
-                            <Multiselect 
-                            options={this.state.options}
-                            selectedValues={this.state.selectedValue} 
-                            displayValue="name"
-                            closeIcon="close"
-                            />
+                            <Multiselect options={this.state.options} onSelect = {this.onSelect} selectedValues={this.state.selectedValue} displayValue="name" closeIcon="close"/>
                             </form>
                         </div>
                         <div id="button-body">
