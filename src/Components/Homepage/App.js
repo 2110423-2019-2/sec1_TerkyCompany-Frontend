@@ -25,7 +25,7 @@ class App extends Component {
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 8000,
-      speed: 1500,
+      speed: 2500,
     }
     if (this.state.isLoading) return null
     console.log("hello Homepage")
