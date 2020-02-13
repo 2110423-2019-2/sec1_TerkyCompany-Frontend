@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
 import Footer from './Components/Footer/Footer';
+import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
 
 
 class Routes extends Component {
@@ -21,6 +22,7 @@ class Routes extends Component {
                         <Route exact path="/" component={App} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
+                        <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
