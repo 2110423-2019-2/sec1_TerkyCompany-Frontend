@@ -96,6 +96,14 @@ class Form extends React.Component {
         console.log("submit clicked")
         console.log(window.location.host)
         console.log(this.state);
+        let errMsg = this.state.errMsg ;
+        if(errMsg.workshopName.length > 0 || errMsg.cap.length > 0 || errMsg.cost.length > 0) {
+            alert("Invalid input")
+        }
+        else {
+            alert("Submitted")
+        }
+        
     }
 
     cancelclick() {
