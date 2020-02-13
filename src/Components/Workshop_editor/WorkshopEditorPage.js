@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './WorkshopEditorPage.css';
 import TextBox from './TextBox';
+import { Multiselect } from 'multiselect-react-dropdown';
 
 class WorkshopEditorPage extends Component {
     constructor(props) {
@@ -19,7 +20,9 @@ class WorkshopEditorPage extends Component {
                 daedlineDate: this.props.daedlineDate,
                 daedlineTime: this.daedlineTime
                 
-            }
+            },
+            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
+            selectedValue: [{name: 'Srigar', id: 1}],
         }
     }
 
@@ -49,6 +52,14 @@ class WorkshopEditorPage extends Component {
         console.log(window.location.host)
     }
 
+    onSelect(selectedList, selectedItem) {
+        console.log(selectedItem);
+        
+    }
+    
+    onRemove(selectedList, removedItem) {
+        console.log(removedItem);
+    }
 
     componentDidMount() {
     }
@@ -101,16 +112,17 @@ class WorkshopEditorPage extends Component {
                             <br />
                             <label>Description</label>
                             <br />
-                            <textarea name="description" rows="4" cols="50"/>
+                            <textarea name="description" rows="4" cols="50" />
                             <br />
                             <label>Tags</label>
-                            <select multiple data-style="bg-white rounded-pill px-4 py-3 shadow-sm " class="selectpicker w-100">
-                                <option>United Kingdom</option>
-                                <option>United States</option>
-                                <option>France</option>
-                                <option>Germany</option>
-                                <option>Italy</option>
-                            </select>
+                            <Multiselect 
+                            options={this.state.options}
+                            selectedValues={this.state.selectedValue} 
+                            displayValue="name"
+                            onSelect={this.onSelect()}
+                            onRemove={this.onRemove()}
+                            closeIcon="close"
+                            />
                             </form>
                         </div>
                         <div id="button-body">
