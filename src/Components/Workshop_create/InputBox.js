@@ -1,35 +1,32 @@
 import React from 'react' ;
+import { Multiselect } from 'multiselect-react-dropdown';
 
 class InputBox extends React.Component {
-
     render() {
+ 
         if(this.props.type === "input") {
             return (
-                <div>
-                    <label>{this.props.label}</label>
+                <span id={this.props.id}>
+                    <label className={this.props.labelStyle}>{this.props.label}</label>
                     <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name}/>
-                    {this.props.errMsg.length > 0 && <span>{this.props.errMsg}</span>}
-                </div>
+                    {this.props.errMsg.length > 0 && <span style={{color:"red"}}>{this.props.errMsg}</span>}
+                </span>
             )
         }
         if(this.props.type === "text") {
             return (
-                <div>
+                <div id={this.props.id}>
                     <label>{this.props.label}</label>
-                    <textarea rows={this.props.row} cols={this.props.col}/>
+                    <br />
+                    <textarea rows={this.props.row} cols={this.props.col} placeholder={this.props.placeholder}/>
                 </div>
             )
         }
         if(this.props.type === "dropD") {
             return (
-                <div>
+                <div id={this.props.id}>
                     <label>{this.props.label}</label>
-                    <select onChange={this.props.onChange} >
-                        <option value="" disabled selected hidden>Please choose...</option>
-                        {this.props.tags.map(tag=>{
-                return <option value={tag}>{tag}</option>
-            })}
-                    </select>
+                    <Multiselect options={this.props.options} onSelect={this.props.onSelect} selectedValues={this.props.tags} displayValue="name" closeIcon="cancel" style={this.props.style}/>
                 </div>
             )
         }
