@@ -93,6 +93,12 @@ class WorkshopEditorPage extends Component {
         this.setState({errMsg:err, content:content});
     }
 
+    onRemove(selectedList, removedItem) {
+        if (selectedList.length == 0) {
+            console.log("No Tags!!");
+        }
+    }
+
     submitclick() {
         console.log("submit clicked")
         console.log(window.location.host)
@@ -132,24 +138,19 @@ class WorkshopEditorPage extends Component {
                         <div className="form-body">
                         <form>
                             <TextBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} value="Workshop's name" />
-                            <br />
-                            <TextBox label="Workshop's profile picture"    name="workshopPic"  type="input" inputType="file"   onChange={this.handleChange} errMsg="" />
-                            <br />
+                            <TextBox label="Workshop's profile picture"    name="workshopPic"  type="file" inputType="file"   onChange={this.handleChange} errMsg="" />
                             <TextBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
-                            <br />
                             <TextBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
                             <TextBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
-                            <br />
                             <TextBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap}  onChange={this.handleChange} min="1" />
                             <TextBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} onChange={this.handleChange} min="1" />
-                            <br />
                             <TextBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Location of the workshop"/>
                             <TextBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
                             <TextBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
-                            <br />
                             <TextBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Briefly explain the workshop"/>
                             <label>Tags</label>
                             <Multiselect options={this.state.options} onSelect = {this.onSelect} selectedValues={this.state.selectedValue} displayValue="name" closeIcon="close"/>
+                            <span id = "mulErrMsg"></span>
                             </form>
                         </div>
                         <div id="button-body">
