@@ -8,8 +8,8 @@ class InputBox extends React.Component {
             return (
                 <span id={this.props.id}>
                     <label className={this.props.labelStyle}>{this.props.label}</label>
-                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
-                    {this.props.errMsg.length > 0 && <span style={{color:"red"}}>{this.props.errMsg}</span>}
+                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control" required={true}/>
+                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
                 </span>
             )
         }
@@ -19,6 +19,7 @@ class InputBox extends React.Component {
                     <label>{this.props.label}</label>
                     <br />
                     <textarea rows={this.props.row} cols={this.props.col} placeholder={this.props.placeholder} class="form-control"/>
+                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
                 </div>
             )
         }
@@ -28,7 +29,7 @@ class InputBox extends React.Component {
                     <label >{this.props.label}</label>
                     <br />
                     <input  type={this.props.inputType} value={this.props.value} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control-file"/>
-                    {this.props.errMsg.length > 0 && <span>{this.props.errMsg}</span>}
+                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
                     <br />
                 </div>
             )
@@ -38,7 +39,7 @@ class InputBox extends React.Component {
                 <div id={this.props.id}>
                     <label>{this.props.label}</label>
                     <Multiselect options={this.props.options} onSelect={this.props.onSelect} onRemove={this.props.onRemove} selectedValues={this.props.tags} displayValue="name" closeIcon="cancel" style={this.props.style} placeholder={this.props.placeholder}/>
-                    {this.props.errMsg.length > 0 && <span>{this.props.errMsg}</span>}
+                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
                 </div>
             )
         }
