@@ -8,7 +8,7 @@ class WorkshopCreatePage extends React.Component {
         super(props) ;
         this.state ={
             isLoading: false,
-            content: ["Li1","Li2"]
+            content: []
         }
     }
     render() {
@@ -24,6 +24,9 @@ class WorkshopCreatePage extends React.Component {
                     <div>
                         <CreateForm id="form" tags={this.state.tags}/>
                     </div>
+                </div>
+                <div id="sidebar">
+                    <SideBar content={this.state.content}/>
                 </div>
             </div>
         )

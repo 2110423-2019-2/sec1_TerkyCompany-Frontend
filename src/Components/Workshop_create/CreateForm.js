@@ -8,28 +8,40 @@ class Form extends React.Component {
         this.state = {
             isLoading : false,
             errMsg: {
-                workshopName: '',
-                cap: '',
-                cost: '',
+                workshopName:'',
+                workshopPic:'',
+                date:'',
+                sTime:'',
+                eTime:'',
+                cap:'',
+                cost:'',
+                place:'',
+                ddate:'',
+                dtime:'',
+                description:'',
+                tags:''
             },
             content:{
-                workshopName:null,
-                workshopPic:null,
-                date:null,
-                sTime:null,
-                eTime:null,
-                cap:0,
-                cost:0,
-                place:null,
-                ddate:null,
-                dtime:null,
-                description:null,
+                workshopName:'',
+                workshopPic:'',
+                date:'',
+                sTime:'',
+                eTime:'',
+                cap:'',
+                cost:'',
+                place:'',
+                ddate:'',
+                dtime:'',
+                description:'',
                 tags:[]
             },
-            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
+            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}]
         }
         this.handleChange = this.handleChange.bind(this) ;
-        this.handleChoose = this.handleChoose.bind(this) ;
+        this.handleSelect = this.handleSelect.bind(this) ;
+        this.handleRemove = this.handleRemove.bind(this) ;
+        this.handleSubmit = this.handleSubmit.bind(this) ;
+        this.handleCancel = this.handleCancel.bind(this) ;
     }
 
     handleChange = (e) => {
@@ -39,8 +51,14 @@ class Form extends React.Component {
         let content = this.state.content ;
         switch(name) {
             case "workshopName":
-                err.workshopName = value.length < 5 ? "must be at least 5 character" : '' ;
-                content.workshopName = value ;
+                if (value.length < 5) {
+                    err.workshopName = "must be at least 5 character"
+                }
+                else {
+                    err.workshopName = ""
+                    content.workshopName = value ;
+                }
+                
                 break;
             case "workshopPic" :
                 content.workshopPic = value ;
@@ -55,12 +73,22 @@ class Form extends React.Component {
                 content.eTime = value ;
                 break;
             case "cap":
-                err.cap = (value < 0 || value > 1000) ? "must be number between 0-1000" : '' ;
-                content.cap = value ;
+                if (value < 0 || value > 1000) {
+                    err.cap = "must be number between 0-1000"
+                }
+                else {
+                    content.cap = value ;
+                    err.cap = ""
+                }
                 break;
             case "cost":
-                err.cost = value < 0 ? "must be positive number" : '' ;
-                content.cost = value ;
+                if (value < 0) {
+                    err.cost = "must be positive number"
+                }
+                else {
+                    err.cost = "" 
+                    content.cost = value
+                }
                 break;
             case "place" :
                 content.place = value ;
@@ -85,49 +113,24 @@ class Form extends React.Component {
     }
 
     handleSelect = (selectedList, selectedItem) => {
-        console.log(this);
         let err = this.state.errMsg ;
         let content = this.state.content ;
         content.tags = selectedList;
         this.setState({errMsg:err, content:content});
+        console.log(this.state.content)
     }
 
-    submitclick() {
-        console.log("submit clicked")
-        console.log(window.location.host)
-        console.log(this.state);
-        let errMsg = this.state.errMsg ;
-        if(errMsg.workshopName.length > 0 || errMsg.cap.length > 0 || errMsg.cost.length > 0) {
-            alert("Invalid input")
-        }
-        else {
-            alert("Submitted")
-        }
-        
+    handleRemove(selectedList, removedItem) {
+        console.log(this.state.content)
+    }
+    handleSubmit() {
+        console.log("submit clicked")        
     }
 
-    cancelclick() {
+    handleCancel() {
         console.log("cancel clicked")
-        console.log(window.location.host)
     }
 
-    handleChoose = (e) => {
-        let val = e.target.value ;
-        var ctag = this.state.choseTag ;
-        var tag = this.state.tags ;
-        if(!ctag.includes(val)){
-            ctag.push(val)
-            tag = tag.filter(e => e !== val)
-        }
-        this.setState({choseTag:ctag, tags:tag}) ;
-    }
-
-    removeTag(tagName) {
-        var tag = this.state.choseTag 
-        if(tag.includes(tagName)){
-            tag = tag.filter(e => e !== tagName)
-        }
-    }
     render() {
         if (this.state.isLoading) return null
         console.log("hello Create form")
@@ -138,7 +141,7 @@ class Form extends React.Component {
                     <form>
                         <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
                         <br/>
-                        <InputBox label="Workshop's profile picture"    name="workshopPic"  type="input" inputType="file"   onChange={this.handleChange} errMsg="" />
+                        <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file" inputType="file"   onChange={this.handleChange} errMsg="" />
                         <br/>
                         <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
                         <br/>
@@ -154,12 +157,12 @@ class Form extends React.Component {
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
                         <br/>
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Briefly explain the workshop"/>
-                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} style={style}/>
+                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags"/>
                     </form>
                 </div>
                 <div id="button-body">
-                            <button className="myButton" onClick={() => this.submitclick()}>Submit</button>
-                            <button onClick={() => this.cancelclick()}>Cancel</button>
+                            <button className="myButton" onClick={() => this.handleSubmit}>Submit</button>
+                            <button onClick={() => this.handleCancel}>Cancel</button>
                 </div>
             </div>
         )
