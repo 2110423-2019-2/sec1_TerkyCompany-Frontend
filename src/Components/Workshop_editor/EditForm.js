@@ -162,7 +162,7 @@ class EditForm extends Component {
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description}/>
-                        <InputBox label="Tags"                          type="dropD"        options={this.state.options}    onSelect = {this.onSelect} onRemove = {this.onRemove}  selectedValues={this.state.selectedValues} errMsg={this.state.errMsg.tags}/>
+                        <InputBox label="Tags"                          type="dropD"        options={this.state.options}    onSelect = {this.onSelect}   onRemove = {this.onRemove}  selectedValues={this.state.selectedValues} errMsg={this.state.errMsg.tags}/>
                     </form>
                 </div>
                 <div id="button-body">
