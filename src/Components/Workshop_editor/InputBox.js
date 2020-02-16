@@ -40,17 +40,20 @@ class InputBox extends Component {
                     <label>{this.props.label}</label>
                     <br />
                     <textarea rows={this.props.row} cols={this.props.col} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
+                    <span>{this.props.errMsg}</span>
                 </div>
             )
         }
         else if(this.props.type === "dropD") {
             return (
-                <label>Tags</label>
-                <Multiselect options={this.props.options} onSelect = {this.props.onSelect} selectedValues={this.props.selectedValue} displayValue="name" closeIcon="close"/>
-                <span id = "mulErrMsg"></span>
+                <div>
+                    <label>{this.props.label}</label>
+                    <Multiselect options={this.props.options} onSelect = {this.props.onSelect} selectedValues={this.props.selectedValues} displayValue="name" closeIcon="close"/>
+                    <span>{this.props.errMsg}</span>
+                </div>
             )
         }
     }
 }
 
-export default TextBox;
+export default InputBox;

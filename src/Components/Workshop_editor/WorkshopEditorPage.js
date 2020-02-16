@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './WorkshopEditorPage.css';
-import TextBox from './TextBox';
+import InputBox from './InputBox';
 import { Multiselect } from 'multiselect-react-dropdown';
 
 class WorkshopEditorPage extends Component {
@@ -28,7 +28,7 @@ class WorkshopEditorPage extends Component {
                 tags:null
             },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
-            selectedValue: [{name: 'Srigar', id: 1},],
+            selectedValues: [{name: 'Srigar', id: 1},],
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -137,20 +137,18 @@ class WorkshopEditorPage extends Component {
                         <div className="dropdown-divider"></div>
                         <div className="form-body">
                         <form>
-                            <TextBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} value="Workshop's name" />
-                            <TextBox label="Workshop's profile picture"    name="workshopPic"  type="file" inputType="file"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap}  onChange={this.handleChange} min="1" />
-                            <TextBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} onChange={this.handleChange} min="1" />
-                            <TextBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Location of the workshop"/>
-                            <TextBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
-                            <TextBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} placeholder="Briefly explain the workshop"/>
-                            <label>Tags</label>
-                            <Multiselect options={this.state.options} onSelect = {this.onSelect} selectedValues={this.state.selectedValue} displayValue="name" closeIcon="close"/>
-                            <span id = "mulErrMsg"></span>
+                            <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} value="Workshop's name" />
+                            <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file"  inputType="file"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap} min="1" />
+                            <InputBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} min="1" />
+                            <InputBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} />
+                            <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg="" />
+                            <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} />
+                            <InputBox label="Tags"                          type="dropD" options={this.state.options} onSelect = {this.onSelect} selectedValues={this.state.selectedValues} errMsg=""/>
                             </form>
                         </div>
                         <div id="button-body">
