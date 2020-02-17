@@ -18,7 +18,7 @@ class InputBox extends Component {
             },
             optionContainer: {
                 background: "white",
-              },
+            },
         };
     }
     
