@@ -20,12 +20,11 @@ class App extends Component {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 8000,
-      speed: 2500,
+      speed: 1000,
     }
     if (this.state.isLoading) return null
     console.log("hello Homepage")
@@ -44,19 +43,19 @@ class App extends Component {
             <h2 id="in-trend-head">In trend workshop</h2>
             <Slider {...settings}>
               <div>
-                <img id="slick-item" src="test.jpg" />
+                <img id="slick-item" alt="" src="test.jpg" />
               </div>
               <div>
-                <img id="slick-item" src="test.jpg" />
+                <img id="slick-item" alt="" src="test.jpg" />
               </div>
               <div>
-                <img id="slick-item" src="test.jpg" />
+                <img id="slick-item" alt="" src="test.jpg" />
               </div>
               <div>
-                <img id="slick-item" src="test.jpg" />
+                <img id="slick-item" alt="" src="test.jpg" />
               </div>
               <div>
-                <img id="slick-item" src="test.jpg" />
+                <img id="slick-item" alt="" src="test.jpg" />
               </div>
             </Slider>
           </div>
