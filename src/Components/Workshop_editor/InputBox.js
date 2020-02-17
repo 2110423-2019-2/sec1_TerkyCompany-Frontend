@@ -30,7 +30,7 @@ class InputBox extends Component {
                     <label >{this.props.label}</label>
                     <br />
                     <input  type={this.props.inputType} value={this.props.value} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
-                    {(this.props.errMsg.length == 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
@@ -40,7 +40,7 @@ class InputBox extends Component {
                     <label >{this.props.label}</label>
                     <br />
                     <input  type={this.props.inputType} value={this.props.value} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control-file"/>
-                    {(this.props.errMsg.length == 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
@@ -50,7 +50,7 @@ class InputBox extends Component {
                     <label>{this.props.label}</label>
                     <br />
                     <textarea rows={this.props.row} defaultValue={this.props.value} cols={this.props.col} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
-                    {(this.props.errMsg.length == 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
@@ -61,7 +61,7 @@ class InputBox extends Component {
                     <Multiselect options={this.props.options} onSelect = {this.props.onSelect} onRemove = {this.props.onRemove} 
                     selectedValues={this.props.selectedValues} displayValue="name" closeIcon="close"
                     style={this.style}/>
-                    {(this.props.errMsg.length == 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }

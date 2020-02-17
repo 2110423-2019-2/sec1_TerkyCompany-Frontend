@@ -19,7 +19,7 @@ class WorkshopEditPage extends React.Component {
                     <SideBar content={this.state.content}/>
                 </div>
                 <div className="show-list">
-                    <h1>Edit workshop</h1>
+                    <h1>Edit Workshop</h1>
                     <div className="dropdown-divider"></div>
                     <div>
                         <EditForm id="form"/>

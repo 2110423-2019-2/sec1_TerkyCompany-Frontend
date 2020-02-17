@@ -118,7 +118,6 @@ class EditForm extends Component {
     submitclick = () => {
         console.log("submit clicked")
         console.log(window.location.host)
-        console.log(this.state)
         let err = this.state.errMsg 
         let errorCheck = false
         for(let key in err) {
@@ -132,6 +131,7 @@ class EditForm extends Component {
         }
         else {
             alert("Submitted")
+            console.log(this.state.content)
         }
     }
 
@@ -165,9 +165,9 @@ class EditForm extends Component {
                         <InputBox label="Tags"                          type="dropD"        options={this.state.options}    onSelect = {this.onSelect}   onRemove = {this.onRemove}  selectedValues={this.state.selectedValues} errMsg={this.state.errMsg.tags}/>
                     </form>
                 </div>
-                <div id="button-body">
-                    <button className="myButton" onClick={() => this.submitclick()}>Submit</button>
-                    <button className="myButton" onClick={() => this.cancelclick()}>Cancel</button>
+                <div id="button-body" class="text-center">
+                    <button class="btn btn-primary btn-lg" onClick={() => this.submitclick()}>Submit</button>
+                    <button class="btn btn-primary btn-lg" onClick={() => this.cancelclick()}>Cancel</button>
                 </div>
             </div>
         )
