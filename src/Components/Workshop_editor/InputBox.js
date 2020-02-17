@@ -49,7 +49,7 @@ class InputBox extends Component {
                 <div>
                     <label>{this.props.label}</label>
                     <br />
-                    <textarea rows={this.props.row} cols={this.props.col} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
+                    <textarea rows={this.props.row} defaultValue={this.props.value} cols={this.props.col} onChange={this.props.onChange} name={this.props.name} class="form-control"/>
                     {(this.props.errMsg.length == 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
