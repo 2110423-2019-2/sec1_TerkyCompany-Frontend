@@ -40,6 +40,7 @@ class EditForm extends Component {
             },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
             selectedValues: [{name: 'Srigar', id: 1},],
+            initData: [],
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -52,14 +53,28 @@ class EditForm extends Component {
         let content = this.state.content 
         switch(name) {
             case "workshopName":
-                err.workshopName = value.length < 5 ? "Workshop's name must be at least 5 character" : '' 
-                err.workshopName = value.length > 40 ? "Workshop's name must be at most 40 character" : ''
-                content.workshopName = value 
+                if (value.length < 5) {
+                    err.workshopName = "Workshop's name must be at least 5 character"
+                }
+                else if (value.length > 40) {
+                    err.workshopName = "Workshop's name must be at most 40 character"
+                }
+                else {
+                    err.workshopName = ''
+                    content.workshopName = value
+                }
                 break
             case "speakerName":
-                err.speakerName = value === '' ? "This cannot be empty" : ''
-                err.speakerName = value.length > 80 ? "Speaker's name must be at most 80 character" : '' 
-                content.speakerName = value 
+                if (value === '') {
+                    err.speakerName = "This cannot be empty"
+                }
+                else if (value.length > 80) {
+                    err.speakerName = "Speaker's name must be at most 80 character"
+                }
+                else {
+                    err.speakerName = ''
+                    content.speakerName = value
+                }
                 break
             case "workshopPic" :
                 err.workshopPic = value === '' ? "This cannot be empty" : '' 
@@ -87,9 +102,16 @@ class EditForm extends Component {
                 content.cost = value 
                 break
             case "place" :
-                err.place = value.length === 0  ? "This cannot be empty" : '' 
-                err.place = value.length > 40 ? "Place must be at most 40 character" : '' 
-                content.place = value 
+                if (value === '') {
+                    err.place = "This cannot be empty"
+                }
+                else if (value.length > 40) {
+                    err.place = "Place must be at most 40 character"
+                }
+                else {
+                    err.place = ''
+                    content.place = value
+                }
                 break
             case "ddate" :
                 err.ddate = value == null ? "This cannot be empty" : '' 
@@ -157,16 +179,38 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
+<<<<<<< HEAD
         let err = this.state.errMsg 
         let content = this.state.content
         content.workshopName = "miw.tanakorn"
         this.setState({errMsg:err, content:content})
         console.log(this.state.content);
         
+||||||| merged common ancestors
+=======
+        // let content = this.state.content
+        // content.workshopName = "miw.tanakorn"
+        // let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
+        // content.dtime = timeAndDate["time"]
+        // content.ddate = timeAndDate["date"]s
+        // this.setState({content:content})
+        // console.log(this.state.content)
+        // console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+    }
+
+    convertTimeStampToTime = (timeStamp) => {
+        let time = timeStamp.slice(11,16)
+        let date = timeStamp.slice(0,10)
+        let timeAndDate = {"time":time, "date":date}
+        return timeAndDate
+>>>>>>> refs/remotes/origin/workshop-editor
     }
 
     componentDidMount() {
-        
+        axios.get('http://localhost:3001/endy/1/get').then(res => { 
+            let initData = res.data 
+            this.setState({ initData }) 
+        })
     }
 
     render() {
