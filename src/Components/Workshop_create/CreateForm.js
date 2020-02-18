@@ -61,16 +61,40 @@ class Form extends React.Component {
                 
                 break;
             case "workshopPic" :
-                content.workshopPic = value ;
+                if (value === '') {
+                    err.workshopPic = "This cannot be empty"
+                }
+                else {
+                    err.workshopPic = ""
+                    content.workshopPic = value ;
+                }
                 break;
             case "date" :
-                content.date = value ;
+                if (value == '') {
+                    err.date = "This cannot be empty"
+                }
+                else {
+                    err.date = ""
+                    content.date = value ;
+                }
                 break;
             case "sTime" :
-                content.sTime = value ;
+                if (value == '') {
+                    err.sTime = "This cannot be empty"
+                }
+                else {
+                    err.sTime = ""
+                    content.sTime = value ;
+                }
                 break;
             case "eTime" :
-                content.eTime = value ;
+                if (value == '') {
+                    err.eTime = "This cannot be empty"
+                }
+                else {
+                    err.eTime = ""
+                    content.eTime = value ;
+                }
                 break;
             case "cap":
                 if (value < 0 || value > 1000) {
@@ -91,19 +115,40 @@ class Form extends React.Component {
                 }
                 break;
             case "place" :
-                content.place = value ;
+                if (value == '') {
+                    err.place = "This cannot be empty"
+                }
+                else {
+                    err.place = ""
+                    content.place = value ;
+                }
                 break;
             case "ddate" :
-                content.ddate = value ;
+                if (value == '') {
+                    err.ddate = "This cannot be empty"
+                }
+                else {
+                    err.ddate = ""
+                    content.ddate = value ;
+                }
                 break;
             case "dtime" :
-                content.dtime = value ;
+                if (value == '') {
+                    err.dtime = "This cannot be empty"
+                }
+                else {
+                    err.dtime = ""
+                    content.dtime = value ;
+                }
                 break;
             case "description" :
-                content.description = value ;
-                break;
-            case "tags" :
-                content.tags = value ;
+                if (value == '') {
+                    err.description = "This cannot be empty"
+                }
+                else {
+                    err.description = ""
+                    content.description = value ;
+                }
                 break;
             default:
                 console.log(name)
@@ -115,12 +160,29 @@ class Form extends React.Component {
     handleSelect = (selectedList, selectedItem) => {
         let err = this.state.errMsg ;
         let content = this.state.content ;
-        content.tags = selectedList;
+        if (selectedList.length == 0) {
+            err.tags = "This cannot be empty"
+        }
+        else {
+            err.tags = ""
+            content.tags = selectedList ;
+        }
         this.setState({errMsg:err, content:content});
         console.log(this.state.content)
     }
 
     handleRemove(selectedList, removedItem) {
+        let err = this.state.errMsg 
+        let content = this.state.content 
+        if (selectedList.length == 0) {
+            err.tags = "This cannot be empty"
+        }
+        else {
+            err.tags = ""
+            content.tags = selectedList ;
+        }
+        content.tags = selectedList
+        this.setState({errMsg:err, content:content})
         console.log(this.state.content)
     }
     handleSubmit() {
