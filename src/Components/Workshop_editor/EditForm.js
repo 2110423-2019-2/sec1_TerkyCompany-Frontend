@@ -50,14 +50,28 @@ class EditForm extends Component {
         let content = this.state.content 
         switch(name) {
             case "workshopName":
-                err.workshopName = value.length < 5 ? "Workshop's name must be at least 5 character" : '' 
-                err.workshopName = value.length > 40 ? "Workshop's name must be at most 40 character" : ''
-                content.workshopName = value 
+                if (value.length < 5) {
+                    err.workshopName = "Workshop's name must be at least 5 character"
+                }
+                else if (value.length > 40) {
+                    err.workshopName = "Workshop's name must be at most 40 character"
+                }
+                else {
+                    err.workshopName = ''
+                    content.workshopName = value
+                }
                 break
             case "speakerName":
-                err.speakerName = value === '' ? "This cannot be empty" : ''
-                err.speakerName = value.length > 80 ? "Speaker's name must be at most 80 character" : '' 
-                content.speakerName = value 
+                if (value === '') {
+                    err.speakerName = "This cannot be empty"
+                }
+                else if (value.length > 80) {
+                    err.speakerName = "Speaker's name must be at most 80 character"
+                }
+                else {
+                    err.speakerName = ''
+                    content.speakerName = value
+                }
                 break
             case "workshopPic" :
                 err.workshopPic = value === '' ? "This cannot be empty" : '' 
@@ -85,9 +99,16 @@ class EditForm extends Component {
                 content.cost = value 
                 break
             case "place" :
-                err.place = value.length === 0  ? "This cannot be empty" : '' 
-                err.place = value.length > 40 ? "Place must be at most 40 character" : '' 
-                content.place = value 
+                if (value === '') {
+                    err.place = "This cannot be empty"
+                }
+                else if (value.length > 40) {
+                    err.place = "Place must be at most 40 character"
+                }
+                else {
+                    err.place = ''
+                    content.place = value
+                }
                 break
             case "ddate" :
                 err.ddate = value == null ? "This cannot be empty" : '' 
