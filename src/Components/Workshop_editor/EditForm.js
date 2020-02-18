@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './EditForm.css'
 import InputBox from './InputBox'
+import axios from 'axios'
 
 class EditForm extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class EditForm extends Component {
             content:{
                 workshopName:'test',
                 workshopPic:null,
-                speakerName:'test',
+                speakerName:'',
                 date:null,
                 sTime:null,
                 eTime:null,
@@ -42,6 +43,7 @@ class EditForm extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
+
 
     handleChange = (e) => {
         e.preventDefault() 
@@ -139,6 +141,14 @@ class EditForm extends Component {
             alert("Invalid input")
         }
         else {
+            axios.get(`http://localhost:3000/workshops`).then(res => {
+                const persons = res.data[0];
+                console.log('asd');
+                console.log(persons);
+                this.state.content = {"speakerName":"asd"};
+                //this.setState({speakerName:"asd"});
+                this.setState(this.state.content);
+             })
             alert("Submitted")
             console.log(this.state.content)
         }
@@ -147,6 +157,12 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
+        let err = this.state.errMsg 
+        let content = this.state.content
+        content.workshopName = "miw.tanakorn"
+        this.setState({errMsg:err, content:content})
+        console.log(this.state.content);
+        
     }
 
     componentDidMount() {
