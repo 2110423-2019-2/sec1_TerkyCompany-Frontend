@@ -174,11 +174,13 @@ class EditForm extends Component {
         let content = this.state.content
         content.workshopName = "miw.tanakorn"
         this.setState({errMsg:err, content:content})
+        console.log(this.state.content);
+        
     }
 
     componentDidMount() {
         axios.get('http://localhost:3001/endy/1/get').then(res => { 
-            initData = res.data; 
+            let initData = res.data; 
             this.setState({ initData }); 
         })
     }
