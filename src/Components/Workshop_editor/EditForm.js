@@ -10,6 +10,7 @@ class EditForm extends Component {
             errMsg: {
                 workshopName:'',
                 workshopPic:'',
+                speakerName:'',
                 date:'',
                 sTime:'',
                 eTime:'',
@@ -24,6 +25,7 @@ class EditForm extends Component {
             content:{
                 workshopName:'test',
                 workshopPic:null,
+                speakerName:'test',
                 date:null,
                 sTime:null,
                 eTime:null,
@@ -50,6 +52,10 @@ class EditForm extends Component {
             case "workshopName":
                 err.workshopName = value.length < 5 ? "Workshop's name must be at least 5 character" : '' 
                 content.workshopName = value 
+                break
+            case "speakerName":
+                err.speakerName = value === '' ? "This cannot be empty" : '' 
+                content.speakerName = value 
                 break
             case "workshopPic" :
                 err.workshopPic = value === '' ? "This cannot be empty" : '' 
@@ -152,6 +158,7 @@ class EditForm extends Component {
                 <div className="form-body">
                     <form>
                         <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} value={this.state.content.workshopName}/>
+                        <InputBox label="Speaker's Name"                name="speakerName"  type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.speakerName} value={this.state.content.speakerName}/>
                         <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file"  inputType="file"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopPic} value={this.state.content.workshopPic}/>
                         <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.date} value={this.state.content.date}/>
                         <InputBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.sTime} value={this.state.content.sTime}/>
