@@ -51,10 +51,12 @@ class EditForm extends Component {
         switch(name) {
             case "workshopName":
                 err.workshopName = value.length < 5 ? "Workshop's name must be at least 5 character" : '' 
+                err.workshopName = value.length > 40 ? "Workshop's name must be at most 40 character" : ''
                 content.workshopName = value 
                 break
             case "speakerName":
-                err.speakerName = value === '' ? "This cannot be empty" : '' 
+                err.speakerName = value === '' ? "This cannot be empty" : ''
+                err.speakerName = value.length > 80 ? "Speaker's name must be at most 80 character" : '' 
                 content.speakerName = value 
                 break
             case "workshopPic" :
@@ -84,6 +86,7 @@ class EditForm extends Component {
                 break
             case "place" :
                 err.place = value.length === 0  ? "This cannot be empty" : '' 
+                err.place = value.length > 40 ? "Place must be at most 40 character" : '' 
                 content.place = value 
                 break
             case "ddate" :
