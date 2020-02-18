@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './EditForm.css'
 import InputBox from './InputBox'
-import axios from 'axios';
+import axios from 'axios'
 
 class EditForm extends Component {
     constructor(props) {
@@ -170,18 +170,27 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
-        let err = this.state.errMsg 
-        let content = this.state.content
-        content.workshopName = "miw.tanakorn"
-        this.setState({errMsg:err, content:content})
-        console.log(this.state.content);
-        
+        // let content = this.state.content
+        // content.workshopName = "miw.tanakorn"
+        // let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
+        // content.dtime = timeAndDate["time"]
+        // content.ddate = timeAndDate["date"]s
+        // this.setState({content:content})
+        // console.log(this.state.content)
+        // console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+    }
+
+    convertTimeStampToTime = (timeStamp) => {
+        let time = timeStamp.slice(11,16)
+        let date = timeStamp.slice(0,10)
+        let timeAndDate = {"time":time, "date":date}
+        return timeAndDate
     }
 
     componentDidMount() {
         axios.get('http://localhost:3001/endy/1/get').then(res => { 
-            let initData = res.data; 
-            this.setState({ initData }); 
+            let initData = res.data 
+            this.setState({ initData }) 
         })
     }
 
