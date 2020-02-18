@@ -170,27 +170,25 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
-        // let content = this.state.content
-        // content.workshopName = "miw.tanakorn"
-        // let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
-        // content.dtime = timeAndDate["time"]
-        // content.ddate = timeAndDate["date"]
-        // this.setState({content:content})
-        // console.log(this.state.content)
-        // console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+        let content = this.state.content
+        content.workshopName = "miw.tanakorn"
+        let timeAndDate = this.convertTimeStampToDateAndTime("2015-12-20T03:01:01.000z")
+        content.dtime = timeAndDate["time"]
+        content.ddate = timeAndDate["date"]
+        this.setState({content:content})
+        console.log(this.state.content)
+        console.log(timeAndDate)
     }
 
-    convertTimeStampToTime = (timeStamp) => {
-        let time = timeStamp.slice(11,16)
+    convertTimeStampToDateAndTime = (timeStamp) => {
         let date = timeStamp.slice(0,10)
-        let timeAndDate = {"time":time, "date":date}
-        return timeAndDate
+        let time = timeStamp.slice(11,16)
+        let dateAndTime = {"date":date, "time":time}
+        return dateAndTime
     }
 
-    convertSTimeETimeToTimeStamp = (date, sTime, eTime) => {
-        let startTime = date + "T" + sTime + ".000Z"
-        let endTime = date + "T" + eTime + ".000Z"
-        let timeStamp = {"startTime":startTime, "endTime":endTime}
+    convertDateAndTimeToTimeStamp = (date, time) => {
+        let timeStamp = date + "T" + time + ".000Z"
         return timeStamp
     }
 
