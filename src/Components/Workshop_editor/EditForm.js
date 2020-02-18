@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './EditForm.css'
 import InputBox from './InputBox'
+import axios from 'axios';
 
 class EditForm extends Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class EditForm extends Component {
             },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
             selectedValues: [{name: 'Srigar', id: 1},],
+            initData: [],
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -168,10 +170,17 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
+        let err = this.state.errMsg 
+        let content = this.state.content
+        content.workshopName = "miw.tanakorn"
+        this.setState({errMsg:err, content:content})
     }
 
     componentDidMount() {
-        
+        axios.get('http://localhost:3001/endy/1/get').then(res => { 
+            initData = res.data; 
+            this.setState({ initData }); 
+        })
     }
 
     render() {
