@@ -1,17 +1,17 @@
 import React from 'react' ;
 import { Multiselect } from 'multiselect-react-dropdown';
-import './inputBox.css'
+import './InputBox.css' ;
 
 class InputBox extends React.Component {
     render() {
  
         if(this.props.type === "input") {
             return (
-                <span id={this.props.id}>
+                <div id={this.props.id}>
                     <label className={this.props.labelStyle}>{this.props.label}</label>
-                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control" required={true}/>
-                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
-                </span>
+                    <input  type={this.props.inputType} placeholder={this.props.placeholder} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control" required/>
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
+                </div>
             )
         }
         if(this.props.type === "text") {

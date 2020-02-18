@@ -10,6 +10,7 @@ class Form extends React.Component {
             errMsg: {
                 workshopName:'',
                 workshopPic:'',
+                speakerName:'',
                 date:'',
                 sTime:'',
                 eTime:'',
@@ -24,6 +25,7 @@ class Form extends React.Component {
             content:{
                 workshopName:'',
                 workshopPic:'',
+                speakerName:'',
                 date:'',
                 sTime:'',
                 eTime:'',
@@ -51,8 +53,8 @@ class Form extends React.Component {
         let content = this.state.content ;
         switch(name) {
             case "workshopName":
-                if (value.length < 5) {
-                    err.workshopName = "must be at least 5 character"
+                if (value.length < 5 || value.length > 40) {
+                    err.workshopName = "must be between 5-40 characters"
                 }
                 else {
                     err.workshopName = ""
@@ -60,9 +62,23 @@ class Form extends React.Component {
                 }
                 
                 break;
+            case "speakerName":
+                if (value === '') {
+                    err.speakerName = "This cannot be empty"
+                }
+                else if (value.length > 40) {
+                    err.speakerName = "must not exceed 40 characters"
+                }
+                else {
+                    err.speakerName = ""
+                    content.speakerName = value ;
+                }
             case "workshopPic" :
                 if (value === '') {
                     err.workshopPic = "This cannot be empty"
+                }
+                else if (value.length > 512) {
+                    err.workshopPic = "File's name is too long"
                 }
                 else {
                     err.workshopPic = ""
@@ -118,6 +134,9 @@ class Form extends React.Component {
                 if (value == '') {
                     err.place = "This cannot be empty"
                 }
+                else if (value.length > 40){
+                    err.place = "must not exceed 40 characters"
+                }
                 else {
                     err.place = ""
                     content.place = value ;
@@ -144,6 +163,9 @@ class Form extends React.Component {
             case "description" :
                 if (value == '') {
                     err.description = "This cannot be empty"
+                }
+                else if (value.length > 300) {
+                    err.description = "must not exceed 300 characters"
                 }
                 else {
                     err.description = ""
@@ -190,8 +212,8 @@ class Form extends React.Component {
         let content = this.state.content 
         let err = this.state.errMsg
         let valid = true
-        if(content.cap <= 0 || content.cap == "") {
-            err.cap = "must be more than zero"
+        if(content.cap <= 0 || content.cap > 1000 || content.cap == "") {
+            err.cap = "must be number between 0-1000"
             valid = false
         }
         if (content.cost < 0 || content.cost == "") {
@@ -208,6 +230,10 @@ class Form extends React.Component {
         }
         if (content.description == "") {
             err.description = "must be specified"
+            valid = false
+        }
+        else if (content.description.length > 300) {
+            err.description = "must not exceed 300 characters"
             valid = false
         }
         if (content.dtime == "") {
@@ -230,12 +256,32 @@ class Form extends React.Component {
             err.workshopName = "must be specified"
             valid = false   
         }
+        else if (content.workshopName.length > 40) {
+            err.workshopName = "must not exceed 40 characters"
+            valid = false
+        }
         if (content.workshopPic == "") {
             err.workshopPic = "must be specified"
             valid = false
         }
+        else if (content.workshopPic.length > 512) {
+            err.workshopPic = "File's name is too long"
+            valid = false
+        }
+        if (content.speakerName == "") {
+            err.speakerName = "must be specified"
+            valid = false 
+        }
+        else if (content.speakerName.length > 80) {
+            err.speakerName = "must not exceed 80 characters"
+            valid = false
+        }
         if (content.place == "") {
             err.place = "must be specified"
+            valid = false
+        }
+        else if (content.place.length > 40) {
+            err.place = "must not exceed 40 characters"
             valid = false
         }
         this.setState({errMsg:err})
@@ -262,22 +308,16 @@ class Form extends React.Component {
                 <div className="form-body">
                     <form>
                         <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
-                        <br/>
-                        <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file" inputType="file"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopPic} />
-                        <br/>
+                        <InputBox label="Speaker's Name"                name="speakerName"  type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.speakerName} placeholder="Speaker's name" />
+                        <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file"  inputType="file"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopPic} />
                         <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.date} />
-                        <br/>
                         <InputBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.sTime} />
                         <InputBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.eTime} />
-                        <br/>
                         <InputBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap}  onChange={this.handleChange} min="1" placeholder="Number"/>
-                        <br/>
                         <InputBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} onChange={this.handleChange} min="1" placeholder="Baht"/>
-                        <br/>
                         <InputBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.place} placeholder="Location of the workshop"/>
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
-                        <br/>
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop"/>
                         <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags"/>
                     </form>
