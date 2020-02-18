@@ -174,7 +174,7 @@ class EditForm extends Component {
         // content.workshopName = "miw.tanakorn"
         // let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
         // content.dtime = timeAndDate["time"]
-        // content.ddate = timeAndDate["date"]s
+        // content.ddate = timeAndDate["date"]
         // this.setState({content:content})
         // console.log(this.state.content)
         // console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
@@ -185,6 +185,13 @@ class EditForm extends Component {
         let date = timeStamp.slice(0,10)
         let timeAndDate = {"time":time, "date":date}
         return timeAndDate
+    }
+
+    convertSTimeETimeToTimeStamp = (date, sTime, eTime) => {
+        let startTime = date + "T" + sTime + ".000Z"
+        let endTime = date + "T" + eTime + ".000Z"
+        let timeStamp = {"startTime":startTime, "endTime":endTime}
+        return timeStamp
     }
 
     componentDidMount() {
