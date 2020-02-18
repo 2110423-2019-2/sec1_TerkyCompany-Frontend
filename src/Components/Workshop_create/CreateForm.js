@@ -283,8 +283,8 @@ class Form extends React.Component {
                     </form>
                 </div>
                 <div id="button-body">
-                            <button className="myButton" onClick={() => this.handleSubmit()}>Submit</button>
-                            <button onClick={() => this.handleCancel()}>Cancel</button>
+                            <button class="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>Submit</button>
+                            <button class="btn btn-primary btn-lg" onClick={() => this.handleCancel()}>Cancel</button>
                 </div>
             </div>
         )

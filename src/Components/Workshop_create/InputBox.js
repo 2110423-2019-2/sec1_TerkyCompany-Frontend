@@ -1,5 +1,6 @@
 import React from 'react' ;
 import { Multiselect } from 'multiselect-react-dropdown';
+import './inputBox.css'
 
 class InputBox extends React.Component {
     render() {
@@ -19,7 +20,7 @@ class InputBox extends React.Component {
                     <label>{this.props.label}</label>
                     <br />
                     <textarea rows={this.props.row} cols={this.props.col} placeholder={this.props.placeholder} class="form-control"/>
-                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
@@ -29,8 +30,7 @@ class InputBox extends React.Component {
                     <label >{this.props.label}</label>
                     <br />
                     <input  type={this.props.inputType} value={this.props.value} min={this.props.min} onChange={this.props.onChange} name={this.props.name} class="form-control-file"/>
-                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
-                    <br />
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
@@ -39,7 +39,7 @@ class InputBox extends React.Component {
                 <div id={this.props.id}>
                     <label>{this.props.label}</label>
                     <Multiselect options={this.props.options} onSelect={this.props.onSelect} onRemove={this.props.onRemove} selectedValues={this.props.tags} displayValue="name" closeIcon="cancel" style={this.props.style} placeholder={this.props.placeholder}/>
-                    {this.props.errMsg.length > 0 && <div style={{color:"red"}}>{this.props.errMsg}</div>}
+                    {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
         }
