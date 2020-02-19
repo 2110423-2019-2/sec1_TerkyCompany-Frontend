@@ -70,3 +70,8 @@
 svg {
   display: block;
 }
+
+#slick-item-name {
+  text-align: center !important;
+  font-size: 25px !important;
+}

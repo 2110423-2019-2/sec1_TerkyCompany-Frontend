@@ -3,6 +3,7 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Axios from 'axios';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    Axios.get('http://localhost:3001/workshops')
+      .then(res => {
+        console.log(res)
+      })
   }
 
   render() {
@@ -44,18 +49,23 @@ class App extends Component {
             <Slider {...settings}>
               <div>
                 <img id="slick-item" alt="" src="test.jpg" />
+                <div id="slick-item-name" >React workshop</div>
               </div>
               <div>
                 <img id="slick-item" alt="" src="test.jpg" />
+                <div id="slick-item-name" >How to get A in SE</div>
               </div>
               <div>
                 <img id="slick-item" alt="" src="test.jpg" />
+                <div id="slick-item-name" >Finance 101</div>
               </div>
               <div>
                 <img id="slick-item" alt="" src="test.jpg" />
+                <div id="slick-item-name" >How to withdraw</div>
               </div>
               <div>
                 <img id="slick-item" alt="" src="test.jpg" />
+                <div id="slick-item-name" >How to code all language</div>
               </div>
             </Slider>
           </div>
