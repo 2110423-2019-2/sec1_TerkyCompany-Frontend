@@ -5,14 +5,14 @@ class WorkshopItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            workshop_id: 1,
+            workshop_id: this.props.item.id,
             image_name: "test.jpg",
-            workshop_name: "dummyname",
-            workshop_detail: "lorem dddddddddd ddddddddddddd dddddddddddd ddd dddddddddd",
-            start: "10.00",
-            place: "My house",
-            end: "11.00",
-            owner: "park",
+            workshop_name: this.props.item.name,
+            workshop_detail: this.props.item.description.slice(0,60),
+            start: this.props.item.startTime,
+            place: this.props.item.place,
+            end: this.props.item.endTime,
+            owner: this.props.item.speakerName,
             
             isLoading: false,
 
