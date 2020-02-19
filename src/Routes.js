@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter,Link,useParams } from 'react-router-dom';
 import App from './Components/Homepage/App';
 import About from './Components/About';
 import React, { Component } from 'react';
@@ -6,6 +6,7 @@ import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
 import WorkshopeditPage from './Components/Workshop_editor/WorkshopEditPage';
 import Footer from './Components/Footer/Footer';
+
 
 
 class Routes extends Component {
@@ -23,9 +24,13 @@ class Routes extends Component {
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
                         <Route exact path="/workshopeditor" component={WorkshopeditPage} />
+                        <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
+                        
+                       
                     </Switch>
                 </BrowserRouter>
                 <Footer />
+                
             </div>
         )
     }

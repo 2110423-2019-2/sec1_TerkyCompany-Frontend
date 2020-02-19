@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './EditForm.css'
 import InputBox from './InputBox'
 import axios from 'axios'
+import { useParams, Route } from 'react-router-dom';
 
 class EditForm extends Component {
     constructor(props) {
@@ -23,21 +24,21 @@ class EditForm extends Component {
                 description:'',
                 tags:''
             },
-            content:{
-                workshopName:'test',
-                workshopPic:null,
-                speakerName:'',
-                date:null,
-                sTime:null,
-                eTime:null,
-                cap:0,
-                cost:0,
-                place:'test',
-                ddate:null,
-                dtime:null,
-                description:'test',
-                tags:null
-            },
+                content:{
+                    workshopName:'test',
+                    workshopPic:null,
+                    speakerName:'',
+                    date:null,
+                    sTime:null,
+                    eTime:null,
+                    cap:0,
+                    cost:0,
+                    place:'',
+                    ddate:null,
+                    dtime:null,
+                    description:'',
+                    tags:null
+                },
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
             selectedValues: [{name: 'Srigar', id: 1},],
             initData: [],
@@ -163,14 +164,33 @@ class EditForm extends Component {
             alert("Invalid input")
         }
         else {
-            axios.get(`http://localhost:3000/workshops`).then(res => {
-                const persons = res.data[0];
-                console.log('asd');
-                console.log(persons);
-                this.state.content = {"speakerName":"asd"};
-                //this.setState({speakerName:"asd"});
-                this.setState(this.state.content);
-             })
+            // axios.get(`http://localhost:3000/workshops`).then(res => {
+            //     const persons = res.data[0];
+            //     console.log('asd');
+            //     console.log(persons);
+            //     this.state.content.speakerName = "owenten"
+            //     //this.setState({speakerName:"asd"});
+            //     this.setState(this.state.content);
+            //  })
+            let nowState = this.state.content
+            let sendData = {
+                "id": "1",
+                "startTime": "2015-12-20T03:01:01.000Z",
+                "endTime": "2015-12-20T05:01:01.000Z",
+                "capacity": nowState.cap,
+                "cost": nowState.cost,
+                "name": nowState.workshopName,
+                "place": nowState.place,
+                "deadlineTime": "2015-12-20T03:01:01.000Z",
+                "publishTime": "2015-12-20T03:01:01.000Z",
+                "description": nowState.description,
+                "speakerName": nowState.speakerName,
+                "pictureURL": "www"
+            }
+            axios.put(`http://localhost:3000/workshops/1/update`, sendData ).then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
             alert("Submitted")
             console.log(this.state.content)
         }
@@ -179,23 +199,20 @@ class EditForm extends Component {
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
-<<<<<<< HEAD
         let err = this.state.errMsg 
         let content = this.state.content
         content.workshopName = "miw.tanakorn"
         this.setState({errMsg:err, content:content})
         console.log(this.state.content);
         
-||||||| merged common ancestors
-=======
-        // let content = this.state.content
-        // content.workshopName = "miw.tanakorn"
-        // let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
-        // content.dtime = timeAndDate["time"]
-        // content.ddate = timeAndDate["date"]s
-        // this.setState({content:content})
-        // console.log(this.state.content)
-        // console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+        //let content = this.state.content
+        content.workshopName = "miw.tanakorn"
+        let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
+        content.dtime = timeAndDate["time"]
+        content.ddate = timeAndDate["date"]
+        this.setState({content:content})
+        console.log(this.state.content)
+        console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
     }
 
     convertTimeStampToTime = (timeStamp) => {
@@ -203,13 +220,32 @@ class EditForm extends Component {
         let date = timeStamp.slice(0,10)
         let timeAndDate = {"time":time, "date":date}
         return timeAndDate
->>>>>>> refs/remotes/origin/workshop-editor
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/endy/1/get').then(res => { 
-            let initData = res.data 
-            this.setState({ initData }) 
+
+        axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
+            let initData = res.data[0] 
+            //console.log(initData[0])
+            let initState = this.state.content
+            let startTime = this.convertTimeStampToTime(initData.startTime)
+            let endTime = this.convertTimeStampToTime(initData.endTime)
+            let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
+            // console.log("inition")
+            // console.log(initData)
+            // console.log(initData.place)
+            initState.workshopName = initData.name
+            initState.speakerName = initData.speakerName
+            initState.date = startTime.date
+            initState.sTime = startTime.time
+            initState.eTime = endTime.time
+            initState.cap = initData.capacity
+            initState.cost = initData.cost
+            initState.place = initData.place
+            initState.ddate = deadTime.date
+            initState.dtime = deadTime.time
+            initState.description = initData.description 
+            this.setState( initState ) 
         })
     }
 
