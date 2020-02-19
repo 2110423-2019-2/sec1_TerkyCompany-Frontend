@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #FFFAE2;
+    font-family: B612;
+    font-size: 18px !important;
+}
+
+.navbar-brand {
+    font-size: 30px !important;
+    font-weight: bold;
+}
+
+button {
+    font-size: 18px !important;
+    border: 2px solid !important;
+}
