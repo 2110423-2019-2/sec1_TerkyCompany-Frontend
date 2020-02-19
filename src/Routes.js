@@ -8,6 +8,7 @@ import WorkshopDetail from './Components/Workshop_detail/WorkshopDetail';
 import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
 import Footer from './Components/Footer/Footer';
+import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
 
 class Routes extends Component {
     render() {
@@ -27,6 +28,7 @@ class Routes extends Component {
                         <Route exact path="/workshop-detail" component={WorkshopDetail} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
+                        <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={Workshoplistpage} />
                     </Switch>
                 </BrowserRouter>
