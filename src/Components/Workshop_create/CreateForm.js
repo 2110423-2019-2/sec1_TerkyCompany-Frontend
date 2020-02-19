@@ -161,6 +161,7 @@ class Form extends React.Component {
                     err.dtime = ""
                     content.dtime = value ;
                 }
+            
                 break;
             case "description" :
                 if (value == '') {
@@ -305,7 +306,7 @@ class Form extends React.Component {
             }
             console.log("sending")
             console.log(sendData)
-            axios.post(`http://localhost:3000/create`, sendData ).then(res => {
+            axios.post(`http://localhost:3000/workshops/create`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
