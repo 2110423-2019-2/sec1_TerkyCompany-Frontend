@@ -24,6 +24,7 @@ class Routes extends Component {
                         <Route exact path="/workshop-detail" component={WorkshopDetail} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
+                        <Route path="/workshop-detail/:ID" component={Workshoplistpage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
