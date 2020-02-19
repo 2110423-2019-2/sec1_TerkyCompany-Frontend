@@ -73,6 +73,7 @@ class Form extends React.Component {
                     err.speakerName = ""
                     content.speakerName = value ;
                 }
+                break;
             case "workshopPic" :
                 if (value === '') {
                     err.workshopPic = "This cannot be empty"
@@ -272,8 +273,8 @@ class Form extends React.Component {
             err.speakerName = "must be specified"
             valid = false 
         }
-        else if (content.speakerName.length > 80) {
-            err.speakerName = "must not exceed 80 characters"
+        else if (content.speakerName.length > 40) {
+            err.speakerName = "must not exceed 40 characters"
             valid = false
         }
         if (content.place == "") {
@@ -287,7 +288,7 @@ class Form extends React.Component {
         this.setState({errMsg:err})
         if (valid) {
             alert("submited")
-            
+
         }
         else {
             alert("Please valid your information")
@@ -314,8 +315,8 @@ class Form extends React.Component {
                         <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.date} />
                         <InputBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.sTime} />
                         <InputBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.eTime} />
-                        <InputBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap}  onChange={this.handleChange} min="1" placeholder="Number"/>
-                        <InputBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} onChange={this.handleChange} min="1" placeholder="Baht"/>
+                        <InputBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap} min="1" placeholder="Number"/>
+                        <InputBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} min="1" placeholder="Baht"/>
                         <InputBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.place} placeholder="Location of the workshop"/>
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />

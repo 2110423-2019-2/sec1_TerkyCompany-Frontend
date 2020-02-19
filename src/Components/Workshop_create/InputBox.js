@@ -19,7 +19,7 @@ class InputBox extends React.Component {
                 <div id={this.props.id}>
                     <label>{this.props.label}</label>
                     <br />
-                    <textarea rows={this.props.row} cols={this.props.col} placeholder={this.props.placeholder} onChange={this.props.onChange} class="form-control"/>
+                    <textarea rows={this.props.row} cols={this.props.col} placeholder={this.props.placeholder} name={this.props.name} onChange={this.props.onChange} class="form-control"/>
                     {(this.props.errMsg.length === 0 && <br /> ) || (this.props.errMsg.length > 0 && <span className="errMsg">{this.props.errMsg}</span>)}
                 </div>
             )
