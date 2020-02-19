@@ -1,6 +1,7 @@
 import React from 'react' ;
 import InputBox from './InputBox' ;
 import './CreateForm.css'
+import axios from 'axios';
 
 class Form extends React.Component {
     constructor(props) {
@@ -286,6 +287,27 @@ class Form extends React.Component {
         }
         this.setState({errMsg:err})
         if (valid) {
+            let nowState = this.state.content
+            let sendData = {
+                "id": "ora",
+                "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
+                "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
+                "capacity": nowState.cap,
+                "cost": nowState.cost,
+                "name": nowState.workshopName,
+                "place": nowState.place,
+                "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
+                "publishTime": "2015-12-20T03:01:01.000Z",
+                "description": nowState.description,
+                "speakerName": nowState.speakerName,
+                "pictureURL": "www"
+            }
+            console.log("sending")
+            console.log(sendData)
+            axios.post(`http://localhost:3000/create`, sendData ).then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
             alert("submited")
         }
         else {
@@ -298,6 +320,18 @@ class Form extends React.Component {
     handleCancel() {
         console.log("cancel clicked")
     }
+
+    convertTimeStampToTime = (timeStamp) => {
+        let time = timeStamp.slice(11,16)
+        let date = timeStamp.slice(0,10)
+        let timeAndDate = {"time":time, "date":date}
+        return timeAndDate
+    }
+    convertDateAndTimeToTimeStamp = (date, time) => {
+        let timeStamp = `${date}T${time}:00.000Z`
+        return timeStamp
+    }
+
 
     render() {
         if (this.state.isLoading) return null
