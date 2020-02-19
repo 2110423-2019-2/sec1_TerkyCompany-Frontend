@@ -287,6 +287,7 @@ class Form extends React.Component {
         this.setState({errMsg:err})
         if (valid) {
             alert("submited")
+            
         }
         else {
             alert("Please valid your information")
