@@ -9,7 +9,7 @@ class WorkshopItem extends Component {
             workshop_id: this.props.item.id,
             image_name: "test.jpg",
             workshop_name: this.props.item.name,
-            workshop_detail: this.props.item.description.slice(0, 60),
+            workshop_detail: this.props.item.description.slice(0, 90),
             start: this.convertTimeStampToTime(this.props.item.startTime),
             place: this.props.item.place,
             end: this.convertTimeStampToTime(this.props.item.endTime),
