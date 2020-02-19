@@ -5,12 +5,13 @@ import WorkshopDetailBody from './WorksopDeatailBody';
 import axios from 'axios';
 
 class WorkshopDetail extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = 
+        this.state =
         {
             isLoading: false,
             workshop: {
+                id: -1,
                 name: "Scrum workshop",
                 place: 'Chula',
                 startTime: '10.00',
@@ -22,47 +23,40 @@ class WorkshopDetail extends React.Component {
                 description: 'dddddddslkvmfgkbnlvkngltkbmflkbgmld bml mlkdfbglfkbm;elfm lfdmblekfb lrbkm lrblkrmhvvrrhrgjrgrjbgn hetftyel;vkhye;dyvhlyhhyyyhygtgtgtgtgtgtdddddddddddddddddddddd ddddddddddddddd ddddddddddddddddddd d d ddddddddddd ddddddddddddddddddddddddcfccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
                 instructorName: 'Mr.SSS SSSSSSS',
                 instructorImageSrc: 'test.jpg',
-                tags: ['skill','tech','SE']
+                tags: ['skill', 'tech', 'SE']
             }
         }
     }
     convertTimeStampToTime = (timeStamp) => {
-        let time = timeStamp.slice(11,16)
-        let date = timeStamp.slice(0,10)
-        let timeAndDate = {"time":time, "date":date}
+        let time = timeStamp.slice(11, 16)
+        let date = timeStamp.slice(0, 10)
+        let timeAndDate = { "time": time, "date": date }
         return timeAndDate
     }
     componentDidMount() {
         console.log('okkkkk');
-        var detail;
-        var detailT;
-        axios.get('http://localhost:3001/workshops/workshop').then(res => {
-            detail = res.data[0];
-          })
-        
-        axios.get('http://localhost:3001/tags/workshop').then(res => {
-            detailT = res.data[0];
-            console.log(detailT)
-            console.log(detail['speakerName'])
+        const { ID } = this.props.match.params
+        axios.get('http://localhost:3001/workshops/' + ID).then(res => {
+            console.log("from workshop > ", res.data)
             this.setState({
                 workshop: {
-                    name: detail['name'],
-                    place: detail['place'],
-                    startTime: this.convertTimeStampToTime(detail['startTime']).time,
-                    endTime: this.convertTimeStampToTime(detail['endTime']).time,
+                    id : res.data.id,
+                    name: res.data.name,
+                    place: res.data.place,
+                    startTime: this.convertTimeStampToTime(res.data.startTime).time,
+                    endTime: this.convertTimeStampToTime(res.data.endTime).time,
                     pictureUrl: 'test.jpg',
-                    cost: detail['cost'],
+                    cost: res.data.cost,
                     notAvailableSeat: 0,
-                    totalSeat: detail['capacity'],
-                    description: detail['description'],
-                    instructorName: detail['speakerName'],
+                    totalSeat: res.data.capacity,
+                    description: res.data.description,
+                    instructorName: res.data.speakerName,
                     instructorImageSrc: 'test.jpg',
-                    tags: [detailT['tag']]
-                }});
-          })
-
-
-}
+                    tags: ['finance','design','programming']
+                }
+            })
+        })
+    }
     render() {
         console.log(this.state);
         if (this.state.isLoading) return null;
