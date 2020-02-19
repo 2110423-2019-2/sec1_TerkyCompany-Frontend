@@ -291,7 +291,6 @@ class Form extends React.Component {
         if (valid) {
             let nowState = this.state.content
             let sendData = {
-                "id": "ora",
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -306,7 +305,7 @@ class Form extends React.Component {
             }
             console.log("sending")
             console.log(sendData)
-            axios.post(`http://localhost:3000/workshops/create`, sendData ).then(res => {
+            axios.post(`http://localhost:3001/workshops/create`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
@@ -341,7 +340,7 @@ class Form extends React.Component {
         console.log("hello Create form")
         const style = {chips: { background: "#cc670a" }, searchBox: {background: "white" } }
         return (
-            <div id="flex-container">
+            <div id="flex-container-create">
                 <div className="form-body">
                     <form>
                         <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />

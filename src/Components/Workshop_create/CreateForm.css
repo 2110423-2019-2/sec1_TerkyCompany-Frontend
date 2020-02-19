@@ -1,6 +1,6 @@
-#flex-container {
+#flex-container-create {
     display: flex;
-    flex-flow: column;
+    flex-flow: column !important;
     max-width: 100vw;
     min-height: 100vh;
   }
