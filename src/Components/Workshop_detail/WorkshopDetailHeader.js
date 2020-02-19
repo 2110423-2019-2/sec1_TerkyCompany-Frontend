@@ -25,7 +25,7 @@ class WorkshopDetailHeader extends React.Component {
                     <div className='header-detail' id='location'>{workshop.place}</div>
                     <div className='header-detail' id='time'>{workshop.startTime} - {workshop.endTime}</div>
                     <div className='header-detail' id='seat'>{workshop.notAvailableSeat}/{workshop.totalSeat}</div>
-                    <div className='header-detail' id='cost'>{workshop.cost}</div>
+                    <div className='header-detail' id='cost'>{workshop.cost} Baht</div>
                     <Button />
                 </div>
             </div>
