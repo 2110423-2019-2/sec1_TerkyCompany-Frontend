@@ -30,7 +30,7 @@ class Menubar extends Component {
                     </a>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Workshop</a>
+                            <a className="nav-link" href="/workshoplist">Workshop</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/browse">Browse</a>

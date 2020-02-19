@@ -5,6 +5,7 @@ class WorkshopItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            workshop_id: 1,
             image_name: "test.jpg",
             workshop_name: "dummyname",
             workshop_detail: "lorem dddddddddd ddddddddddddd dddddddddddd ddd dddddddddd",
@@ -18,13 +19,17 @@ class WorkshopItem extends Component {
         }
     }
 
+    goto() {
+        window.location.assign('/workshop-detail')
+    }
+
     componentDidMount() {
     }
 
     render() {
         if (this.state.isLoading) return null
         return (
-            <div className="workshop-item" >
+            <div onClick={this.goto} className="workshop-item" >
                 <img src={this.state.image_name} height="200" width="300"></img>
                 <h3>{this.state.workshop_name}</h3>
                 <p>{this.state.workshop_detail}</p>
