@@ -75,3 +75,7 @@ svg {
   text-align: center !important;
   font-size: 25px !important;
 }
+
+#wrap-item {
+  cursor: pointer;
+}

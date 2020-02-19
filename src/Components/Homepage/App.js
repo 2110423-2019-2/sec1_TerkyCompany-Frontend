@@ -12,6 +12,7 @@ class App extends Component {
       isLoading: false,
       workshops: []
     }
+    this.goto = this.goto.bind(this)
   }
 
   componentDidMount() {
@@ -24,6 +25,11 @@ class App extends Component {
       })
   }
 
+  goto(id) {
+    // let check = this.props.item.id
+    // console.log(this.state.workshop_id)
+    window.location.assign('/workshop-detail/' + id)
+  }
   render() {
     const settings = {
       dots: true,
@@ -52,7 +58,7 @@ class App extends Component {
             <Slider {...settings}>
               {
                 this.state.workshops.map(workshop =>
-                  <div>
+                  <div id="wrap-item" onClick={() => this.goto(workshop.id)} >
                     <img id="slick-item" alt="" src="test.jpg" />
                     <div id="slick-item-name" >{workshop.name}</div>
                   </div>
