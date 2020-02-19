@@ -309,6 +309,7 @@ class Form extends React.Component {
                 console.log(res.data);
             })
             alert("submited")
+            
         }
         else {
             alert("Please valid your information")
