@@ -175,18 +175,20 @@ class EditForm extends Component {
             let nowState = this.state.content
             let sendData = {
                 "id": "1",
-                "startTime": "2015-12-20T03:01:01.000Z",
-                "endTime": "2015-12-20T05:01:01.000Z",
+                "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
+                "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
                 "cost": nowState.cost,
                 "name": nowState.workshopName,
                 "place": nowState.place,
-                "deadlineTime": "2015-12-20T03:01:01.000Z",
+                "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
                 "pictureURL": "www"
             }
+            console.log("sending")
+            console.log(sendData)
             axios.put(`http://localhost:3000/workshops/1/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -195,7 +197,6 @@ class EditForm extends Component {
             console.log(this.state.content)
         }
     }
-
     cancelclick() {
         console.log("cancel clicked")
         console.log(window.location.host)
@@ -220,6 +221,10 @@ class EditForm extends Component {
         let date = timeStamp.slice(0,10)
         let timeAndDate = {"time":time, "date":date}
         return timeAndDate
+    }
+    convertDateAndTimeToTimeStamp = (date, time) => {
+        let timeStamp = `${date}T${time}:00.000Z`
+        return timeStamp
     }
 
     componentDidMount() {
