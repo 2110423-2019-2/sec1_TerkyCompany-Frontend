@@ -3,21 +3,24 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Axios from 'axios';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoading: false,
-
+      workshops: []
     }
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:3001/workshops')
+    axios.get('http://localhost:3001/workshops')
       .then(res => {
         console.log(res)
+        this.setState({
+          workshops: res.data.slice(0, 5)
+        })
       })
   }
 
@@ -47,26 +50,14 @@ class App extends Component {
           <div>
             <h2 id="in-trend-head">In trend workshop</h2>
             <Slider {...settings}>
-              <div>
-                <img id="slick-item" alt="" src="test.jpg" />
-                <div id="slick-item-name" >React workshop</div>
-              </div>
-              <div>
-                <img id="slick-item" alt="" src="test.jpg" />
-                <div id="slick-item-name" >How to get A in SE</div>
-              </div>
-              <div>
-                <img id="slick-item" alt="" src="test.jpg" />
-                <div id="slick-item-name" >Finance 101</div>
-              </div>
-              <div>
-                <img id="slick-item" alt="" src="test.jpg" />
-                <div id="slick-item-name" >How to withdraw</div>
-              </div>
-              <div>
-                <img id="slick-item" alt="" src="test.jpg" />
-                <div id="slick-item-name" >How to code all language</div>
-              </div>
+              {
+                this.state.workshops.map(workshop =>
+                  <div>
+                    <img id="slick-item" alt="" src="test.jpg" />
+                    <div id="slick-item-name" >{workshop.name}</div>
+                  </div>
+                )
+              }
             </Slider>
           </div>
         </div>

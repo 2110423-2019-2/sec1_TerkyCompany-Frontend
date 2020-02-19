@@ -36,11 +36,11 @@ class WorkshopDetail extends React.Component {
         console.log('okkkkk');
         var detail;
         var detailT;
-        axios.get('http://localhost:3000/workshops/workshop').then(res => {
+        axios.get('http://localhost:3001/workshops/workshop').then(res => {
             detail = res.data[0];
           })
         
-        axios.get('http://localhost:3000/tags/workshop').then(res => {
+        axios.get('http://localhost:3001/tags/workshop').then(res => {
             detailT = res.data[0];
             console.log(detailT)
             console.log(detail['speakerName'])
