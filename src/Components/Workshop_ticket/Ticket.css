@@ -1,0 +1,41 @@
+#workshopPic {
+    object-fit: none;
+    width: 90px;
+    height: 90px;
+    border-radius: 16px 0px 0px 16px;
+    background-color: black;
+    
+}
+
+#ticket {
+    display : flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 210px;
+    height: 90px;
+    background-color: #E48D26 ;    
+    border-radius: 16px 16px 45px 16px;
+    
+}
+#workshopName {
+    font-size: 10px ;
+}
+
+#text-box{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+} 
+
+#holderName{
+    align-items: end;
+}
+.desc {
+    font-size: 7px;
+}
+#qrCode {
+    width: 30px;
+    height: 30px;
+    background-color: blueviolet;
+
+}
