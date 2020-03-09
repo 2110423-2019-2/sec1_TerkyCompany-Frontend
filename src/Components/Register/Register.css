@@ -1,0 +1,132 @@
+.register-page-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 2%;
+    margin-bottom: 8%;
+    flex-direction: column;
+    padding: auto;
+}
+
+.register-header {
+    display: flex;
+    justify-content: center;
+    padding: auto;
+    margin-bottom: 0.5%;
+    font-size: 3rem;;
+    font-family: B612;
+    font-style: normal;
+    font-weight: bold;
+    color: #CC670A;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-left: 1.5%;
+    padding-right: 1.75%;
+    padding-top: 1.5%;
+    padding-bottom: 5%;
+    background-color: #FFE8C7;
+    margin:0 35%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.register-component-full{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.register-component-half{
+    margin-bottom: 3%;
+    width: 49%;
+    padding: 0%;
+}
+
+.register-subcontainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.label {
+    font-family: B612;
+    font-style: normal;
+    font-weight: bold;
+    color: #CC670A;
+    margin-bottom: 0.25%;
+}
+
+.input-box {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 7px;
+    margin-bottom: 5%;
+    border: 0.5px solid white;
+    font-family: B612;
+    font-style: normal;
+}
+
+.register-button {
+    width: 100%;
+    border-radius: 7px;
+    background-color: #CC670A;
+    color: #FFFFFF;
+    margin-top: 8%;
+    margin-bottom: 1%;
+    font-family: B612;
+    font-style: normal;
+    font-weight: bold;
+    
+}
+
+.input-box::placeholder {
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.react-datepicker__input-container input {
+    padding: 0px;
+    background: #FFFFFF;
+    border-radius: 7px;
+    width: 115%;
+    border: 0.5px solid white;
+    font-family: B612;
+    font-style: normal;
+    font-size: 1.06rem;
+    margin: 0px;
+    height: auto;
+}
+
+
+.register-subcontainer-radio {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: B612;
+    font-style: normal;
+}
+
+.input-radio {
+    padding: 0px;
+    border-radius: 0px;
+    width: auto;
+    border: 0px;
+    font-family: B612;
+    font-style: normal;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+#r2 {
+    margin-left: 20%;
+}
+
+#r4 {
+    margin-left: 12%;
+}
