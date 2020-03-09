@@ -11,6 +11,7 @@ import WorkshopeditPage from './Components/Workshop_editor/WorkshopEditPage';
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
+import Register from './Components/Register/Register';
 
 class Routes extends Component {
     render() {
@@ -34,6 +35,7 @@ class Routes extends Component {
                         <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
+                        <Route exact path="/register" component={Register} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
