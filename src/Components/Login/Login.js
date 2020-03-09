@@ -19,6 +19,13 @@ class Login extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    componentDidMount() {
+        if(document.cookie !== '')
+        {
+            alert('You are already logged in!')
+            window.location.assign('/')
+        }
+    }
 
     handleChange(e) {
         this.setState({ show: false });
