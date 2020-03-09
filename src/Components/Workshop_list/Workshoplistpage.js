@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
+import axios from 'axios';
 
 
 class Workshoplistpage extends Component {
@@ -8,11 +9,18 @@ class Workshoplistpage extends Component {
         super(props)
         this.state = {
             isLoading: false,
-
+            workshops : []
         }
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3001/workshops')
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
     }
 
     render() {
@@ -33,22 +41,15 @@ class Workshoplistpage extends Component {
                     </div>
                     <div className="show-list">
                         <div className="list-header">
-                            <h1 id = "my-workshop-title">My Workshop</h1>
+                            <h1 id="my-workshop-title">My Workshop</h1>
                         </div>
                         <div className="dropdown-divider"></div>
                         <div className="flex-container" id="list-body" >
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            <WorkshopItem />
-                            
+                            {
+                                this.state.workshops.map(workshop =>
+                                    <WorkshopItem item={workshop} />
+                                )
+                            }
                         </div>
                     </div>
                 </div>

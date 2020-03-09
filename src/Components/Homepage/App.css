@@ -34,7 +34,7 @@
 
 #hot-content {
   background-color: #FFF1DB;
-  height: 35%;
+  height: 37%;
   width: 100%;
   padding: 40px;
 }
@@ -69,4 +69,13 @@
 
 svg {
   display: block;
+}
+
+#slick-item-name {
+  text-align: center !important;
+  font-size: 25px !important;
+}
+
+#wrap-item {
+  cursor: pointer;
 }

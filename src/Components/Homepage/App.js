@@ -3,29 +3,42 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoading: false,
-
+      workshops: []
     }
+    this.goto = this.goto.bind(this)
   }
 
   componentDidMount() {
+    axios.get('http://localhost:3001/workshops')
+      .then(res => {
+        console.log(res)
+        this.setState({
+          workshops: res.data.slice(0, 5)
+        })
+      })
   }
 
+  goto(id) {
+    // let check = this.props.item.id
+    // console.log(this.state.workshop_id)
+    window.location.assign('/workshop-detail/' + id)
+  }
   render() {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 8000,
-      speed: 2500,
+      speed: 1000,
     }
     if (this.state.isLoading) return null
     console.log("hello Homepage")
@@ -43,21 +56,14 @@ class App extends Component {
           <div>
             <h2 id="in-trend-head">In trend workshop</h2>
             <Slider {...settings}>
-              <div>
-                <img id="slick-item" src="test.jpg" />
-              </div>
-              <div>
-                <img id="slick-item" src="test.jpg" />
-              </div>
-              <div>
-                <img id="slick-item" src="test.jpg" />
-              </div>
-              <div>
-                <img id="slick-item" src="test.jpg" />
-              </div>
-              <div>
-                <img id="slick-item" src="test.jpg" />
-              </div>
+              {
+                this.state.workshops.map(workshop =>
+                  <div id="wrap-item" onClick={() => this.goto(workshop.id)} >
+                    <img id="slick-item" alt="" src="test.jpg" />
+                    <div id="slick-item-name" >{workshop.name}</div>
+                  </div>
+                )
+              }
             </Slider>
           </div>
         </div>

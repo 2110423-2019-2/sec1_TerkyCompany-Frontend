@@ -7,12 +7,16 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "multiselect-react-dropdown": "^1.4.7",
+    "merge-json": "0.1.0-b.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +38,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "1. พสิษฐ์ เลาหะวรุตม์ชัย  6031039321\r 2. ธนากร ธรรมปัญญา  6030264021\r 3. พาทิศ ศรีบุรี  6031041521\r 4. ธนา ชาญเชี่ยว  6030263321\r 5. ธนิต ตติวรรณรัตน์  6031024921\r 6. ธนภ้ทร สงวนทรัพย์  6030249621\r 7. ธรรมกร กอบเกื้อชัยพงษ์  6030272021\r 8. พัชรพล จำรัสพันธุ์  6031040921",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2110423-2019-2/sec1_TerkyCompany-Frontend.git"
+  },
+  "keywords": [
+    "Frontend"
+  ],
+  "author": "TerkyCompany",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2110423-2019-2/sec1_TerkyCompany-Frontend/issues"
+  },
+  "homepage": "https://github.com/2110423-2019-2/sec1_TerkyCompany-Frontend#readme",
+  "devDependencies": {}
 }
