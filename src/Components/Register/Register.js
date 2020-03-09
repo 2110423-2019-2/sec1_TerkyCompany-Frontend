@@ -19,7 +19,7 @@ class Register extends React.Component {
             gender: 'M',
             organization: '',
             nationalId: '',
-            registerFlag: 'O',
+            registerFlag: 'owner',
             checkConfirmPassword: 'white',
         };
 

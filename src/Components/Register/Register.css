@@ -84,13 +84,12 @@
     
 }
 
-input::placeholder {
+.input-box::placeholder {
     font-size: 0.7rem;
     text-align: center;
 }
 
-input {
-    height: auto;
+.react-datepicker__input-container input {
     padding: 0px;
     background: #FFFFFF;
     border-radius: 7px;
@@ -98,10 +97,11 @@ input {
     border: 0.5px solid white;
     font-family: B612;
     font-style: normal;
-    font-size: 3rem;
+    font-size: 1.06rem;
     margin: 0px;
-
+    height: auto;
 }
+
 
 .register-subcontainer-radio {
     display: flex;
