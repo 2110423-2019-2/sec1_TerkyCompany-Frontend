@@ -91,11 +91,15 @@
     text-align: center;
 }
 
-input::placeholder {
+#input::placeholder {
     font-size: 0.7rem;
     text-align: center;
 }
 
 #pass-box {
     margin-bottom: 3%;
+}
+#pass-box::placeholder {
+    font-size: 0.7rem;
+    text-align: center;
 }
