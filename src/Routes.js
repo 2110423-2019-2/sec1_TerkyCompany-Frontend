@@ -8,6 +8,7 @@ import WorkshopDetail from './Components/Workshop_detail/WorkshopDetail';
 import Menubar from './Components/Menubar/Menubar';
 import Workshoplistpage from './Components/Workshop_list/Workshoplistpage';
 import WorkshopeditPage from './Components/Workshop_editor/WorkshopEditPage';
+import WorkshopfilterPage from './Components/Workshop_filter/WorkshopFilterPage';
 import Footer from './Components/Footer/Footer';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
 
@@ -31,6 +32,7 @@ class Routes extends Component {
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
                         <Route exact path="/workshopeditor" component={WorkshopeditPage} />
+                        <Route exact path="/workshopfilter" component={WorkshopfilterPage} />
                         <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
