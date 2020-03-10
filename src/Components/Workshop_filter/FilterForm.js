@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import WorkshopItem from '../WorkshopItem/WorkshopItem';
+import WorkshopItem from '../WorkshopItem/WorkshopItem'
+import "./FilterForm.css"
 
 class FilterForm extends Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class FilterForm extends Component {
                 },
             ],
             selectedFilter:[],
-            shownWorkshop:[1,2,3]
+            shownWorkshop:[]
         }
     }
     handleClick = (e) => {
@@ -105,7 +106,13 @@ class FilterForm extends Component {
     }
 
     componentDidMount() {
-
+        let allWorkshop = this.state.workshops
+        let shownList = []
+        for(let index in allWorkshop) {
+            if(!shownList.includes(allWorkshop[index].id))
+            shownList.push(allWorkshop[index].id)
+        }
+        this.setState({shownWorkshop:shownList})
     }
 
     goto = (id) => {
@@ -116,7 +123,9 @@ class FilterForm extends Component {
         let shownList = this.state.shownWorkshop
         if(shownList.includes(workshop.id)) {                
             return (
-                <WorkshopItem item={workshop} />
+                <div className="col-md">
+                    <WorkshopItem item={workshop}/>
+                </div>
             )
         }
     }
@@ -125,33 +134,44 @@ class FilterForm extends Component {
         if (this.state.isLoading) return null
         console.log("hello Workshopfilter")
         return (
-            <div>
-                <div className="form-row">
-                    <div className="form-group col-md-6">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md">
                         <label className="title1">Search</label>
-                        <input className="form-control" id="ex3" type="text" onChange={this.handleChange} placeholder="Search by name or Speaker's name"/>
+                        <input className="form-control" id="ex3" type="text" onChange={this.handleChange} placeholder="Search by name or speaker's name"/>
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="col-md">
                         <label className="title1">Category</label>
-                        <form className="form-inline">
-                            <input type="checkbox" onClick={this.handleClick} id="business" className="custom-control custom-checkbox"/>
-                            <label className="checkbox-inline">Business</label>
-                            <input type="checkbox" onClick={this.handleClick} id="data" className="custom-control custom-checkbox"/>
-                            <label className="checkbox-inline">Data</label>
-                            <input type="checkbox" onClick={this.handleClick} id="design" className="custom-control custom-checkbox"/>
-                            <label className="checkbox-inline">Design</label>
-                            <input type="checkbox" onClick={this.handleClick} id="technology" className="custom-control custom-checkbox"/>
-                            <label className="checkbox-inline">Technology</label>
+                        <form>
+                            <div className="form-check form-check-inline">
+                                <label className="checkbox-inline">Business
+                                    <input type="checkbox" onClick={this.handleClick} id="business" className="custom-control custom-checkbox"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <label className="checkbox-inline">Data
+                                    <input type="checkbox" onClick={this.handleClick} id="data" className="custom-control custom-checkbox"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <label className="checkbox-inline">Design
+                                    <input type="checkbox" onClick={this.handleClick} id="design" className="custom-control custom-checkbox"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <label className="checkbox-inline">Technology
+                                    <input type="checkbox" onClick={this.handleClick} id="technology" className="custom-control custom-checkbox"/>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>    
                         </form>
                     </div>
                 </div>
-                <div className="content">
-                    <div>{this.state.selectedFilter}</div>
-                    <div>
-                    {
-                        this.state.workshops.map(this.filteredWorkshop)
-                    }
-                    </div>
+                <div className="row">
+                    {this.state.workshops.map(this.filteredWorkshop)}
                 </div>
             </div>
         )
