@@ -1,5 +1,5 @@
 import React from 'react' ;
-import { Multiselect } from 'multiselect-react-dropdown';
+import Multiselect from 'multiselect-react-dropdown';
 import './InputBox.css' ;
 
 class InputBox extends React.Component {
