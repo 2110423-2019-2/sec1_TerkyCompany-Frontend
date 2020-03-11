@@ -28,7 +28,7 @@ class Ticket extends React.Component {
                 </div>
             </div>
             <div id='qrCode'>
-                <Qrcode value="ddd" size={30} bgColor="#E48D26" />
+                <Qrcode value="ddd" size={100} imageSettings={height} bgColor="#E48D26" />
             </div>
         </div>
         )
