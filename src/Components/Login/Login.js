@@ -60,9 +60,7 @@ class Login extends React.Component {
                         cookies.set('username',res2.data.username)
                         cookies.set('userType',res2.data.userType)
                     }
-                )
-
-                window.location.assign('/')
+                ).then(window.location.assign('/'))
 
             }
             else {

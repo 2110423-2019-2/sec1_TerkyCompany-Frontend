@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 import './Menubar.css'
 
 class Menubar extends Component {
@@ -10,10 +11,6 @@ class Menubar extends Component {
         }
     }
 
-    registerclick() {
-        console.log("register clicked")
-        console.log(window.location.host)
-    }
 
     componentDidMount() {
         console.log(document.cookie)
@@ -42,7 +39,7 @@ class Menubar extends Component {
                                 <a className="nav-link" href="/login">Login</a>
                             </li>
                             <form class="form-inline my-2 my-lg-0">
-                                <button class="btn btn-outline-warning my-2 my-sm-0" onClick={() => this.registerclick()}>Register</button>
+                                <Button variant="outline-warning" onClick={() =>{ window.location.assign('/register') }} >Register</Button>
                             </form>
                         </ul>
                     </nav>
