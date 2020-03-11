@@ -1,42 +1,41 @@
-#workshopPic {
-    object-fit: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 16em 0em 0em 16em;
-    background-color: black;
-    
-}
-
 #ticket {
     display : flex;
     flex-direction: row;
     align-items: stretch;
-    width: 82%;
-    height: 36%;
-    margin : 10%;
+    width: 1050px;
+    height: 450px;
     background-color: #E48D26 ;    
-    border-radius: 16em 16em 45em 16em;
+    border-radius: 80px 80px 225px 80px;
     
 }
-#workshopName {
-    font-size: 10px ;
+
+#workshopPic {
+    object-fit: none;
+    width: 45%;
+    height: 100%;
+    border-radius: 18% 0% 0% 18%;
+    background-color: rgba(0,0 ,255 , 0.4);
+    
 }
 
 #text-box{
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    width:40%;
 } 
+
+#qrCode {
+    width : 15%;
+}
+
+#workshopName {
+    font-size: 10px ;
+}
 
 #holderName{
     align-items: end;
 }
-.desc {
-    font-size: 7px;
-}
-#qrCode {
-    width: 30px;
-    height: 30px;
-    background-color: blueviolet;
 
+.desc {
+    font-size: 10px;
 }

@@ -7,16 +7,6 @@ class Ticket extends React.Component {
         super(props) ;
         this.state = {
             isLoading : false,
-            data :{
-            workShopName : '',
-            workShopPic : '',
-            date : '',
-            stime : '',
-            etime : '',
-            place : '',
-            holderName : '',
-            description : ''
-            }
         }
     }
 
@@ -24,15 +14,17 @@ class Ticket extends React.Component {
         return (
         <div id='ticket'>
             <div id='workshopPic'>
-                <img id='workshopPic' src=""></img>
             </div>
             <div id='text-box'>
-                <div id='workshopName'>workShopName</div>
+                <div id='workshopName'>{this.props.wsName}</div>
                 <div className='desc'>
-                <div>date time</div>
-                <div>locaton</div>
-                <div>contact</div>
-                <div>holderName</div>
+                    <div>
+                        <span>{this.props.sTime}</span> - 
+                        <span>{this.props.eTime}</span>
+                    </div>
+                    <div>{this.props.place}</div>
+                    <div>{this.props.holderName}</div>
+                    <div>{this.props.desc}</div>
                 </div>
             </div>
             <div id='qrCode'>
