@@ -1,8 +1,8 @@
 #workshopPic {
     object-fit: none;
-    width: 90px;
-    height: 90px;
-    border-radius: 16px 0px 0px 16px;
+    width: 18px;
+    height: 18px;
+    border-radius: 16em 0em 0em 16em;
     background-color: black;
     
 }
@@ -11,10 +11,11 @@
     display : flex;
     flex-direction: row;
     align-items: stretch;
-    width: 210px;
-    height: 90px;
+    width: 82%;
+    height: 36%;
+    margin : 10%;
     background-color: #E48D26 ;    
-    border-radius: 16px 16px 45px 16px;
+    border-radius: 16em 16em 45em 16em;
     
 }
 #workshopName {
