@@ -10,25 +10,25 @@ class Ticket extends React.Component {
             isLoading : false,
         }
     }
-    componentDidMount() {
-        console.log('okkkkk');
-        const { ID } = this.props.match.params
-        axios.get('http://localhost:3001/workshops/' + ID).then(res => {
-            console.log("from workshop > ", res.data)
-            this.setState({
-                data: {
-                    workShopName : res.data.name,
-                    workShopPic : res.data.pictureURL,
-                    date : "",
-                    stime : this.convertTimeStampToTime(res.data.startTime).time,
-                    etime : this.convertTimeStampToTime(res.data.endTime).time,
-                    place : res.data.place,
-                    holderName : "Miw",//read cookie,
-                    description : "dasdasas"
-                }
-            })
-        })
-    }
+    // componentDidMount() {
+    //     console.log('okkkkk');
+    //     const { ID } = this.props.match.params
+        // axios.get('http://localhost:3001/workshops/' + ID).then(res => {
+        //     console.log("from workshop > ", res.data)
+        //     this.setState({
+        //         data: {
+        //             workShopName : res.data.name,
+        //             workShopPic : res.data.pictureURL,
+        //             date : "",
+        //             stime : this.convertTimeStampToTime(res.data.startTime).time,
+        //             etime : this.convertTimeStampToTime(res.data.endTime).time,
+        //             place : res.data.place,
+        //             holderName : "Miw",//read cookie,
+        //             description : "dasdasas"
+        //         }
+        //     })
+        // })
+    // }
     convertTimeStampToTime = (timeStamp) => {
         let time = timeStamp.slice(11, 16)
         let date = timeStamp.slice(0, 10)
@@ -45,16 +45,15 @@ class Ticket extends React.Component {
                 <div id='workshopName'>{this.props.wsName}</div>
                 <div className='desc'>
                     <div>
-                        <span>{this.props.sTime}</span> - 
-                        <span>{this.props.eTime}</span>
+                        <span>{this.props.sTime}</span> - <span>{this.props.eTime}</span>
                     </div>
                     <div>{this.props.place}</div>
-                    <div>{this.props.holderName}</div>
                     <div>{this.props.desc}</div>
+                    <div id="holderName">{this.props.holderName}</div>
                 </div>
             </div>
             <div id='qrCode'>
-                <Qrcode value="ddd" size={100} imageSettings={height} bgColor="#E48D26" />
+                <Qrcode value="pitaratethi" size={150}  bgColor="#E48D26" />
             </div>
         </div>
         )
