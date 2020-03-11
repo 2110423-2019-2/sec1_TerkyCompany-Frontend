@@ -5,7 +5,7 @@
     width: 1050px;
     height: 450px;
     background-color: #E48D26 ;    
-    border-radius: 80px 80px 225px 80px;
+    border-radius: 80px 0px 225px 80px;
     
 }
 
@@ -41,5 +41,6 @@
 }
 
 .desc {
+    text-decoration-color:FFF0D9;
     font-size: 20px;
 }

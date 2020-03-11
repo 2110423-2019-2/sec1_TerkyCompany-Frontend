@@ -25,8 +25,8 @@ class Ticket extends React.Component {
                     </div>
                     <div>{this.props.place}</div>
                     <div>{this.props.desc}</div>
-                    <div id="holderName">{this.props.holderName}</div>
                 </div>
+                <div id="holderName">{this.props.holderName}</div>
             </div>
             <div id='qrCode'>
                 <Qrcode value="pitaratethi" size={150}  bgColor="#E48D26" />
