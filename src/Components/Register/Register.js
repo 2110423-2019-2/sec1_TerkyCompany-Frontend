@@ -3,6 +3,8 @@ import './Register.css';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+
 
 class Register extends React.Component {
     constructor(props){
@@ -44,6 +46,24 @@ class Register extends React.Component {
     handleRegister(e){
         e.preventDefault();
         // handle with database to confirm the user
+        let sendData = {
+            "username": this.state.username,
+            "password":this.state.password,
+            "email": this.state.email,
+            "dateOfBirth": "2012-04-24",
+            "fullname": this.state.firstName + " " + this.state.lastName,
+            "gender": this.state.gender,
+            "isSuspended": false,
+            "userType": this.state.registerFlag,
+            "organization": this.state.organization,
+            "nationalID": this.state.nationalId
+        }
+        console.log("sending")
+        console.log(sendData)
+        axios.post(`http://localhost:3001/members-t/create`, sendData ).then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
         window.alert('You are now our member!')
         console.log('Jobs done!');
     }
@@ -62,7 +82,7 @@ class Register extends React.Component {
 
     render() {
         return(
-            <div className='register-page-container'>
+            <div className ='register-page-container'>
                 <div className='register-header'>Register</div>
                 <div className='register-container'>
                     <form onSubmit={this.handleRegister}>
@@ -106,8 +126,8 @@ class Register extends React.Component {
                             <div className='register-component-half'>
                                 <label className='label'>Gender</label><br/>
                                 <div className='register-subcontainer-radio' onChange={this.handleChange} >
-                                    <input className='input-radio' id='r1' type='radio' value='M' name='gender' defaultChecked/>Male
-                                    <input className='input-radio' id='r2' type='radio' value='F' name='gender'/>Female
+                                    <input className='input-radio' id='r1' type='radio' value='male' name='gender' defaultChecked/>Male
+                                    <input className='input-radio' id='r2' type='radio' value='female' name='gender'/>Female
                                 </div>
                             </div>
                         </div>
