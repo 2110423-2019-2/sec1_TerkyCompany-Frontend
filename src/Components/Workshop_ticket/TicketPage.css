@@ -5,10 +5,25 @@
     width : 100vw;
     height : 100vh;
 }
-#ticket-wrap {
+#ticket-wrapper {
     margin: 3%;
 }
+#button-wrapper {
+    width: 20vw;
+    height: 10vh;
+}
+#button-wrapper button {
+    background-color: #FADCAE;
+    font-size: 30px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 
+}
+#button-wrapper button:hover {
+    background-color: #FFF0D9;
+}
 h1 {
-    
+    color: burlywood;
+    padding-top: 40px;
 }

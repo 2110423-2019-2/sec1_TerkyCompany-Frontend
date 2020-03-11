@@ -14,7 +14,7 @@
     width: 45%;
     height: 100%;
     border-radius: 18% 0% 0% 18%;
-    background-color: rgba(0,0 ,255 , 0.4);
+    background-color:#FADCAE;
     
 }
 
@@ -32,15 +32,25 @@
 }
 
 #workshopName {
+    height: 25%;
+}
+#workshopName h2 {
+    color: #FFF0D9;
     font-size: 45px ;
 }
 
-#holderName{
-    align-self: flex-start;
-    
+#holderName h3{
+    color: white ;
+    font-size: 30px;
 }
-
+#holderName {
+    height: 10%;
+}
+.desc p{
+    color : #FADCAE;
+    font-size: 30px;
+    margin:0px;
+}
 .desc {
-    text-decoration-color:FFF0D9;
-    font-size: 20px;
+    height: 65%;
 }
