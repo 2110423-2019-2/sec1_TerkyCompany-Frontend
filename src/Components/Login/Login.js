@@ -55,7 +55,7 @@ class Login extends React.Component {
 
                 axios.get('http://localhost:3001/profile',{ headers: {"Authorization" : `Bearer ${this.state.token}`} }).then(
                     res2 => {
-                        console.log(res2.data)
+                        console.log('data after authen: ', res2.data)
                         const cookies = new Cookies();
                         cookies.set('username',res2.data.username)
                         cookies.set('userType',res2.data.userType)
