@@ -18,7 +18,7 @@ class Register extends React.Component {
             firstName: '',
             lastName: '',
             dateOfBirth: new Date(),
-            gender: 'M',
+            gender: 'male',
             organization: '',
             nationalId: '',
             registerFlag: 'owner',
@@ -35,8 +35,12 @@ class Register extends React.Component {
 
     }
 
-    handleChangeDate(date){
-        this.setState({dateOfBirth: date});
+    handleChangeDate(value,e){
+        //console.log(value.toString()[0])
+        //console.log(value)
+        //let arr = value.toString().split(" ");
+        // console.log(arr)
+        this.setState({dateOfBirth: value});
     }
 
     handleChange(e){
@@ -46,11 +50,15 @@ class Register extends React.Component {
     handleRegister(e){
         e.preventDefault();
         // handle with database to confirm the user
+        console.log(this.state.dateOfBirth)
+        console.log(typeof this.state.dateOfBirth)
+        
+        let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
             "username": this.state.username,
             "password":this.state.password,
             "email": this.state.email,
-            "dateOfBirth": "2012-04-24",
+            "dateOfBirth": this.convertMonthToDate(this.state.dateOfBirth),
             "fullname": this.state.firstName + " " + this.state.lastName,
             "gender": this.state.gender,
             "isSuspended": false,
@@ -68,6 +76,24 @@ class Register extends React.Component {
         console.log('Jobs done!');
     }
 
+    convertMonthToDate = (date) => {
+        let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+        let arr = date.toString().split(" ");
+        //console.log(arr)
+        let inputM = arr[1]
+        console.log(inputM)
+        let outD = arr[2]
+        let outY = arr[3]
+        console.log(outY)
+        console.log(outD)
+        let outM = month.findIndex(element=>{
+            console.log(element)
+            return element === inputM
+        })
+        outM = outM+1
+        console.log(outM)  
+        return outY+"-"+outM+"-"+outD
+    }
     handleChangeConfirmPassword(e){
         this.setState({[e.target.name]:e.target.value});
         if(e.target.value === ''){
@@ -118,9 +144,11 @@ class Register extends React.Component {
                             <div className='register-component-half'>
                                 <label className='label'>Date of birth</label><br/>
                                 <DatePicker
+                                    
+                                    onChange={(value,e) => this.handleChangeDate(value,e)}
                                     selected={this.state.dateOfBirth}
-                                    onChange={this.handleChangeDate}
                                     dateFormat={['dd MMM yyyy', 'dd/MM/yyyy', 'dd-MM-yyyy']}
+                                    //dateFormat = 'dd-MM-yyyy'
                                 />
                             </div>
                             <div className='register-component-half'>
