@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import WorkshopItem from '../WorkshopItem/WorkshopItem'
 import "./FilterForm.css"
+import axios from 'axios';
+
 
 class FilterForm extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class FilterForm extends Component {
                     date:"2015-12-20T03:01:01.000z",
                     startTime:"2015-12-20T03:01:01.000z",
                     endTime:"2015-12-20T03:01:01.000z",
-                    cap:111,
+                    capacity:111,
                     cost:111,
                     place:'111',
                     ddate:"2015-12-20T03:01:01.000z",
@@ -31,7 +33,7 @@ class FilterForm extends Component {
                     date:"2015-12-20T03:01:01.000z",
                     startTime:"2015-12-20T03:01:01.000z",
                     endTime:"2015-12-20T03:01:01.000z",
-                    cap:222,
+                    capacity:222,
                     cost:222,
                     place:'222',
                     ddate:"2015-12-20T03:01:01.000z",
@@ -47,7 +49,7 @@ class FilterForm extends Component {
                     date:"2015-12-20T03:01:01.000z",
                     startTime:"2015-12-20T03:01:01.000z",
                     endTime:"2015-12-20T03:01:01.000z",
-                    cap:333,
+                    capacity:333,
                     cost:333,
                     place:'333',
                     ddate:"2015-12-20T03:01:01.000z",
@@ -105,14 +107,38 @@ class FilterForm extends Component {
         
     }
 
-    componentDidMount() {
-        let allWorkshop = this.state.workshops
+    async componentDidMount() {
+        let allWorkshop = []
         let shownList = []
+        await axios.get(`http://localhost:3001/workshops`).then(res => {
+            console.log("got")
+            //allWorkshop = res.data;
+            allWorkshop = res.data
+            console.log(allWorkshop)
+            //this.setState({workshops:res.data})
+                //console.log(res);
+                //console.log(res.data);
+            })
+        allWorkshop.forEach(element => {
+            element.tags = []
+            axios.get(`http://localhost:3001/tags/findbyid/`+element.id).then(res => {
+                res.data.forEach(e => {
+                    element.tags.push({name:e.tag.toLowerCase()})
+                })
+            })
+        })
+        
+        console.log(allWorkshop)
+
         for(let index in allWorkshop) {
             if(!shownList.includes(allWorkshop[index].id))
             shownList.push(allWorkshop[index].id)
         }
+        console.log(shownList);
+        
         this.setState({shownWorkshop:shownList})
+        this.setState({workshops:allWorkshop})
+        console.log(allWorkshop)
     }
 
     goto = (id) => {
