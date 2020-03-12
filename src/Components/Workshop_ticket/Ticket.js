@@ -2,7 +2,7 @@ import React from 'react' ;
 import './Ticket.css' ;
 import Qrcode from 'qrcode.react' ;
 import axios from "axios";
-
+import cookie from "universal-cookie" ;
 
 class Ticket extends React.Component {
     constructor(props) {
@@ -29,12 +29,10 @@ class Ticket extends React.Component {
                 data: {
                     workShopName : res.data.name,
                     workShopPic : res.data.pictureURL,
-                    date : "",
                     stime : this.convertTimeStampToTime(res.data.startTime).time,
                     etime : this.convertTimeStampToTime(res.data.endTime).time,
                     place : res.data.place,
                     holderName : "Miw",//read cookie,
-                    description : "dasdasas"
                 }
             })
         })
