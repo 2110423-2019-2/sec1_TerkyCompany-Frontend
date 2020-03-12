@@ -116,7 +116,7 @@ class Form extends React.Component {
                 break;
             case "cap":
                 if (value <= 0 || value > 1000) {
-                    err.cap = "must be number between 1-1000"
+                    err.cap = "must be number between 0-1000"
                 }
                 else {
                     content.cap = value ;
