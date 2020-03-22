@@ -36,7 +36,7 @@ class Routes extends Component {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/workshopeditor" component={WorkshopeditPage} />
                         <Route exact path="/ticket" component={TicketPage} />
-                        <Route path="/ticket/:ID" component={Ticket} />
+                        <Route path="/ticket/:ID" component={TicketPage} />
                         <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
