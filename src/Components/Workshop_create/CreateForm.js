@@ -38,6 +38,8 @@ class Form extends React.Component {
                 description:'',
                 tags:[]
             },
+            username : "",
+            role : "",
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}]
         }
         this.handleChange = this.handleChange.bind(this) ;
@@ -334,9 +336,32 @@ class Form extends React.Component {
         return timeStamp
     }
 
+    componentDidMount(){
+        //format cookie
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                s+=1 
+        }
+        if(s==2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
+    }
 
     render() {
-        if (this.state.isLoading) return null
+        if (this.state.isLoading) return null ;
+        if (document.cookie === "") return <h1>Please log-in first</h1>
+        if (this.state.role != "workshop owner") return <h1>You are not workshop owner</h1>
         console.log("hello Create form")
         const style = {chips: { background: "#cc670a" }, searchBox: {background: "white" } }
         return (
