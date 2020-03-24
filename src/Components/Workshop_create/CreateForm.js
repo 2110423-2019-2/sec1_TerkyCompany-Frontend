@@ -361,7 +361,7 @@ class Form extends React.Component {
     render() {
         if (this.state.isLoading) return null ;
         if (document.cookie === "") return <h1>Please log-in first</h1>
-        if (this.state.role != "workshop owner") return <h1>You are not workshop owner</h1>
+        if (this.state.role != "owner") return <h1>You are not workshop owner</h1>
         console.log("hello Create form")
         const style = {chips: { background: "#cc670a" }, searchBox: {background: "white" } }
         return (
