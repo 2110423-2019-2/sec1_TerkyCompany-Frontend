@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 
 class Workshoplistpage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLoading: false,
-            workshops : []
+            isLoading: true,
+            workshops: [],
+            username: '',
+            role: ''
+            
         }
     }
 
@@ -21,10 +25,32 @@ class Workshoplistpage extends Component {
                     workshops: res.data
                 })
             })
+
+        //format cookie
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                s+=1 
+
+        }
+        
+        if(s==2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
     }
 
     render() {
-        if (this.state.isLoading) return null
+        if (document.cookie === '') return window.location.assign('/login')
         console.log("hello Workshoplist")
         return (
             <div>

@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('cookie now : ',document.cookie)
     axios.get('http://localhost:3001/workshops')
       .then(res => {
         console.log(res)

@@ -16,10 +16,10 @@ class TicketPage extends React.Component {
     render() {
         return (
             <div id='container'>
-                <h1>HI</h1>
-                <div id='ticket-wrap'><Ticket  ref={el => (this.componentRef = el)}></Ticket></div>
-                <div id='button'>
-                    <ReactToPDF trigger={() => <button>print</button>}
+                <h1>This is your FUCKING ticket</h1>
+                <div id='ticket-wrapper'><Ticket  ref={el => (this.componentRef = el)}></Ticket></div>
+                <div id='button-wrapper'>
+                    <ReactToPDF trigger={() => <button id='button'>print</button>}
                                 content={() => this.componentRef}/>
                 </div>
             </div>

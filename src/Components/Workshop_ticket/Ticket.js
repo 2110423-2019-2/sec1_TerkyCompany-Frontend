@@ -10,13 +10,12 @@ class Ticket extends React.Component {
         this.state = {
             isLoading : false,
             data :{
-                workShopName : 'workShopName',
-                workShopPic : 'PicURL',
-                stime : 'start time',
-                etime : 'end time',
+                workShopName : 'Workshop\'s name',
+                workShopPic : 'Picture URL',
+                stime : 'start',
+                etime : 'end',
                 place : 'place',
-                holderName : 'holder',
-                description : 'descs'
+                holderName : 'holder name',
                 }
         }
     }
@@ -51,18 +50,15 @@ class Ticket extends React.Component {
         <div id='ticket'>
             <div id='workshopPic'><img src={this.state.data.workShopPic}></img></div>
             <div id='text-box'>
-                <div id='workshopName'>{this.state.data.workShopName}</div>
+                <div id='workshopName'><h2>{this.state.data.workShopName}</h2></div>
                 <div className='desc'>
-                    <div>
-                        <span>{this.state.data.stime}</span> - <span>{this.state.data.etime}</span>
-                    </div>
-                    <div>{this.state.data.place}</div>
-                    <div>{this.state.data.desc}</div>
-                    <div id="holderName">{this.state.data.holderName}</div>
+                    <p>from {this.state.data.stime} to {this.state.data.etime}</p>
+                    <p>{this.state.data.place}</p>
                 </div>
+                <div id="holderName"><h3>{this.state.data.holderName}</h3></div>
             </div>
             <div id='qrCode'>
-                <Qrcode value="pitaratethi" size={150}  bgColor="#E48D26" />
+                <Qrcode value="FUCK U" size={150}  bgColor="#E48D26" fgColor="#FFF0D9" />
             </div>
         </div>
         )

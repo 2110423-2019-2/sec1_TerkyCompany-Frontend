@@ -1,0 +1,17 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+.error-box {
+    width:100%;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    justify-content: center;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    vertical-align:middle;
+}
+
+.error-box i {
+    font-size:1em;
+    vertical-align:middle;
+}
