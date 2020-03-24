@@ -1,5 +1,6 @@
 import React from 'react' ;
 import InputBox from './InputBox' ;
+import Multiselect from 'multiselect-react-dropdown';
 import './CreateForm.css'
 import axios from 'axios';
 
@@ -356,8 +357,9 @@ class Form extends React.Component {
                 role: ck['userType']
             })
         }
+        //const [selected,setSelected] = useState([])
     }
-
+    
     render() {
         if (this.state.isLoading) return null ;
         if (document.cookie === "") return <h1>Please log-in first</h1>
@@ -380,7 +382,7 @@ class Form extends React.Component {
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop"/>
-                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags"/>
+                        <InputBox label="Tags"                                  type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style}  errMsg="" placeholder="Choose tags"/>
                     </form>
                 </div>
                 <div id="button-body">
