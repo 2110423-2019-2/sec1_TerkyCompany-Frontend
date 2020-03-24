@@ -15,6 +15,7 @@ import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage'
 import Ticket from './Components/Workshop_ticket/Ticket';
 import TicketPage from './Components/Workshop_ticket/TicketPage';
 import Register from './Components/Register/Register';
+import Report from './Components/Report/Report';
 
 
 class Routes extends Component {
@@ -43,6 +44,7 @@ class Routes extends Component {
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/report" component={Report} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
