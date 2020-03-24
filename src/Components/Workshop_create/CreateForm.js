@@ -309,9 +309,21 @@ class Form extends React.Component {
             console.log("sending")
             console.log(sendData)
             axios.post(`http://localhost:3001/workshops/create`, sendData ).then(res => {
-                console.log(res);
+                //console.log(res);
                 console.log(res.data);
-            })
+                //console.log(nowState.tags)
+                let workshopId = res.data.id
+                    nowState.tags.forEach(element=>{let sendTag = {
+                        "workshop":workshopId,
+                        "tag":element.name,
+                        "workshopId":workshopId
+                    }
+                    console.log(sendTag)
+                    axios.post(`http://localhost:3001/tags/create`,sendTag)
+                    }
+                )
+                }
+            )
             alert("submited")
 
         }
@@ -382,7 +394,7 @@ class Form extends React.Component {
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop"/>
-                        <InputBox label="Tags"                                  type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style}  errMsg="" placeholder="Choose tags"/>
+                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style}  errMsg="" placeholder="Choose tags"/>
                     </form>
                 </div>
                 <div id="button-body">
