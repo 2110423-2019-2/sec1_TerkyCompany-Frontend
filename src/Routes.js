@@ -42,7 +42,7 @@ class Routes extends Component {
                         <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
-                        <Route exact path="/reg ister" component={Register} />
+                        <Route exact path="/register" component={Register} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
