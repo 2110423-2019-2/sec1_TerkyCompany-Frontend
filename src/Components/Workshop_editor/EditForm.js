@@ -241,7 +241,7 @@ class EditForm extends Component {
                 role: ck['userType']
             })
         }
-
+        console.log('I am ',this.state.username,', the ',this.state.userType)
         axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
             let initData = res.data[0] 
             //console.log(initData[0])
@@ -275,6 +275,7 @@ class EditForm extends Component {
         }
         else if (this.state.role !== "owner") {
             alert("You are not allowed to edit workshop.")
+            window.location.assign('/')
         }
         console.log("hello Workshopeditor")
         return (
