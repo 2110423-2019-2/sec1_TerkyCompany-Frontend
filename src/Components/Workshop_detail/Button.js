@@ -11,7 +11,19 @@ class Button extends React.Component {
 
     render() {
         return(
-            <button className='button'>Join</button>
+            <button className='button' onClick={() => {
+                if(this.props.role == '')
+                {
+                    alert('Please login first')
+                    window.location.assign('/login')
+                }
+                else if(this.props.role == 'participant') {
+                    alert('Joined!!!')
+                }
+                else {
+                    alert('Your role is workshop-owner. You cannot join any workshop!')
+                }
+            } } >Join</button>
         );
     }
 }

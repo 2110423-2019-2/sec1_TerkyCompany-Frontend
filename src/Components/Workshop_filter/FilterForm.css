@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=B612&display=swap');
+label {
+    font-family: B612;
+}
+
+.title1 {
+    font-weight: bold;
+    font-size: 18px !important;
+}
+
+.form-check-inline {
+    font-size: 18px !important;
+}
+
+.checkbox-inline {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+  }
+
+input[type='checkbox'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+
+}
+
+input[type='checkbox']:hover ~ .checkmark {
+    background-color: #ccc;
+}
+
+input[type='checkbox']:checked ~ .checkmark{
+    background-color: #2196F3;
+}
