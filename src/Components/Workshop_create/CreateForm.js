@@ -41,7 +41,7 @@ class Form extends React.Component {
             },
             username : "",
             role : "",
-            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}]
+            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}]
         }
         this.handleChange = this.handleChange.bind(this) ;
         this.handleSelect = this.handleSelect.bind(this) ;
