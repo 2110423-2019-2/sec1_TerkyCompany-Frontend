@@ -10,6 +10,7 @@ class Button extends React.Component {
     }
 
     render() {
+        console.log("here8")
         return(
             <button className='button' onClick={() => {
                 if(this.props.role == '')
