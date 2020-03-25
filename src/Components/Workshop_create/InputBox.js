@@ -1,5 +1,5 @@
 import React from 'react' ;
-import Multiselect from 'multiselect-react-dropdown';
+import {Multiselect} from 'multiselect-react-dropdown';
 import './InputBox.css' ;
 
 class InputBox extends React.Component {
@@ -43,7 +43,7 @@ class InputBox extends React.Component {
                 </div>
             )
         }
-        return null
+//        return null
     }
 }
 export default InputBox ;

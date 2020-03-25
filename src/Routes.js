@@ -12,7 +12,6 @@ import WorkshopfilterPage from './Components/Workshop_filter/WorkshopFilterPage'
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
-import Ticket from './Components/Workshop_ticket/Ticket';
 import TicketPage from './Components/Workshop_ticket/TicketPage';
 import Register from './Components/Register/Register';
 
