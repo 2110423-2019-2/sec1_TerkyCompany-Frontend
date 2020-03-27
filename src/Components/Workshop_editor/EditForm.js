@@ -269,14 +269,6 @@ class EditForm extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        if (document.cookie === "") {
-            alert("Please log-in first")
-            window.location.assign('/login')
-        }
-        else if (this.state.role !== "owner") {
-            alert("You are not allowed to edit workshop.")
-            window.location.assign('/')
-        }
         console.log("hello Workshopeditor")
         return (
             <div>
