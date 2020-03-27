@@ -10,7 +10,9 @@ class WorkshopEditPage extends React.Component {
             isLoading: false,
             content: []
         }
+        
     }
+    
     render() {
         if(this.state.isLoading) return null
         return (
