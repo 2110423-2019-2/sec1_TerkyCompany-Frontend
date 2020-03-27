@@ -39,8 +39,6 @@ class EditForm extends Component {
                 description:'',
                 tags:null
             },
-            username : "",
-            role : "",
             options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
             selectedValues: [{name: 'Srigar', id: 1},],
             initData: [],
@@ -222,26 +220,6 @@ class EditForm extends Component {
     }
 
     componentDidMount() {
-        //format cookie
-        let spl = document.cookie.split(';')
-        let ck = {}
-        let s=0
-        for(let i=0 ;i< spl.length ; i++)
-        {
-            let temp = spl[i].split('=')
-            console.log('temp: ',temp)
-            ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
-                s+=1 
-        }
-        if(s==2) {
-            this.setState({
-                isLoading: false,
-                username: ck['username'],
-                role: ck['userType']
-            })
-        }
-        console.log('I am ',this.state.username,', the ',this.state.userType)
         axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
             let initData = res.data[0] 
             //console.log(initData[0])
