@@ -164,14 +164,6 @@ class EditForm extends Component {
             alert("Invalid input")
         }
         else {
-            // axios.get(`http://localhost:3000/workshops`).then(res => {
-            //     const persons = res.data[0];
-            //     console.log('asd');
-            //     console.log(persons);
-            //     this.state.content.speakerName = "owenten"
-            //     //this.setState({speakerName:"asd"});
-            //     this.setState(this.state.content);
-            //  })
             let nowState = this.state.content
             let sendData = {
                 "id": "1",
@@ -228,7 +220,6 @@ class EditForm extends Component {
     }
 
     componentDidMount() {
-
         axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
             let initData = res.data[0] 
             //console.log(initData[0])
@@ -253,8 +244,32 @@ class EditForm extends Component {
             this.setState( initState ) 
         })
     }
+    componentWillMount(){
+
+            let spl = document.cookie.split(';')
+            let ck = {}
+            let s=0
+            for(let i=0 ;i< spl.length ; i++)
+            {
+                let temp = spl[i].split('=')
+                console.log('temp: ',temp)
+                ck[temp[0].trim()]=temp[1]
+                if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                    s+=1 
+            }
+            if(s==2) {
+                this.setState({
+                    isLoading: false,
+                    username: ck['username'],
+                    role: ck['userType']
+                })
+            }
+        
+    }
 
     render() {
+        alert("this role")
+        alert(this.state.role)
         if (this.state.isLoading) return null
         console.log("hello Workshopeditor")
         return (
