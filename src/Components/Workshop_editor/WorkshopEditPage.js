@@ -14,10 +14,6 @@ class WorkshopEditPage extends React.Component {
         }
         
     }
-<<<<<<< HEAD
-    
-||||||| merged common ancestors
-=======
 
     componentWillMount(){
         //format cookie
@@ -42,7 +38,6 @@ class WorkshopEditPage extends React.Component {
         }
     }
 
->>>>>>> 19478ee4ef3aed7eb39b95e5218b923e1dfd1b12
     render() {
         if(this.state.isLoading) return null
         if (document.cookie === ""){ 
