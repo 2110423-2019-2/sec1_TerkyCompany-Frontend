@@ -1,7 +1,7 @@
 import React from 'react';
 import './WorkshopDetailHeader.css';
 import Button from './Button';
-import Review from './Review'
+import Review from './ReviewButton'
 
 class WorkshopDetailHeader extends React.Component {
     constructor(props) {
@@ -29,7 +29,6 @@ class WorkshopDetailHeader extends React.Component {
                     <div className='header-detail' id='seat'>{workshop.notAvailableSeat}/{workshop.totalSeat}</div>
                     <div className='header-detail' id='cost'>{workshop.cost} Baht</div>
                     <Button role={this.props.role} username={this.props.username} />
-                    <Review />
                 </div>
             </div>
         );

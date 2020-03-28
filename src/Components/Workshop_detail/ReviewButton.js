@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom';
-import './Review.css'
+import './ReviewButton.css'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios'
 import ReactStars from 'react-rating-stars-component'
 
-const Review  = () => {
+
+const ReviewButton  = () => {
     const [show, setShow, rating] = useState(false);
     
     const handleClose = () => {
+        setShow(false);
+    }
+    const handleSubmit = () => {
         setShow(false);
     }
     const handleShow = () => {
@@ -30,7 +34,7 @@ const Review  = () => {
             <Modal.Title>Review Workshop</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <textarea id="w3mission" rows="4" cols="60"></textarea>
+                <textarea rows="4" cols="60"></textarea>
                 <ReactStars
                 count={5}
                 onChange={ratingChanged}
@@ -45,7 +49,7 @@ const Review  = () => {
             <Button variant="secondary" onClick={handleClose}>
                 Cancel
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleSubmit}>
                 Submit
             </Button>
             </Modal.Footer>
@@ -55,4 +59,4 @@ const Review  = () => {
 }
 
 
-export default Review;
+export default ReviewButton;

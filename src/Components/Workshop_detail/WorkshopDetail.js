@@ -2,6 +2,7 @@ import React from 'react';
 import './WorkshopDetail.css';
 import WorkshopDetailHeader from './WorkshopDetailHeader';
 import WorkshopDetailBody from './WorkshopDeatailBody';
+import WorkshopDetailBottom from './WorkshopDetailBottom';
 import axios from 'axios';
 
 class WorkshopDetail extends React.Component {
@@ -89,6 +90,7 @@ class WorkshopDetail extends React.Component {
             <div>
                 <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} />
                 <WorkshopDetailBody workshop={this.state.workshop} />
+                <WorkshopDetailBottom />
             </div>
         );
     }
