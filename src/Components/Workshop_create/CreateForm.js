@@ -26,7 +26,7 @@ class Form extends React.Component {
             },
             content:{
                 workshopName:'',
-                workshopPic: null,
+                workshopPic: "",
                 speakerName:'',
                 date:'',
                 sTime:'',
@@ -37,7 +37,8 @@ class Form extends React.Component {
                 ddate:'',
                 dtime:'',
                 description:'',
-                tags:[]
+                tags:[],
+                owner: this.props.username
             },
             username : "",
             role : "",
@@ -304,7 +305,8 @@ class Form extends React.Component {
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www"
+                "pictureURL": "www",
+                "owner": nowState.owner
             }
             console.log("sending")
             console.log(sendData)

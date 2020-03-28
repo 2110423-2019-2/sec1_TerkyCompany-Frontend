@@ -57,7 +57,7 @@ class WorkshopCreatePage extends React.Component {
                     <h1>Create workshop</h1>
                     <div className="dropdown-divider"></div>
                     <div>
-                        <CreateForm id="form" tags={this.state.tags}/>
+                        <CreateForm id="form" username={this.state.username} tags={this.state.tags}/>
                     </div>
                 </div>
                 <div id="sidebar">
