@@ -3,6 +3,7 @@ import './EditForm.css'
 import InputBox from './InputBox'
 import axios from 'axios'
 import { useParams, Route } from 'react-router-dom';
+import {state} from './WorkshopEditPage' 
 
 class EditForm extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class EditForm extends Component {
                 description:'',
                 tags:null
             },
-            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
+            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}],
             selectedValues: [{name: 'Srigar', id: 1},],
             initData: [],
         }
@@ -220,7 +221,9 @@ class EditForm extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
+        //get workshopid from workshopEditPage
+        //console.log(this.props.workshopid)
+        axios.get(`http://localhost:3001/workshops/findbyid/${this.props.workshopid}`).then(res => { 
             let initData = res.data[0] 
             //console.log(initData[0])
             let initState = this.state.content
@@ -243,9 +246,15 @@ class EditForm extends Component {
             initState.description = initData.description 
             this.setState( initState ) 
         })
+        axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
+            let initTag = res.data 
+            //console.log(initTag)
+            console.log(initTag[1])
+
+        })
     }
     componentWillMount(){
-
+            
             let spl = document.cookie.split(';')
             let ck = {}
             let s=0
