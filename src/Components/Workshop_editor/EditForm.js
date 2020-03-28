@@ -268,8 +268,6 @@ class EditForm extends Component {
     }
 
     render() {
-        alert("this role")
-        alert(this.state.role)
         if (this.state.isLoading) return null
         console.log("hello Workshopeditor")
         return (

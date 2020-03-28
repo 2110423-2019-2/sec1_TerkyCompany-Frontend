@@ -37,7 +37,7 @@ class WorkshopEditPage extends React.Component {
             })
         }
     }
-    
+
     render() {
         if(this.state.isLoading) return null
         if (document.cookie === ""){ 
