@@ -1,5 +1,6 @@
 import React from 'react';
 import './Report.css';
+import axios from 'axios';
 
 class Report extends React.Component {
     constructor(props) {
@@ -8,20 +9,57 @@ class Report extends React.Component {
             isLoading: false,
             subject: "website",
             description:"",
+            username: "",
+            role: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitReport = this.handleSubmitReport.bind(this);
     }
 
     componentDidMount() {
+        //format cookie
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                s+=1 
+
+        }
+        
+        if(s==2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+
     }
 
     handleSubmitReport(e) {
         //handle backend
+        let sendData ={
+          'subject': this.state.subject,
+          'description': this.state.description,
+          'memberT' : this.username,
+          'memberTUsername': this.username,
+        }
+        console.log("sending")
+        console.log(sendData)
+        axios.post('http://localhost:3001/report/create', sendData ).then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+        
     }
 
     render() {
