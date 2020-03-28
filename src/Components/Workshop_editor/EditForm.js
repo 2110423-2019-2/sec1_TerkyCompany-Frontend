@@ -41,7 +41,7 @@ class EditForm extends Component {
                 tags:null
             },
             options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}],
-            selectedValues: [{name: 'Srigar', id: 1},],
+            selectedValues: [],
             initData: [],
         }
         this.handleChange = this.handleChange.bind(this)
@@ -249,7 +249,19 @@ class EditForm extends Component {
         axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data 
             //console.log(initTag)
-            console.log(initTag[1])
+            //console.log(initTag[1])
+            let initState = this.state
+            Object.values(initTag).forEach(element => {
+                //console.log(element.tag)
+                let tagData = {
+                    name : element.tag,
+                    id : 3
+                }
+                //console.log(Object.values(initState.selectedValues))
+                initState.selectedValues = initState.selectedValues.concat(tagData)
+            })
+            this.setState(initState)
+            console.log(this.state.selectedValues)
 
         })
     }
