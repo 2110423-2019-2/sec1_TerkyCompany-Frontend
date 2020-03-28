@@ -59,6 +59,7 @@ class Workshoplistpage extends Component {
                         <div id="textzone">
                             <ul id="link-side">
                                 <li><a id="link-side" href="#">My Workshop</a></li>
+                                {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
                                 <li><a id="link-side" href="#">Certificate</a></li>
                                 <li><a id="link-side" href="#">Payment</a></li>
                                 <li><a id="link-side" href="#">Confirmation</a></li>

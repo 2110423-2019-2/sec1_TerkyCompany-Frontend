@@ -22,7 +22,6 @@ class WorkshopCreatePage extends React.Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
                 s+=1 
@@ -34,7 +33,6 @@ class WorkshopCreatePage extends React.Component {
                 role: ck['userType']
             })
         }
-        //const [selected,setSelected] = useState([])
     }
     render() {
         if(this.state.isLoading) return null

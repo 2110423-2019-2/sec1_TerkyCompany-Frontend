@@ -26,7 +26,7 @@ class Form extends React.Component {
             },
             content:{
                 workshopName:'',
-                workshopPic:'',
+                workshopPic: null,
                 speakerName:'',
                 date:'',
                 sTime:'',
@@ -87,7 +87,7 @@ class Form extends React.Component {
                 }
                 else {
                     err.workshopPic = ""
-                    content.workshopPic = value ;
+                    content.workshopPic = e.target.files[0] ;
                 }
                 break;
             case "date" :
@@ -324,7 +324,19 @@ class Form extends React.Component {
                 )
                 }
             )
-            alert("submited")
+            const formData = new FormData();
+            formData.append('myImage',this.state.file);
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            axios.post(`/localhost:3001/members-t/${this.state.username}/profile`,formData,config)
+                .then((response) => {
+                    alert("The file is successfully uploaded");
+                }).catch((error) => {
+            });
+            alert("submited picture")
 
         }
         else {
