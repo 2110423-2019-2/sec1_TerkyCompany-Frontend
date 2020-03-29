@@ -179,19 +179,32 @@ class EditForm extends Component {
                 "name": nowState.workshopName,
                 "place": nowState.place,
                 "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
-                "publishTime": "2015-12-20T03:01:01.000Z",
+                "publishTime": nowState.publishTime,
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
                 "pictureURL": nowState.workshopPic
             }
             console.log("sending")
-            console.log(sendData)
+            //console.log(sendData)
             axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
             alert("Submitted")
-            console.log(this.state.content)
+            //console.log(this.state.content)
+            axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
+               console.log(res)
+            })
+            console.log(this.state.selectedValues)
+            this.state.selectedValues.forEach(element=>{let sendTag = {
+                    "workshop":this.props.workshopid,
+                    "tag":element.name,
+                    "workshopId":this.props.workshopid
+                    }
+                console.log(sendTag)
+                axios.post(`http://localhost:3001/tags/create`,sendTag)
+                }
+            )
         }
     }
     cancelclick() {
@@ -234,7 +247,7 @@ class EditForm extends Component {
             console.log(this.props.urlUsername)
             //check real owner
             if (!this.onCorrectUser(initData.owner,this.state.username,this.props.urlUsername)) {
-                alert("you are not the owner of this workshop")
+                alert("Invalid user")
                 return
             }
             //console.log(initData[0])
