@@ -26,7 +26,7 @@ class EditForm extends Component {
                 tags:''
             },
             content:{
-                workshopName:'test',
+                workshopName:'undefine',
                 workshopPic:null,
                 speakerName:'',
                 date:null,
@@ -255,7 +255,7 @@ class EditForm extends Component {
             let startTime = this.convertTimeStampToTime(initData.startTime)
             let endTime = this.convertTimeStampToTime(initData.endTime)
             let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
-            // console.log("inition")
+            console.log(initData.pictureURL.split("\\")[2])
              console.log(initData)
             // console.log(initData.place)
             initState.workshopName = initData.name
@@ -269,7 +269,8 @@ class EditForm extends Component {
             initState.ddate = deadTime.date
             initState.dtime = deadTime.time
             initState.publishTime = initData.publishTime
-            initState.description = initData.description 
+            initState.description = initData.description
+            //initState.workshopPic = initData.pictureURL.split(`\\`)[2] 
             this.setState( initState ) 
             console.log(this.state.content)
         })
