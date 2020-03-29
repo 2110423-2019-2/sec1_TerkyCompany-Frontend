@@ -38,9 +38,10 @@ class EditForm extends Component {
                 ddate:null,
                 dtime:null,
                 description:'',
+                publishTime:'',
                 tags:null
             },
-            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}],
+            options: [{name: 'business', id: 1},{name: 'data', id: 2},{name: 'design', id: 3},{name:"technology",id:4}],
             selectedValues: [],
             initData: [],
         }
@@ -149,6 +150,9 @@ class EditForm extends Component {
         content.tags = selectedList
         this.setState({errMsg:err, content:content})
     }
+    onCorrectUser = (ownerUser,loginUser,urlUser) => {
+        return ownerUser == loginUser && loginUser == urlUser && urlUser==ownerUser
+    }
 
     submitclick = () => {
         console.log("submit clicked")
@@ -167,7 +171,7 @@ class EditForm extends Component {
         else {
             let nowState = this.state.content
             let sendData = {
-                "id": "1",
+                "id": this.props.workshopid,
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -178,11 +182,11 @@ class EditForm extends Component {
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www"
+                "pictureURL": nowState.workshopPic
             }
             console.log("sending")
             console.log(sendData)
-            axios.put(`http://localhost:3000/workshops/1/update`, sendData ).then(res => {
+            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
@@ -225,13 +229,21 @@ class EditForm extends Component {
         //console.log(this.props.workshopid)
         axios.get(`http://localhost:3001/workshops/findbyid/${this.props.workshopid}`).then(res => { 
             let initData = res.data[0] 
+            console.log(initData.owner)
+            console.log(this.state.username)
+            console.log(this.props.urlUsername)
+            //check real owner
+            if (!this.onCorrectUser(initData.owner,this.state.username,this.props.urlUsername)) {
+                alert("you are not the owner of this workshop")
+                return
+            }
             //console.log(initData[0])
             let initState = this.state.content
             let startTime = this.convertTimeStampToTime(initData.startTime)
             let endTime = this.convertTimeStampToTime(initData.endTime)
             let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
             // console.log("inition")
-            // console.log(initData)
+             console.log(initData)
             // console.log(initData.place)
             initState.workshopName = initData.name
             initState.speakerName = initData.speakerName
@@ -243,8 +255,10 @@ class EditForm extends Component {
             initState.place = initData.place
             initState.ddate = deadTime.date
             initState.dtime = deadTime.time
+            initState.publishTime = initData.publishTime
             initState.description = initData.description 
             this.setState( initState ) 
+            console.log(this.state.content)
         })
         axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data 
@@ -254,15 +268,13 @@ class EditForm extends Component {
             Object.values(initTag).forEach(element => {
                 //console.log(element.tag)
                 let tagData = {
-                    name : element.tag,
-                    id : 3
+                    name : element.tag.toLowerCase(),
                 }
                 //console.log(Object.values(initState.selectedValues))
                 initState.selectedValues = initState.selectedValues.concat(tagData)
             })
             this.setState(initState)
-            console.log(this.state.selectedValues)
-
+            //console.log(this.state.selectedValues)
         })
     }
     componentWillMount(){
