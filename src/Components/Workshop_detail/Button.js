@@ -13,7 +13,7 @@ class Button extends React.Component {
         if(this.props.role == 'owner') {
             return(
                 <button className='button' onClick={() => {
-                    window.location.assign('/workshopeditor/'+this.props.username+'/1')
+                    window.location.assign(`/workshopeditor/${this.props.username}/${this.props.workshopID}`)
                 } } >Edit</button>
             );
         }
