@@ -26,7 +26,7 @@ class EditForm extends Component {
                 tags:''
             },
             content:{
-                workshopName:'test',
+                workshopName:'undefine',
                 workshopPic:null,
                 speakerName:'',
                 date:null,
@@ -38,9 +38,10 @@ class EditForm extends Component {
                 ddate:null,
                 dtime:null,
                 description:'',
+                publishTime:'',
                 tags:null
             },
-            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}],
+            options: [{name: 'business', id: 1},{name: 'data', id: 2},{name: 'design', id: 3},{name:"technology",id:4}],
             selectedValues: [],
             initData: [],
         }
@@ -149,6 +150,9 @@ class EditForm extends Component {
         content.tags = selectedList
         this.setState({errMsg:err, content:content})
     }
+    onCorrectUser = (ownerUser,loginUser,urlUser) => {
+        return ownerUser == loginUser && loginUser == urlUser && urlUser==ownerUser
+    }
 
     submitclick = () => {
         console.log("submit clicked")
@@ -167,7 +171,7 @@ class EditForm extends Component {
         else {
             let nowState = this.state.content
             let sendData = {
-                "id": "1",
+                "id": this.props.workshopid,
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -175,19 +179,32 @@ class EditForm extends Component {
                 "name": nowState.workshopName,
                 "place": nowState.place,
                 "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
-                "publishTime": "2015-12-20T03:01:01.000Z",
+                "publishTime": nowState.publishTime,
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www"
+                "pictureURL": nowState.workshopPic
             }
             console.log("sending")
-            console.log(sendData)
-            axios.put(`http://localhost:3000/workshops/1/update`, sendData ).then(res => {
+            //console.log(sendData)
+            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
             alert("Submitted")
-            console.log(this.state.content)
+            //console.log(this.state.content)
+            axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
+               console.log(res)
+            })
+            console.log(this.state.selectedValues)
+            this.state.selectedValues.forEach(element=>{let sendTag = {
+                    "workshop":this.props.workshopid,
+                    "tag":element.name,
+                    "workshopId":this.props.workshopid
+                    }
+                console.log(sendTag)
+                axios.post(`http://localhost:3001/tags/create`,sendTag)
+                }
+            )
         }
     }
     cancelclick() {
@@ -225,13 +242,21 @@ class EditForm extends Component {
         //console.log(this.props.workshopid)
         axios.get(`http://localhost:3001/workshops/findbyid/${this.props.workshopid}`).then(res => { 
             let initData = res.data[0] 
+            console.log(initData.owner)
+            console.log(this.state.username)
+            console.log(this.props.urlUsername)
+            //check real owner
+            if (!this.onCorrectUser(initData.owner,this.state.username,this.props.urlUsername)) {
+                alert("Invalid user")
+                return
+            }
             //console.log(initData[0])
             let initState = this.state.content
             let startTime = this.convertTimeStampToTime(initData.startTime)
             let endTime = this.convertTimeStampToTime(initData.endTime)
             let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
-            // console.log("inition")
-            // console.log(initData)
+            console.log(`\\${initData.pictureURL.split(`\\`)[2]}`)
+             console.log(initData)
             // console.log(initData.place)
             initState.workshopName = initData.name
             initState.speakerName = initData.speakerName
@@ -243,8 +268,11 @@ class EditForm extends Component {
             initState.place = initData.place
             initState.ddate = deadTime.date
             initState.dtime = deadTime.time
-            initState.description = initData.description 
+            initState.publishTime = initData.publishTime
+            initState.description = initData.description
+            //initState.workshopPic = `\\${initData.pictureURL.split(`\\`)[2]}` 
             this.setState( initState ) 
+            console.log(this.state.content)
         })
         axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data 
@@ -254,15 +282,13 @@ class EditForm extends Component {
             Object.values(initTag).forEach(element => {
                 //console.log(element.tag)
                 let tagData = {
-                    name : element.tag,
-                    id : 3
+                    name : element.tag.toLowerCase(),
                 }
                 //console.log(Object.values(initState.selectedValues))
                 initState.selectedValues = initState.selectedValues.concat(tagData)
             })
             this.setState(initState)
-            console.log(this.state.selectedValues)
-
+            //console.log(this.state.selectedValues)
         })
     }
     componentWillMount(){

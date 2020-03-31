@@ -12,15 +12,17 @@ class WorkshopEditPage extends React.Component {
             username : "",
             role : "",
             workshopID : "",
+            urlname : "",
         }
         
     }
 
     componentWillMount(){
         //format cookie
-        const { workshopId} = this.props.match.params
+        const { workshopId,username} = this.props.match.params
         this.setState({
             workshopID:workshopId,
+            urlname:username,
         })
         console.log("component did mount")  
         let spl = document.cookie.split(';')
@@ -69,7 +71,7 @@ class WorkshopEditPage extends React.Component {
                     <h1>Edit Workshop</h1>
                     <div className="dropdown-divider"></div>
                     <div>
-                        <EditForm id="form" workshopid={this.state.workshopID}/>
+                        <EditForm id="form" workshopid={this.state.workshopID} urlUsername={this.state.urlname}/>
                     </div>
                 </div>
                 <div id="sidebar">

@@ -23,7 +23,7 @@ class WorkshopDetail extends React.Component {
                 cost: 5000,
                 notAvailableSeat: 20,
                 totalSeat: 50,
-                description: 'dddddddslkvmfgkbnlvkngltkbmflkbgmld bml mlkdfbglfkbm;elfm lfdmblekfb lrbkm lrblkrmhvvrrhrgjrgrjbgn hetftyel;vkhye;dyvhlyhhyyyhygtgtgtgtgtgtdddddddddddddddddddddd ddddddddddddddd ddddddddddddddddddd d d ddddddddddd ddddddddddddddddddddddddcfccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',
+                description: 'Id volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean et tortor at risus viverra adipiscing at in tellus integer feugiat scelerisque',
                 instructorName: 'Mr.SSS SSSSSSS',
                 instructorImageSrc: 'test.jpg',
                 tags: ['skill', 'tech', 'SE']
@@ -36,28 +36,40 @@ class WorkshopDetail extends React.Component {
         let timeAndDate = { "time": time, "date": date }
         return timeAndDate
     }
-    componentDidMount() {
+    componentWillMount() {
         console.log('okkkkk');
         const { ID } = this.props.match.params
-        axios.get('http://localhost:3001/workshops/' + ID).then(res => {
-            console.log("from workshop > ", res.data)
+        axios.get(`http://localhost:3001/workshops/findbyid/${ID}`).then(res => {
+            console.log("from workshop > ", res.data[0])
+            //all workshop data is contain in json key "0"
+            let initData = res.data[0]
             this.setState({
                 workshop: {
-                    id : res.data.id,
-                    name: res.data.name,
-                    place: res.data.place,
-                    startTime: this.convertTimeStampToTime(res.data.startTime).time,
-                    endTime: this.convertTimeStampToTime(res.data.endTime).time,
+                    id : initData.id,
+                    name: initData.name,
+                    place: initData.place,
+                    startTime: this.convertTimeStampToTime(initData.startTime).time,
+                    endTime: this.convertTimeStampToTime(initData.endTime).time,
                     pictureUrl: '/test.jpg',
-                    cost: res.data.cost,
+                    cost: initData.cost,
                     notAvailableSeat: 0,
-                    totalSeat: res.data.capacity,
-                    description: res.data.description,
-                    instructorName: res.data.speakerName,
+                    totalSeat: initData.capacity,
+                    description: initData.description,
+                    instructorName: initData.speakerName,
                     instructorImageSrc: '/test.jpg',
-                    tags: ['finance','design','programming']
+                    tags: []
                 }
             })
+            console.log(this.state)
+            axios.get(`http://localhost:3001/tags/findbyid/${ID}`).then(res => {
+            let initTag = res.data 
+            let initState = this.state
+            Object.values(initTag).forEach(element => {
+                initState.workshop.tags = initState.workshop.tags.concat(`${element.tag}`)
+            })
+            this.setState(initState)
+            console.log(this.state.workshop.id)
+        })
         })
         //format cookie
         let spl = document.cookie.split(';')
@@ -88,9 +100,9 @@ class WorkshopDetail extends React.Component {
         console.log("hello Workshop-Detail page");
         return (
             <div>
-                <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} />
+                <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} workshopID = {this.state.workshop.id}/>
                 <WorkshopDetailBody workshop={this.state.workshop} />
-                <WorkshopDetailBottom />
+                <WorkshopDetailBottom workshop={this.state.workshop} username={this.state.username}/>
             </div>
         );
     }

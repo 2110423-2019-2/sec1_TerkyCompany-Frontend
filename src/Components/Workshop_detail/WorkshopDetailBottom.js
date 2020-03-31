@@ -1,6 +1,7 @@
 import React from 'react'
 import ReviewButton from './ReviewButton'
 import ReviewItem from './ReviewItem'
+import axios from 'axios'
 
 class WorkshopDetailBottom extends React.Component {
     constructor(props) {
@@ -23,8 +24,23 @@ class WorkshopDetailBottom extends React.Component {
         }
     }
 
-    componentDidMount() {
-        
+    async componentWillReceiveProps(nextProps) {
+        let allReview = []
+        let initReview = this.state.reviews
+        if (this.props.workshop.id !== nextProps.workshop.id) {
+            //console.log(nextProps.workshop.id)
+            await axios.get(`http://localhost:3001/reviews/findbyworkshop/${nextProps.workshop.id}`).then(res => {
+                console.log(res.data)
+                allReview = res.data
+            })
+        }
+        await allReview.forEach(Element => {
+            console.log(Element)
+            initReview.push(Element)
+        })
+        this.setState(initReview)
+    
+
     }
 
     showReview = (review) => {
