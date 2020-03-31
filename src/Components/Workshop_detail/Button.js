@@ -47,15 +47,17 @@ class Button extends React.Component {
 
                     if (res.data.status === 'successful') {
                         console.log(res.data.status)
-                        Axios.post("http://localhost:3001/books/create", {
+                        return Axios.post("http://localhost:3001/books/create", {
                             "workshop": this.props.workshop['id'],
                             "memberT": this.props.username,
                             "hasParticipated": false,
-                            "transactionDetail": "success"
+                            "transactionDetail": "success",
+                            "ticketURL" : ""
                         })
-
-                        // goto ticket page next
                     }
+                })
+                .then(res => {
+                    console.log(res.data)
                 })
             },
             onFormClosed: () => {
