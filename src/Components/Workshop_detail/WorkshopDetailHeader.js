@@ -12,7 +12,6 @@ class WorkshopDetailHeader extends React.Component {
     }
 
     componentDidMount() {
-        
     }
 
     render() {

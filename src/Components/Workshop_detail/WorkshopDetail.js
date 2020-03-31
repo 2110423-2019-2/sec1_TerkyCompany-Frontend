@@ -36,7 +36,7 @@ class WorkshopDetail extends React.Component {
         let timeAndDate = { "time": time, "date": date }
         return timeAndDate
     }
-    componentDidMount() {
+    componentWillMount() {
         console.log('okkkkk');
         const { ID } = this.props.match.params
         axios.get(`http://localhost:3001/workshops/findbyid/${ID}`).then(res => {
@@ -68,6 +68,7 @@ class WorkshopDetail extends React.Component {
                 initState.workshop.tags = initState.workshop.tags.concat(`${element.tag}`)
             })
             this.setState(initState)
+            console.log(this.state.workshop.id)
         })
         })
         //format cookie
@@ -101,7 +102,7 @@ class WorkshopDetail extends React.Component {
             <div>
                 <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} workshopID = {this.state.workshop.id}/>
                 <WorkshopDetailBody workshop={this.state.workshop} />
-                <WorkshopDetailBottom />
+                <WorkshopDetailBottom workshop={this.state.workshop} username={this.state.username}/>
             </div>
         );
     }
