@@ -7,10 +7,10 @@ class ReviewItem extends React.Component {
         super(props);
         this.state = {
             isLoading: false,
-            username: this.props.item.username,
+            username: this.props.item.memberT,
             comment: this.props.item.comment,
             rating: this.props.item.rating,
-            timeWritten: this.props.item.timeWritten
+            timeWritten: `${this.convertTimeStampToTime(this.props.item.timeWritten).date}`
         }
     }
 
@@ -22,6 +22,11 @@ class ReviewItem extends React.Component {
     }
 
     componentDidMount() {
+        const moment = require('moment');
+        const today = moment();
+        let writeTime = this.convertTimeStampToTime(this.props.item.timeWritten)
+        let timeDiff = today.diff(this.props.item.timeWritten,'days')
+        this.setState({timeWritten:`${writeTime.date} ${writeTime.time} (${timeDiff} days ago)`})
         
     }
 

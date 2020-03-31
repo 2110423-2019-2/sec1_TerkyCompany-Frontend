@@ -60,7 +60,7 @@ class WorkshopDetail extends React.Component {
                     tags: []
                 }
             })
-            console.log(this.state)
+            //console.log(this.state)
             axios.get(`http://localhost:3001/tags/findbyid/${ID}`).then(res => {
             let initTag = res.data 
             let initState = this.state
@@ -68,7 +68,7 @@ class WorkshopDetail extends React.Component {
                 initState.workshop.tags = initState.workshop.tags.concat(`${element.tag}`)
             })
             this.setState(initState)
-            console.log(this.state.workshop.id)
+            //console.log(this.state.workshop.id)
         })
         })
         //format cookie

@@ -8,38 +8,29 @@ class WorkshopDetailBottom extends React.Component {
         super(props);
         this.state = {
             isLoading: false,
-            reviews : [{
-                    username: "terk",
-                    comment: "good",
-                    rating: "3.5",
-                    timeWritten: "yesterday"
-                },
-                {
-                    username: "miw",
-                    comment: "bad",
-                    rating: "0.5",
-                    timeWritten: "today"
-                },
-            ]
+            reviews : [],
+            //oldReview from this user
+            oldReview : {},
         }
     }
-
     async componentWillReceiveProps(nextProps) {
         let allReview = []
-        let initReview = this.state.reviews
+        let initReviews = this.state.reviews
+        let oldReview = this.state.oldReview
         if (this.props.workshop.id !== nextProps.workshop.id) {
             //console.log(nextProps.workshop.id)
+            
+            await axios.get(`http://localhost:3001/reviews/findcomment/${nextProps.workshop.id}/${nextProps.username}`).then(res => {
+                //console.log(res.data)
+                this.setState({oldReview:res.data[0]})
+            })
             await axios.get(`http://localhost:3001/reviews/findbyworkshop/${nextProps.workshop.id}`).then(res => {
-                console.log(res.data)
-                allReview = res.data
+                //allReview = res.data
+                this.setState({reviews:res.data})
             })
         }
-        await allReview.forEach(Element => {
-            console.log(Element)
-            initReview.push(Element)
-        })
-        this.setState(initReview)
-    
+        //console.log(this.state.oldReview)
+        
 
     }
 
@@ -55,7 +46,7 @@ class WorkshopDetailBottom extends React.Component {
         return(
             <div>
                 <h3>Comments</h3>
-                <ReviewButton />
+                <ReviewButton oldReview={this.state.oldReview} workshop={this.props.workshop} username={this.props.username}/>
                 <div>
                     {this.state.reviews.map(this.showReview)}
                 </div>
