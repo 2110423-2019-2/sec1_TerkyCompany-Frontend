@@ -15,6 +15,7 @@ const ReviewButton  = () => {
     }
     const handleSubmit = () => {
         setShow(false);
+        console.log(document.getElementById("comment").value);
     }
     const handleShow = () => {
         setShow(true);
@@ -34,7 +35,7 @@ const ReviewButton  = () => {
             <Modal.Title>Review Workshop</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <textarea rows="4" cols="60"></textarea>
+                <textarea rows="4" cols="60" id='comment'></textarea>
                 <ReactStars
                 count={5}
                 onChange={ratingChanged}
