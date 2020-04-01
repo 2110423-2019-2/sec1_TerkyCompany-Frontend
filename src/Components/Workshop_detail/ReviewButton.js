@@ -51,14 +51,14 @@ const ReviewButton  = (props) => {
         console.log(sendData)
         if (props.oldReview !== {} && props.oldReview != undefined) {
             console.log("put")
-            // axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.workshop.id}/${props.username}/delete`).then(res => {
-            //     return axios.post(`http://localhost:3001/reviews/create`, sendData )
-            // }).then(res => {
-            //     console.log(res.data)
-            // })
-            axios.put(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
+            axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
+                return axios.post(`http://localhost:3001/reviews/create`, sendData )
+            }).then(res => {
                 console.log(res.data)
             })
+            // axios.put(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
+            //     console.log(res.data)
+            // })
         }
         else {
             console.log("post")
