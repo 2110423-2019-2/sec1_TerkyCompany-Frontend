@@ -285,7 +285,7 @@ class EditForm extends Component {
         })
         axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data 
-            //console.log(initTag)
+            console.log(initTag)
             //console.log(initTag[1])
             let initState = this.state
             Object.values(initTag).forEach(element => {
