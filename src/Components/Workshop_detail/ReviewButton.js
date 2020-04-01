@@ -50,8 +50,9 @@ const ReviewButton  = (props) => {
         console.log(sendData)
         if (props.oldReview) {
             console.log("put")
-            axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.workshop.id}/${props.username}/delete`)
-            axios.post(`http://localhost:3001/reviews/create`, sendData ).then(res => {
+            axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.workshop.id}/${props.username}/delete`).then(res => {
+                return axios.post(`http://localhost:3001/reviews/create`, sendData )
+            }).then(res => {
                 console.log(res.data)
             })
         }
@@ -85,7 +86,7 @@ const ReviewButton  = (props) => {
             <Modal.Title>Review Workshop</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <textarea rows="4" cols="60" id='comment' defaultValue={oldComment} placeholder="Tell about your experience."></textarea>
+                <textarea rows="4" cols="40" id='comment' defaultValue={oldComment} placeholder="Tell about your experience."></textarea>
                 <ReactStars
                 count={5}
                 value = {oldRating}
