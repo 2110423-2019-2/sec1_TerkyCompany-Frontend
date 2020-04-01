@@ -39,10 +39,11 @@ class WorkshopDetail extends React.Component {
     componentWillMount() {
         console.log('okkkkk');
         const { ID } = this.props.match.params
-        axios.get(`http://localhost:3001/workshops/findbyid/${ID}`).then(res => {
-            console.log("from workshop > ", res.data[0])
+        console.log(ID)
+        axios.get(`http://localhost:3001/workshops/${ID}`).then(res => {
+            console.log("from workshop > ", res.data)
             //all workshop data is contain in json key "0"
-            let initData = res.data[0]
+            let initData = res.data
             this.setState({
                 workshop: {
                     id : initData.id,

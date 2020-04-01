@@ -17,7 +17,8 @@ const ReviewButton  = (props) => {
     //print string of today
     console.log(today.format());
     console.log(props.workshop)
-    if (props.oldReview) {
+    console.log(props.oldReview)
+    if (props.oldReview !== {} && props.oldReview) {
         oldComment = props.oldReview.comment
         oldRating = props.oldReview.rating
         rate = oldRating
@@ -38,7 +39,7 @@ const ReviewButton  = (props) => {
         console.log(rate)
         console.log(document.getElementById("comment").value);
         let sendData = {
-            id : props.workshop.id,
+            //id : props.workshop.id,
             workshop: props.workshop.id,
             memberT : props.username,
             rating : rate,
@@ -48,11 +49,14 @@ const ReviewButton  = (props) => {
             memberTUsername : props.username
         }
         console.log(sendData)
-        if (props.oldReview) {
+        if (props.oldReview !== {} && props.oldReview != undefined) {
             console.log("put")
-            axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.workshop.id}/${props.username}/delete`).then(res => {
-                return axios.post(`http://localhost:3001/reviews/create`, sendData )
-            }).then(res => {
+            // axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.workshop.id}/${props.username}/delete`).then(res => {
+            //     return axios.post(`http://localhost:3001/reviews/create`, sendData )
+            // }).then(res => {
+            //     console.log(res.data)
+            // })
+            axios.put(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
                 console.log(res.data)
             })
         }

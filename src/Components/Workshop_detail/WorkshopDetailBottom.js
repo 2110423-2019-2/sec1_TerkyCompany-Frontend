@@ -19,10 +19,10 @@ class WorkshopDetailBottom extends React.Component {
         let initReviews = this.state.reviews
         let oldReview = this.state.oldReview
         if (this.props.workshop.id !== nextProps.workshop.id) {
-            //console.log(nextProps.workshop.id)
+            console.log(nextProps.workshop.id)
             
             await axios.get(`http://localhost:3001/reviews/findcomment/${nextProps.workshop.id}/${nextProps.username}`).then(res => {
-                //console.log(res.data)
+                console.log(res.data)
                 this.setState({oldReview:res.data[0]})
             })
             await axios.get(`http://localhost:3001/reviews/findbyworkshop/${nextProps.workshop.id}`).then(res => {
