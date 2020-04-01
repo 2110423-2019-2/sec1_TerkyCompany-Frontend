@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 
 class Workshoplistpage extends Component {

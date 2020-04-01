@@ -58,6 +58,8 @@ class Button extends React.Component {
                 })
                 .then(res => {
                     console.log(res.data)
+                    var workshopID = res.data.workshop
+                    window.location.assign("/ticket/"+workshopID)
                 })
             },
             onFormClosed: () => {

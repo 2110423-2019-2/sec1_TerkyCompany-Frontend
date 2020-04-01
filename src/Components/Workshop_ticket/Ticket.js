@@ -27,7 +27,7 @@ class Ticket extends React.Component {
                 <div id="holderName"><h3>{this.props.holderName}</h3></div>
             </div>
             <div id='qrCode'>
-                <Qrcode value="FUCK U" size={150}  bgColor="#E48D26" fgColor="#FFF0D9" />
+                <Qrcode value="Checked" size={150}  bgColor="#E48D26" fgColor="#FFF0D9" />
             </div>
         </div>
         )
