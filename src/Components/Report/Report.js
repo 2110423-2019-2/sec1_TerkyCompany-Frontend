@@ -38,6 +38,11 @@ class Report extends React.Component {
                 role: ck['userType']
             })
         }
+
+        if(document.cookie === '') {
+            // alert("Please login first!")
+            window.location.assign("/login")
+        }
     }
 
     handleChange(e) {
