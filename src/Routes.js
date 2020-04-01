@@ -12,9 +12,9 @@ import WorkshopfilterPage from './Components/Workshop_filter/WorkshopFilterPage'
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
-import Ticket from './Components/Workshop_ticket/Ticket';
 import TicketPage from './Components/Workshop_ticket/TicketPage';
 import Register from './Components/Register/Register';
+import Report from './Components/Report/Report';
 
 
 class Routes extends Component {
@@ -38,11 +38,12 @@ class Routes extends Component {
                         <Route exact path="/workshopeditor" component={WorkshopeditPage} />
                         <Route exact path="/browse" component={WorkshopfilterPage} />
                         <Route exact path="/ticket" component={TicketPage} />
-                        <Route path="/ticket/:ID" component={Ticket} />
+                        <Route path="/ticket/:ID" component={TicketPage} />
                         <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/report" component={Report} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />

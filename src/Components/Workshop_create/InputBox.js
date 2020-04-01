@@ -42,7 +42,7 @@ class InputBox extends React.Component {
                 </div>
             )
         }
-        return null
+//        return null
     }
 }
 export default InputBox ;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 
 class Workshoplistpage extends Component {
@@ -18,13 +18,6 @@ class Workshoplistpage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/workshops')
-            .then(res => {
-                console.log(res)
-                this.setState({
-                    workshops: res.data
-                })
-            })
 
         //format cookie
         let spl = document.cookie.split(';')
@@ -45,6 +38,29 @@ class Workshoplistpage extends Component {
                 isLoading: false,
                 username: ck['username'],
                 role: ck['userType']
+            })
+        }
+
+        console.log("state >> ",ck['username'])
+
+        if(ck['userType'] === "owner")
+        {
+            axios.get('http://localhost:3001/workshops/findbyowner/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
+        else if(ck['userType'] === "participant")
+        {
+            axios.get('http://localhost:3001/books/findbyparticipant/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
             })
         }
     }
