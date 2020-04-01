@@ -249,8 +249,8 @@ class EditForm extends Component {
     componentDidMount() {
         //get workshopid from workshopEditPage
         //console.log(this.props.workshopid)
-        axios.get(`http://localhost:3001/workshops/findbyid/${this.props.workshopid}`).then(res => { 
-            let initData = res.data[0] 
+        axios.get(`http://localhost:3001/workshops/${this.props.workshopid}`).then(res => { 
+            let initData = res.data
             console.log(initData.owner)
             console.log(this.state.username)
             console.log(this.props.urlUsername)
