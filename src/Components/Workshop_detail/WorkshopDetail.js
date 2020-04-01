@@ -1,7 +1,7 @@
 import React from 'react';
 import './WorkshopDetail.css';
 import WorkshopDetailHeader from './WorkshopDetailHeader';
-import WorkshopDetailBody from './WorkshopDeatailBody';
+import WorkshopDetailBody from './WorkshopDetailBody';
 import WorkshopDetailBottom from './WorkshopDetailBottom';
 import axios from 'axios';
 

@@ -12,14 +12,14 @@ class Button extends React.Component {
     render() {
         if(this.props.role == 'owner') {
             return(
-                <button className='button' onClick={() => {
+                <button className='button' class="btn btn-warning"onClick={() => {
                     window.location.assign(`/workshopeditor/${this.props.username}/${this.props.workshopID}`)
                 } } >Edit</button>
             );
         }
         else {
             return(
-                <button className='button' onClick={() => {
+                <button className='button' class="btn btn-warning" onClick={() => {
                     if(this.props.role == '')
                     {
                         alert('Please login first')

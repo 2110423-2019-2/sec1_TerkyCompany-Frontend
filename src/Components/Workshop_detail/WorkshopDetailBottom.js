@@ -1,4 +1,5 @@
 import React from 'react'
+import './WorkshopDetailBottom.css';
 import ReviewButton from './ReviewButton'
 import ReviewItem from './ReviewItem'
 import axios from 'axios'
@@ -44,7 +45,7 @@ class WorkshopDetailBottom extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className='comment'>
                 <h3>Comments</h3>
                 <ReviewButton oldReview={this.state.oldReview} workshop={this.props.workshop} username={this.props.username}/>
                 <div>

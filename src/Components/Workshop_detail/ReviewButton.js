@@ -21,12 +21,12 @@ const ReviewButton  = (props) => {
         oldComment = props.oldReview.comment
         oldRating = props.oldReview.rating
         rate = oldRating
-        title = "edit review"
+        title = "Edit Review"
     }
     else {
         oldComment = ""
         oldRating = 0
-        title = "review"
+        title = "Review Workshop"
     }
     const handleClose = () => {
         setShow(false);
@@ -76,7 +76,7 @@ const ReviewButton  = (props) => {
     
     return (
         <div>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="warning" onClick={handleShow}>
         {title}
         </Button>
     
@@ -101,7 +101,7 @@ const ReviewButton  = (props) => {
             <Button variant="secondary" onClick={handleClose}>
                 Cancel
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="warning" onClick={handleSubmit}>
                 Submit
             </Button>
             </Modal.Footer>
