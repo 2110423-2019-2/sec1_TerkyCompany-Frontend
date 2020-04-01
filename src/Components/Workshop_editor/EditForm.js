@@ -80,10 +80,17 @@ class EditForm extends Component {
                 }
                 break
             case "workshopPic" :
-                err.workshopPic = value === '' ? "This cannot be empty" : '' 
-                content.workshopPic = value
-                console.log(value)
-                break
+                if (value === '') {
+                    err.workshopPic = "This cannot be empty"
+                }
+                else if (value.length > 512) {
+                    err.workshopPic = "File's name is too long"
+                }
+                else {
+                    err.workshopPic = ""
+                    content.workshopPic = e.target.files[0] ;
+                }
+                break;
             case "date" :
                 err.date = value == null ? "This cannot be empty" : '' 
                 content.date = value 
@@ -171,7 +178,8 @@ class EditForm extends Component {
         else {
             let nowState = this.state.content
             let sendData = {
-                "id": this.props.workshopid,
+                "image" :this.state.workshopPic,
+                "req" : {
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -179,10 +187,11 @@ class EditForm extends Component {
                 "name": nowState.workshopName,
                 "place": nowState.place,
                 "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
-                "publishTime": nowState.publishTime,
+                "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": nowState.workshopPic
+                "pictureURL": "",
+                "owner": nowState.owner}
             }
             console.log("sending")
             //console.log(sendData)
