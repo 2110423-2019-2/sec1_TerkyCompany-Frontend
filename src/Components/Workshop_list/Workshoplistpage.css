@@ -7,7 +7,7 @@
 
 #link-side {
   text-decoration: none;
-  color: #EDB37D;
+  color: #6688CC !important;
   font-size: 25px !important ;
   font-weight: bold;
   padding: 0.5em;
@@ -21,7 +21,7 @@
 }
 
 .side-menu {
-  background-color: #ffffff;
+  background-color: whitesmoke;
   flex: 0 0 max-content;
   margin: 0px;
   /* padding: 30px; */
@@ -41,7 +41,7 @@
 }
 
 .show-list {
-  background-color: #fff1db;
+  background-color: rgb(199, 211, 235) !important;
   flex: 1 0 0;
   margin: 0px;
   padding: 100px;

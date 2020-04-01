@@ -90,7 +90,7 @@ class TicketPage extends React.Component {
                     holderName={this.state.data.holderName}
                     ref={el => (this.componentRef = el)}></Ticket></div>
                 <div id='button-wrapper'>
-                    <ReactToPDF trigger={() => <button id='button'>print</button>}
+                    <ReactToPDF trigger={() => <button id='button'>Print it</button>}
                         content={() => this.componentRef} />
                 </div>
             </div>

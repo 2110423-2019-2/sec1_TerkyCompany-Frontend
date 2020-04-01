@@ -1,6 +1,6 @@
   .form-body {
     font-size: 20px; 
-    color: #cc670a;
+    color: #182978;
     margin-top: 50px;
   }
 
@@ -17,7 +17,7 @@
   }
 
   #button-body button {
-    background-color:#cc670a;
+    background-color:#182978;
     border-radius:20px;
     cursor:pointer;
     color:#ffffff;
@@ -28,7 +28,7 @@
   }
 
   #button-body button:hover {
-    background-color:rgb(248, 136, 0);
+    background-color:#182978;
   }
 
   #button-body button:active {

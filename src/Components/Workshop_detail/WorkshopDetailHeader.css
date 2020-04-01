@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
     padding: 2%;
     font-size: 16px;
 }
@@ -32,7 +32,7 @@
     height: auto;
     display: flex;
     margin: 0;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
 }
 
 .body-details {
