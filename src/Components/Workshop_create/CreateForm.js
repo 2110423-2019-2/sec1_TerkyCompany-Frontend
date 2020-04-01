@@ -1,71 +1,71 @@
-import React from 'react' ;
-import InputBox from './InputBox' ;
+import React from 'react';
+import InputBox from './InputBox';
 import Multiselect from 'multiselect-react-dropdown';
 import './CreateForm.css'
 import axios from 'axios';
 
 class Form extends React.Component {
     constructor(props) {
-        super(props) ;
+        super(props);
         this.state = {
-            isLoading : false,
+            isLoading: false,
             errMsg: {
-                workshopName:'',
-                workshopPic:'',
-                speakerName:'',
-                date:'',
-                sTime:'',
-                eTime:'',
-                cap:'',
-                cost:'',
-                place:'',
-                ddate:'',
-                dtime:'',
-                description:'',
-                tags:''
+                workshopName: '',
+                workshopPic: '',
+                speakerName: '',
+                date: '',
+                sTime: '',
+                eTime: '',
+                cap: '',
+                cost: '',
+                place: '',
+                ddate: '',
+                dtime: '',
+                description: '',
+                tags: ''
             },
-            content:{
-                workshopName:'',
+            content: {
+                workshopName: '',
                 workshopPic: "",
-                speakerName:'',
-                date:'',
-                sTime:'',
-                eTime:'',
-                cap:'',
-                cost:'',
-                place:'',
-                ddate:'',
-                dtime:'',
-                description:'',
-                tags:[],
+                speakerName: '',
+                date: '',
+                sTime: '',
+                eTime: '',
+                cap: '',
+                cost: '',
+                place: '',
+                ddate: '',
+                dtime: '',
+                description: '',
+                tags: [],
                 owner: this.props.username
             },
-            username : "",
-            role : "",
-            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}]
+            username: "",
+            role: "",
+            options: [{ name: 'Business', id: 1 }, { name: 'Data', id: 2 }, { name: 'Design', id: 3 }, { name: "Technology", id: 4 }]
         }
-        this.handleChange = this.handleChange.bind(this) ;
-        this.handleSelect = this.handleSelect.bind(this) ;
-        this.handleRemove = this.handleRemove.bind(this) ;
-        this.handleSubmit = this.handleSubmit.bind(this) ;
-        this.handleCancel = this.handleCancel.bind(this) ;
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleChange = (e) => {
-        e.preventDefault() ;
-        const {name,value} = e.target; 
-        let err = this.state.errMsg ;
-        let content = this.state.content ;
-        switch(name) {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let err = this.state.errMsg;
+        let content = this.state.content;
+        switch (name) {
             case "workshopName":
                 if (value.length < 5 || value.length > 40) {
                     err.workshopName = "must be between 5-40 characters"
                 }
                 else {
                     err.workshopName = ""
-                    content.workshopName = value ;
+                    content.workshopName = value;
                 }
-                
+
                 break;
             case "speakerName":
                 if (value === '') {
@@ -76,10 +76,10 @@ class Form extends React.Component {
                 }
                 else {
                     err.speakerName = ""
-                    content.speakerName = value ;
+                    content.speakerName = value;
                 }
                 break;
-            case "workshopPic" :
+            case "workshopPic":
                 if (value === '') {
                     err.workshopPic = "This cannot be empty"
                 }
@@ -88,34 +88,35 @@ class Form extends React.Component {
                 }
                 else {
                     err.workshopPic = ""
-                    content.workshopPic = e.target.files[0] ;
+                    content.workshopPic = e.target.files[0];
+                    console.log("hard debug > ",e.target.files)
                 }
                 break;
-            case "date" :
+            case "date":
                 if (value === '') {
                     err.date = "This cannot be empty"
                 }
                 else {
                     err.date = ""
-                    content.date = value ;
+                    content.date = value;
                 }
                 break;
-            case "sTime" :
+            case "sTime":
                 if (value === '') {
                     err.sTime = "This cannot be empty"
                 }
                 else {
                     err.sTime = ""
-                    content.sTime = value ;
+                    content.sTime = value;
                 }
                 break;
-            case "eTime" :
+            case "eTime":
                 if (value === '') {
                     err.eTime = "This cannot be empty"
                 }
                 else {
                     err.eTime = ""
-                    content.eTime = value ;
+                    content.eTime = value;
                 }
                 break;
             case "cap":
@@ -123,7 +124,7 @@ class Form extends React.Component {
                     err.cap = "must be number between 0-1000"
                 }
                 else {
-                    content.cap = value ;
+                    content.cap = value;
                     err.cap = ""
                 }
                 break;
@@ -132,42 +133,42 @@ class Form extends React.Component {
                     err.cost = "must be positive number"
                 }
                 else {
-                    err.cost = "" 
+                    err.cost = ""
                     content.cost = value
                 }
                 break;
-            case "place" :
+            case "place":
                 if (value === '') {
                     err.place = "This cannot be empty"
                 }
-                else if (value.length > 40){
+                else if (value.length > 40) {
                     err.place = "must not exceed 40 characters"
                 }
                 else {
                     err.place = ""
-                    content.place = value ;
+                    content.place = value;
                 }
                 break;
-            case "ddate" :
+            case "ddate":
                 if (value === '') {
                     err.ddate = "This cannot be empty"
                 }
                 else {
                     err.ddate = ""
-                    content.ddate = value ;
+                    content.ddate = value;
                 }
                 break;
-            case "dtime" :
+            case "dtime":
                 if (value === '') {
                     err.dtime = "This cannot be empty"
                 }
                 else {
                     err.dtime = ""
-                    content.dtime = value ;
+                    content.dtime = value;
                 }
-            
+
                 break;
-            case "description" :
+            case "description":
                 if (value === '') {
                     err.description = "This cannot be empty"
                 }
@@ -176,50 +177,50 @@ class Form extends React.Component {
                 }
                 else {
                     err.description = ""
-                    content.description = value ;
+                    content.description = value;
                 }
                 break;
             default:
                 console.log(name)
                 break;
         }
-        this.setState({errMsg:err, content:content});
+        this.setState({ errMsg: err, content: content });
     }
 
     handleSelect = (selectedList, selectedItem) => {
-        let err = this.state.errMsg ;
-        let content = this.state.content ;
+        let err = this.state.errMsg;
+        let content = this.state.content;
         if (selectedList.length === 0) {
             err.tags = "This cannot be empty"
         }
         else {
             err.tags = ""
-            content.tags = selectedList ;
+            content.tags = selectedList;
         }
-        this.setState({errMsg:err, content:content});
+        this.setState({ errMsg: err, content: content });
         console.log(this.state.content)
     }
 
     handleRemove(selectedList, removedItem) {
-        let err = this.state.errMsg 
-        let content = this.state.content 
+        let err = this.state.errMsg
+        let content = this.state.content
         if (selectedList.length === 0) {
             err.tags = "This cannot be empty"
         }
         else {
             err.tags = ""
-            content.tags = selectedList ;
+            content.tags = selectedList;
         }
         content.tags = selectedList
-        this.setState({errMsg:err, content:content})
+        this.setState({ errMsg: err, content: content })
         console.log(this.state.content)
     }
     handleSubmit() {
         console.log("submit clicked")
-        let content = this.state.content 
+        let content = this.state.content
         let err = this.state.errMsg
         let valid = true
-        if(content.cap <= 0 || content.cap > 1000 || content.cap === "") {
+        if (content.cap <= 0 || content.cap > 1000 || content.cap === "") {
             err.cap = "must be number between 0-1000"
             valid = false
         }
@@ -261,7 +262,7 @@ class Form extends React.Component {
         }
         if (content.workshopName === "") {
             err.workshopName = "must be specified"
-            valid = false   
+            valid = false
         }
         else if (content.workshopName.length > 40) {
             err.workshopName = "must not exceed 40 characters"
@@ -277,7 +278,7 @@ class Form extends React.Component {
         }
         if (content.speakerName === "") {
             err.speakerName = "must be specified"
-            valid = false 
+            valid = false
         }
         else if (content.speakerName.length > 40) {
             err.speakerName = "must not exceed 40 characters"
@@ -291,46 +292,49 @@ class Form extends React.Component {
             err.place = "must not exceed 40 characters"
             valid = false
         }
-        this.setState({errMsg:err})
+        this.setState({ errMsg: err })
         if (valid) {
             let nowState = this.state.content
             // const formData = new FormData();
             // formData.append('myImage',this.state.workshopPic);
+            console.log("image > ",this.state.workshopPic)
             let sendData = {
-                "image" :this.state.workshopPic,
-                "req" : {
-                "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
-                "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
-                "capacity": nowState.cap,
-                "cost": nowState.cost,
-                "name": nowState.workshopName,
-                "place": nowState.place,
-                "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
-                "publishTime": "2015-12-20T03:01:01.000Z",
-                "description": nowState.description,
-                "speakerName": nowState.speakerName,
-                "pictureURL": "",
-                "owner": nowState.owner}
+                "image": this.state.workshopPic,
+                "request": {
+                    "startTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.sTime),
+                    "endTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.eTime),
+                    "capacity": nowState.cap,
+                    "cost": nowState.cost,
+                    "name": nowState.workshopName,
+                    "place": nowState.place,
+                    "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate, nowState.dtime),
+                    "publishTime": "2015-12-20T03:01:01.000Z",
+                    "description": nowState.description,
+                    "speakerName": nowState.speakerName,
+                    "pictureURL": "",
+                    "owner": nowState.owner
+                }
             }
             console.log("sending")
             console.log(sendData)
-            axios.post(`http://localhost:3001/workshops/create`, sendData ).then(res => {
+            axios.post(`http://localhost:3001/workshops/create`, sendData).then(res => {
                 //console.log(res);
                 console.log(res.data);
                 //console.log(nowState.tags)
                 let workshopId = res.data.id
-                    nowState.tags.forEach(element=>{let sendTag = {
-                        "workshop":workshopId,
-                        "tag":element.name,
-                        "workshopId":workshopId
+                nowState.tags.forEach(element => {
+                    let sendTag = {
+                        "workshop": workshopId,
+                        "tag": element.name,
+                        "workshopId": workshopId
                     }
                     console.log(sendTag)
-                    axios.post(`http://localhost:3001/tags/create`,sendTag)
-                    }
-                )
+                    axios.post(`http://localhost:3001/tags/create`, sendTag)
                 }
+                )
+            }
             )
-            
+
             // const config = {
             //     headers: {
             //         'image': formData
@@ -356,9 +360,9 @@ class Form extends React.Component {
     }
 
     convertTimeStampToTime = (timeStamp) => {
-        let time = timeStamp.slice(11,16)
-        let date = timeStamp.slice(0,10)
-        let timeAndDate = {"time":time, "date":date}
+        let time = timeStamp.slice(11, 16)
+        let date = timeStamp.slice(0, 10)
+        let timeAndDate = { "time": time, "date": date }
         return timeAndDate
     }
     convertDateAndTimeToTimeStamp = (date, time) => {
@@ -367,37 +371,37 @@ class Form extends React.Component {
     }
 
 
-    
+
     render() {
-        if (this.state.isLoading) return null ;
+        if (this.state.isLoading) return null;
         console.log("hello Create form")
-        const style = {chips: { background: "#cc670a" }, searchBox: {background: "white" } }
+        const style = { chips: { background: "#cc670a" }, searchBox: { background: "white" } }
         return (
             <div id="flex-container-create">
                 <div className="form-body">
                     <form>
-                        <InputBox label="Workshop's Name"               name="workshopName" type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
-                        <InputBox label="Speaker's Name"                name="speakerName"  type="input" inputType="text"   onChange={this.handleChange} errMsg={this.state.errMsg.speakerName} placeholder="Speaker's name" />
-                        <InputBox label="Workshop's profile picture"    name="workshopPic"  type="file"  inputType="file"   onChange={this.handleChange} errMsg={this.state.errMsg.workshopPic} />
-                        <InputBox label="Date"                          name="date"         type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.date} />
-                        <InputBox label="Start time"                    name="sTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.sTime} />
-                        <InputBox label="End time"                      name="eTime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.eTime} />
-                        <InputBox label="Capacity"                      name="cap"          type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap} min="1" placeholder="Number"/>
-                        <InputBox label="Cost"                          name="cost"         type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} min="1" placeholder="Baht"/>
-                        <InputBox label="Place"                         name="place"        type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.place} placeholder="Location of the workshop"/>
-                        <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
-                        <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
-                        <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop"/>
-                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style}  errMsg="" placeholder="Choose tags"/>
+                        <InputBox label="Workshop's Name" name="workshopName" type="input" inputType="text" onChange={this.handleChange} errMsg={this.state.errMsg.workshopName} placeholder="Workshop's name" />
+                        <InputBox label="Speaker's Name" name="speakerName" type="input" inputType="text" onChange={this.handleChange} errMsg={this.state.errMsg.speakerName} placeholder="Speaker's name" />
+                        <InputBox label="Workshop's profile picture" name="workshopPic" type="file" inputType="file" onChange={this.handleChange} errMsg={this.state.errMsg.workshopPic} />
+                        <InputBox label="Date" name="date" type="input" inputType="date" onChange={this.handleChange} errMsg={this.state.errMsg.date} />
+                        <InputBox label="Start time" name="sTime" type="input" inputType="time" onChange={this.handleChange} errMsg={this.state.errMsg.sTime} />
+                        <InputBox label="End time" name="eTime" type="input" inputType="time" onChange={this.handleChange} errMsg={this.state.errMsg.eTime} />
+                        <InputBox label="Capacity" name="cap" type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cap} min="1" placeholder="Number" />
+                        <InputBox label="Cost" name="cost" type="input" inputType="number" onChange={this.handleChange} errMsg={this.state.errMsg.cost} min="1" placeholder="Baht" />
+                        <InputBox label="Place" name="place" type="text" row={4} col={50} onChange={this.handleChange} errMsg={this.state.errMsg.place} placeholder="Location of the workshop" />
+                        <InputBox label="Deadline date" name="ddate" type="input" inputType="date" onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
+                        <InputBox label="Deadline time" name="dtime" type="input" inputType="time" onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
+                        <InputBox label="Description" name="description" type="text" row={4} col={50} onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop" />
+                        <InputBox label="Tags" name="tags" type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags" />
                     </form>
                 </div>
                 <div id="button-body">
-                            <button class="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>Submit</button>
-                            <button class="btn btn-primary btn-lg" onClick={() => this.handleCancel()}>Cancel</button>
+                    <button class="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>Submit</button>
+                    <button class="btn btn-primary btn-lg" onClick={() => this.handleCancel()}>Cancel</button>
                 </div>
             </div>
         )
     }
 }
 
-export default Form ;
+export default Form;
