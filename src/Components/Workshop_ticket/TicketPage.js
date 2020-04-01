@@ -73,7 +73,7 @@ class TicketPage extends React.Component {
     render() {
         return (
             <div id='container'>
-                <h1>This is your FUCKING ticket</h1>
+                <h1>This is your ticket</h1>
                 <div id='ticket-wrapper'><Ticket    workShopName={this.state.data.workShopName}
                                                     workShopPic={this.state.data.workShopPic}
                                                     stime={this.state.data.stime}

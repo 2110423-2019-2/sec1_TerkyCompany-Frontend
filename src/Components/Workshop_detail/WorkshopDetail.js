@@ -49,7 +49,7 @@ class WorkshopDetail extends React.Component {
                     endTime: this.convertTimeStampToTime(res.data.endTime).time,
                     pictureUrl: '/test.jpg',
                     cost: res.data.cost,
-                    notAvailableSeat: 0,
+                    notAvailableSeat: res.data.reservedSeat,
                     totalSeat: res.data.capacity,
                     description: res.data.description,
                     instructorName: res.data.speakerName,
