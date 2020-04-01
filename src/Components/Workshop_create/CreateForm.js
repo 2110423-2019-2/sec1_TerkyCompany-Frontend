@@ -309,7 +309,7 @@ class Form extends React.Component {
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www",
+                "pictureURL": "",
                 "owner": nowState.owner}
             }
             console.log("sending")
