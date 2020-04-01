@@ -52,15 +52,15 @@ class Button extends React.Component {
                             "memberT": this.props.username,
                             "hasParticipated": false,
                             "transactionDetail": "success",
-                            "ticketURL" : ""
+                            "ticketURL": ""
                         })
                     }
                 })
-                .then(res => {
-                    console.log(res.data)
-                    var workshopID = res.data.workshop
-                    window.location.assign("/ticket/"+workshopID)
-                })
+                    .then(res => {
+                        console.log(res.data)
+                        var workshopID = res.data.workshop
+                        window.location.assign("/ticket/" + workshopID)
+                    })
             },
             onFormClosed: () => {
 
@@ -79,24 +79,34 @@ class Button extends React.Component {
             this.omiseCardHandler()
         }
         else {
-            alert('Your role is workshop-owner. You cannot join any workshop!')
+            //goto edit page
+            ///workshopeditor/:username/:workshopId
+            window.location.assign("/workshopeditor/"+this.props.username+"/"+this.props.workshop.id)
         }
     }
 
 
     render() {
-        return (
-            <div>
-                <Script
-                    url="https://cdn.omise.co/omise.js.gz"
-
-                    onLoad={this.handleLoad}
-                />
-                <form >
-                    <button id='credit-card' className='button' onClick={this.handleClick} >Join</button>
-                </form>
+        if (this.props.role === 'owner') {
+            return <div>
+                <button id='credit-card' className='button' onClick={this.handleClick} >Edit</button>
             </div>
-        );
+        }
+        else {
+            return (
+                <div>
+                    <Script
+                        url="https://cdn.omise.co/omise.js.gz"
+
+                        onLoad={this.handleLoad}
+                    />
+                    <form >
+                        <button id='credit-card' className='button' onClick={this.handleClick} >Join</button>
+                    </form>
+                </div>
+            );
+        }
+
     }
 }
 
