@@ -1,5 +1,6 @@
 import React from 'react' ;
 import InputBox from './InputBox' ;
+import Multiselect from 'multiselect-react-dropdown';
 import './CreateForm.css'
 import axios from 'axios';
 
@@ -25,7 +26,7 @@ class Form extends React.Component {
             },
             content:{
                 workshopName:'',
-                workshopPic:'',
+                workshopPic: "",
                 speakerName:'',
                 date:'',
                 sTime:'',
@@ -36,9 +37,12 @@ class Form extends React.Component {
                 ddate:'',
                 dtime:'',
                 description:'',
-                tags:[]
+                tags:[],
+                owner: this.props.username
             },
-            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}]
+            username : "",
+            role : "",
+            options: [{name: 'Business', id: 1},{name: 'Data', id: 2},{name: 'Design', id: 3},{name:"Technology",id:4}]
         }
         this.handleChange = this.handleChange.bind(this) ;
         this.handleSelect = this.handleSelect.bind(this) ;
@@ -84,11 +88,11 @@ class Form extends React.Component {
                 }
                 else {
                     err.workshopPic = ""
-                    content.workshopPic = value ;
+                    content.workshopPic = e.target.files[0] ;
                 }
                 break;
             case "date" :
-                if (value == '') {
+                if (value === '') {
                     err.date = "This cannot be empty"
                 }
                 else {
@@ -97,7 +101,7 @@ class Form extends React.Component {
                 }
                 break;
             case "sTime" :
-                if (value == '') {
+                if (value === '') {
                     err.sTime = "This cannot be empty"
                 }
                 else {
@@ -106,7 +110,7 @@ class Form extends React.Component {
                 }
                 break;
             case "eTime" :
-                if (value == '') {
+                if (value === '') {
                     err.eTime = "This cannot be empty"
                 }
                 else {
@@ -116,7 +120,7 @@ class Form extends React.Component {
                 break;
             case "cap":
                 if (value <= 0 || value > 1000) {
-                    err.cap = "must be number between 1-1000"
+                    err.cap = "must be number between 0-1000"
                 }
                 else {
                     content.cap = value ;
@@ -133,7 +137,7 @@ class Form extends React.Component {
                 }
                 break;
             case "place" :
-                if (value == '') {
+                if (value === '') {
                     err.place = "This cannot be empty"
                 }
                 else if (value.length > 40){
@@ -145,7 +149,7 @@ class Form extends React.Component {
                 }
                 break;
             case "ddate" :
-                if (value == '') {
+                if (value === '') {
                     err.ddate = "This cannot be empty"
                 }
                 else {
@@ -154,7 +158,7 @@ class Form extends React.Component {
                 }
                 break;
             case "dtime" :
-                if (value == '') {
+                if (value === '') {
                     err.dtime = "This cannot be empty"
                 }
                 else {
@@ -164,7 +168,7 @@ class Form extends React.Component {
             
                 break;
             case "description" :
-                if (value == '') {
+                if (value === '') {
                     err.description = "This cannot be empty"
                 }
                 else if (value.length > 300) {
@@ -185,7 +189,7 @@ class Form extends React.Component {
     handleSelect = (selectedList, selectedItem) => {
         let err = this.state.errMsg ;
         let content = this.state.content ;
-        if (selectedList.length == 0) {
+        if (selectedList.length === 0) {
             err.tags = "This cannot be empty"
         }
         else {
@@ -199,7 +203,7 @@ class Form extends React.Component {
     handleRemove(selectedList, removedItem) {
         let err = this.state.errMsg 
         let content = this.state.content 
-        if (selectedList.length == 0) {
+        if (selectedList.length === 0) {
             err.tags = "This cannot be empty"
         }
         else {
@@ -215,23 +219,23 @@ class Form extends React.Component {
         let content = this.state.content 
         let err = this.state.errMsg
         let valid = true
-        if(content.cap <= 0 || content.cap > 1000 || content.cap == "") {
+        if(content.cap <= 0 || content.cap > 1000 || content.cap === "") {
             err.cap = "must be number between 0-1000"
             valid = false
         }
-        if (content.cost < 0 || content.cost == "") {
+        if (content.cost < 0 || content.cost === "") {
             err.cost = "must be positive number"
             valid = false
         }
-        if (content.date == "") {
+        if (content.date === "") {
             err.date = "must be specified"
             valid = false
         }
-        if (content.ddate == "") {
+        if (content.ddate === "") {
             err.ddate = "must be specified"
             valid = false
         }
-        if (content.description == "") {
+        if (content.description === "") {
             err.description = "must be specified"
             valid = false
         }
@@ -239,23 +243,23 @@ class Form extends React.Component {
             err.description = "must not exceed 300 characters"
             valid = false
         }
-        if (content.dtime == "") {
+        if (content.dtime === "") {
             err.dtime = "must be specified"
             valid = false
         }
-        if (content.sTime == "") {
+        if (content.sTime === "") {
             err.sTime = "must be specified"
             valid = false
         }
-        if (content.eTime == "") {
+        if (content.eTime === "") {
             err.eTime = "must be specified"
             valid = false
         }
-        if (content.tags.length == 0) {
+        if (content.tags.length === 0) {
             err.tags = "must be specified"
             valid = false
         }
-        if (content.workshopName == "") {
+        if (content.workshopName === "") {
             err.workshopName = "must be specified"
             valid = false   
         }
@@ -263,7 +267,7 @@ class Form extends React.Component {
             err.workshopName = "must not exceed 40 characters"
             valid = false
         }
-        if (content.workshopPic == "") {
+        if (content.workshopPic === "") {
             err.workshopPic = "must be specified"
             valid = false
         }
@@ -271,7 +275,7 @@ class Form extends React.Component {
             err.workshopPic = "File's name is too long"
             valid = false
         }
-        if (content.speakerName == "") {
+        if (content.speakerName === "") {
             err.speakerName = "must be specified"
             valid = false 
         }
@@ -279,7 +283,7 @@ class Form extends React.Component {
             err.speakerName = "must not exceed 40 characters"
             valid = false
         }
-        if (content.place == "") {
+        if (content.place === "") {
             err.place = "must be specified"
             valid = false
         }
@@ -290,7 +294,11 @@ class Form extends React.Component {
         this.setState({errMsg:err})
         if (valid) {
             let nowState = this.state.content
+            // const formData = new FormData();
+            // formData.append('myImage',this.state.workshopPic);
             let sendData = {
+                "image" :this.state.workshopPic,
+                "req" : {
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -301,15 +309,39 @@ class Form extends React.Component {
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www"
+                "pictureURL": "",
+                "owner": nowState.owner}
             }
             console.log("sending")
             console.log(sendData)
             axios.post(`http://localhost:3001/workshops/create`, sendData ).then(res => {
-                console.log(res);
+                //console.log(res);
                 console.log(res.data);
-            })
-            alert("submited")
+                //console.log(nowState.tags)
+                let workshopId = res.data.id
+                    nowState.tags.forEach(element=>{let sendTag = {
+                        "workshop":workshopId,
+                        "tag":element.name,
+                        "workshopId":workshopId
+                    }
+                    console.log(sendTag)
+                    axios.post(`http://localhost:3001/tags/create`,sendTag)
+                    }
+                )
+                }
+            )
+            
+            // const config = {
+            //     headers: {
+            //         'image': formData
+            //     } 
+            // };
+            // axios.post(`/localhost:3001/workshops/WORKSHOPID/picture`,config)
+            //     .then((response) => {
+            //         alert("The file is successfully uploaded");
+            //     }).catch((error) => {
+            // });
+            // alert("submited picture")
 
         }
         else {
@@ -335,8 +367,9 @@ class Form extends React.Component {
     }
 
 
+    
     render() {
-        if (this.state.isLoading) return null
+        if (this.state.isLoading) return null ;
         console.log("hello Create form")
         const style = {chips: { background: "#cc670a" }, searchBox: {background: "white" } }
         return (
@@ -355,7 +388,7 @@ class Form extends React.Component {
                         <InputBox label="Deadline date"                 name="ddate"        type="input" inputType="date"   onChange={this.handleChange} errMsg={this.state.errMsg.ddate} />
                         <InputBox label="Deadline time"                 name="dtime"        type="input" inputType="time"   onChange={this.handleChange} errMsg={this.state.errMsg.dtime} />
                         <InputBox label="Description"                   name="description"  type="text"  row={4} col={50}   onChange={this.handleChange} errMsg={this.state.errMsg.description} placeholder="Briefly explain the workshop"/>
-                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags"/>
+                        <InputBox label="Tags"                          name="tags"         type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style}  errMsg="" placeholder="Choose tags"/>
                     </form>
                 </div>
                 <div id="button-body">
