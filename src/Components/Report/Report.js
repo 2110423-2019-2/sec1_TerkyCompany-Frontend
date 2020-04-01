@@ -50,12 +50,12 @@ class Report extends React.Component {
         let sendData ={
           'subject': this.state.subject,
           'description': this.state.description,
-          'memberT' : this.username,
-          'memberTUsername': this.username,
+          'memberT' : this.state.username,
+          'memberTUsername': this.state.username,
         }
         console.log("sending")
         console.log(sendData)
-        axios.post('http://localhost:3001/report/create', sendData ).then(res => {
+        axios.post('http://localhost:3001/feedbacks/create', sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })
