@@ -331,17 +331,17 @@ class Form extends React.Component {
                 }
             )
             
-            const config = {
-                headers: {
-                    'image': formData
-                }
-            };
-            axios.post(`/localhost:3001/workshops/WORKSHOPID/picture`,config)
-                .then((response) => {
-                    alert("The file is successfully uploaded");
-                }).catch((error) => {
-            });
-            alert("submited picture")
+            // const config = {
+            //     headers: {
+            //         'image': formData
+            //     } 
+            // };
+            // axios.post(`/localhost:3001/workshops/WORKSHOPID/picture`,config)
+            //     .then((response) => {
+            //         alert("The file is successfully uploaded");
+            //     }).catch((error) => {
+            // });
+            // alert("submited picture")
 
         }
         else {
