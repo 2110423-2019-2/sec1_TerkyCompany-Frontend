@@ -74,6 +74,7 @@ class Register extends React.Component {
         })
         window.alert('You are now our member!')
         console.log('Jobs done!');
+        window.location.assign('/')
     }
 
     convertMonthToDate = (date) => {

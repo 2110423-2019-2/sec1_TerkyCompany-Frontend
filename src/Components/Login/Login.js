@@ -19,6 +19,12 @@ class Login extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    componentDidMount() {
+        if (document.cookie !== '') {
+            alert('You are already logged in!')
+            window.location.assign('/')
+        }
+    }
 
     handleChange(e) {
         this.setState({ show: false });
@@ -46,26 +52,23 @@ class Login extends React.Component {
                     token: res.data.access_token
                 })
 
-                axios.get('http://localhost:3001/profile',{ headers: {"Authorization" : `Bearer ${this.state.token}`} }).then(
-                    res2 => {
-                        console.log(res2.data)
-                        const cookies = new Cookies();
-                        cookies.set('username',res2.data.username)
-                        cookies.set('userType',res2.data.userType)
-                    }
-                )
-
-                window.location.assign('/')
-
+                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } })
             }
-            else {
+            
+        })
+            .then(res => {
+                if (res !== "fail") {
+                    console.log('data after authen: ', res.data)
+                    const cookies = new Cookies();
+                    cookies.set('username', res.data.username)
+                    cookies.set('userType', res.data.userType)
+                    window.location.assign('/')
+                }
+                
+            },e => {
                 this.setState({ show: true });
                 this.setState({ errorMessage: 'Incorrect username or password' })
-            }
-        }, e => {
-            this.setState({ show: true });
-            this.setState({ errorMessage: 'Incorrect username or password' })
-        })
+            })
 
 
     }

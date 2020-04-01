@@ -18,7 +18,7 @@ class WorkshopFilterPage extends React.Component {
                 <div className="show-list">
                     <h1>Workshop</h1>
                     <div className="dropdown-divider"></div>
-                    <div className="flex-container" id="list-body" >
+                    <div className="flex-container" id="list-body-filter" >
                         <FilterForm />
                     </div>
                 </div>

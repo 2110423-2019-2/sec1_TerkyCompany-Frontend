@@ -10,6 +10,8 @@ class WorkshopDetail extends React.Component {
         this.state =
         {
             isLoading: false,
+            username: '',
+            role: '',
             workshop: {
                 id: -1,
                 name: "Scrum workshop",
@@ -47,7 +49,7 @@ class WorkshopDetail extends React.Component {
                     endTime: this.convertTimeStampToTime(res.data.endTime).time,
                     pictureUrl: '/test.jpg',
                     cost: res.data.cost,
-                    notAvailableSeat: 0,
+                    notAvailableSeat: res.data.reservedSeat,
                     totalSeat: res.data.capacity,
                     description: res.data.description,
                     instructorName: res.data.speakerName,
@@ -56,6 +58,28 @@ class WorkshopDetail extends React.Component {
                 }
             })
         })
+        //format cookie
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                s+=1 
+
+        }
+        
+        if(s==2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
+
     }
     render() {
         console.log(this.state);
@@ -63,7 +87,7 @@ class WorkshopDetail extends React.Component {
         console.log("hello Workshop-Detail page");
         return (
             <div>
-                <WorkshopDetailHeader workshop={this.state.workshop} />
+                <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} />
                 <WorkshopDetailBody workshop={this.state.workshop} />
             </div>
         );
