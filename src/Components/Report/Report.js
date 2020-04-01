@@ -12,11 +12,13 @@ class Report extends React.Component {
             username: "",
             role: "",
         }
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitReport = this.handleSubmitReport.bind(this);
     }
 
     componentDidMount() {
+
         //format cookie
         let spl = document.cookie.split(';')
         let ck = {}
@@ -43,11 +45,11 @@ class Report extends React.Component {
             // alert("Please login first!")
             window.location.assign("/login")
         }
+
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-
     }
 
     handleSubmitReport(e) {

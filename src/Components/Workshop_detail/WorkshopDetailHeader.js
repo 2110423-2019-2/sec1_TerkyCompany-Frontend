@@ -1,6 +1,7 @@
 import React from 'react';
 import './WorkshopDetailHeader.css';
 import Button from './Button';
+import Review from './ReviewButton'
 
 class WorkshopDetailHeader extends React.Component {
     constructor(props) {
