@@ -294,7 +294,11 @@ class Form extends React.Component {
         this.setState({errMsg:err})
         if (valid) {
             let nowState = this.state.content
+            // const formData = new FormData();
+            // formData.append('myImage',this.state.workshopPic);
             let sendData = {
+                "image" :this.state.workshopPic,
+                "req" : {
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -306,7 +310,7 @@ class Form extends React.Component {
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
                 "pictureURL": "www",
-                "owner": nowState.owner
+                "owner": nowState.owner}
             }
             console.log("sending")
             console.log(sendData)
@@ -326,14 +330,13 @@ class Form extends React.Component {
                 )
                 }
             )
-            const formData = new FormData();
-            formData.append('myImage',this.state.file);
+            
             const config = {
                 headers: {
-                    'content-type': 'multipart/form-data'
+                    'image': formData
                 }
             };
-            axios.post(`/localhost:3001/members-t/${this.state.username}/profile`,formData,config)
+            axios.post(`/localhost:3001/workshops/WORKSHOPID/picture`,config)
                 .then((response) => {
                     alert("The file is successfully uploaded");
                 }).catch((error) => {
