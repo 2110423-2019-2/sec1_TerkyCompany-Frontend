@@ -46,7 +46,7 @@ class WorkshopDetailBottom extends React.Component {
     render() {
         return(
             <div className='comment'>
-                <h3>Comments</h3>
+                <h3 id="comment-title">Comments</h3>
                 <ReviewButton oldReview={this.state.oldReview} workshop={this.props.workshop} username={this.props.username}/>
                 <div>
                     {this.state.reviews.map(this.showReview)}
