@@ -27,7 +27,7 @@ class Menubar extends Component {
                         </a>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="/workshoplist">Workshop</a>
+                                <a className="nav-link" href="/workshoplist">My Workshop</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/browse">Browse</a>
@@ -55,7 +55,7 @@ class Menubar extends Component {
                         </a>
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="/workshoplist">Workshop</a>
+                                <a className="nav-link" href="/workshoplist">My Workshop</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/browse">Browse</a>
