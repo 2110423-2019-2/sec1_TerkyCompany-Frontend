@@ -5,7 +5,7 @@ h1 {
 }
 
 #container {
-  background-color: #FFF1DB;
+  background-color: whitesmoke;
   display: flex;
   flex-flow: row;
   max-width: 100vw;
@@ -33,7 +33,7 @@ h1 {
 }
 
 .show-list {
-  background-color: #fff1db;
+  background-color: whitesmoke;
   flex: 1 0 0;
   margin: 0px;
   padding: 100px;

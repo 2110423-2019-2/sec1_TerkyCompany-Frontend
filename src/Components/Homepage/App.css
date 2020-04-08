@@ -1,5 +1,6 @@
 .App {
   height: 100em;
+  background-color: #6688CC;
 }
 
 #intro {
@@ -21,7 +22,7 @@
   padding-left: 2em;
   padding-right: 0.1em;
   padding-top : 0.5em;
-  background-image: linear-gradient(to right, rgb(252, 243, 165), white);
+  background-image: linear-gradient(to right, #6688CC, white);
   width: 50%;
 }
 
@@ -33,7 +34,7 @@
 }
 
 #hot-content {
-  background-color: #FFF1DB;
+  background-color: whitesmoke;
   height: 37%;
   width: 100%;
   padding: 40px;

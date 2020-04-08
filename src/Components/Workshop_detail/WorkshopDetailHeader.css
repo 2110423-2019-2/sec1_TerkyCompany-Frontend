@@ -2,7 +2,9 @@
     display: flex;
     justify-content: center;
     margin: 0;
-    padding: 2% 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
     background-image: #FFFFFF;
 }
 
@@ -16,8 +18,10 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
     padding: 2%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     font-size: 16px;
 }
 .header-detail {
@@ -32,7 +36,7 @@
     height: auto;
     display: flex;
     margin: 0;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
 }
 
 .body-details {

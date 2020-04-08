@@ -81,7 +81,7 @@ const ReviewButton  = (props) => {
     
     return (
         <div>
-        <Button variant="warning" onClick={handleShow}>
+        <Button id="btn-review" variant="outline-dark" onClick={handleShow}>
         {title}
         </Button>
     
