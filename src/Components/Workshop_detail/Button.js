@@ -87,7 +87,7 @@ class Button extends React.Component {
 
 
     render() {
-        if (this.props.role === 'owner') {
+        if (this.props.role === 'owner' || this.props.role === 'admin') {
             return <div>
                 <button id='credit-card' className='button' onClick={this.handleClick} >Edit</button>
             </div>

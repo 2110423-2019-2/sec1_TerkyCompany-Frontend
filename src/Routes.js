@@ -14,7 +14,9 @@ import Login from './Components/Login/Login';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
 import TicketPage from './Components/Workshop_ticket/TicketPage';
 import Register from './Components/Register/Register';
+import Edit from './Components/Edit/Edit';
 import Report from './Components/Report/Report';
+import UserManagement from './Components/Admin_user_management/UserManagement';
 
 
 class Routes extends Component {
@@ -44,6 +46,9 @@ class Routes extends Component {
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/report" component={Report} />
+                        <Route exact path="/management/user" component={UserManagement} />
+                        <Route exact path="/management/workshop" component={WorkshopfilterPage} />
+                        <Route exact path="/management/user/:username/edit" component={Edit} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
