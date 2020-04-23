@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './ReviewButton.css'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -8,7 +8,7 @@ import ReactStars from 'react-rating-stars-component'
 
 
 const ReviewButton  = (props) => {
-    const [show, setShow, rating] = useState(false);
+    const [show, setShow] = useState(false);
     let oldRating,oldComment;
     let title;
     let rate=0;
@@ -49,7 +49,7 @@ const ReviewButton  = (props) => {
             memberTUsername : props.username
         }
         console.log(sendData)
-        if (props.oldReview !== {} && props.oldReview != undefined) {
+        if (props.oldReview !== {} && props.oldReview !== undefined) {
             console.log("put")
             axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
                 return axios.post(`http://localhost:3001/reviews/create`, sendData )

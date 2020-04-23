@@ -1,7 +1,6 @@
 import React from 'react';
 import './WorkshopDetailHeader.css';
 import Button from './Button';
-import Review from './ReviewButton'
 
 class WorkshopDetailHeader extends React.Component {
     constructor(props) {
@@ -19,7 +18,7 @@ class WorkshopDetailHeader extends React.Component {
         return(
             <div className='header'>
                 <div className='header-image' id='box'>
-                    <img src={workshop.pictureUrl} width='1000em' height='400em' />
+                    <img alt='' src={workshop.pictureUrl} width='1000em' height='400em' />
                 </div>
                 <div className='header-details' id='box'>
                     <div className='header-detail' id='name'>{workshop.name}</div>

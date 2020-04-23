@@ -1,6 +1,5 @@
 import React from 'react'
 import './WorkshopFilterPage.css'
-import SideBar from './SideBar' 
 import FilterForm from './FilterForm'
 
 class WorkshopFilterPage extends React.Component {

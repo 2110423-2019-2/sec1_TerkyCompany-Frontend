@@ -70,11 +70,11 @@ class Button extends React.Component {
 
     handleClick = e => {
         e.preventDefault()
-        if (this.props.role == '') {
+        if (this.props.role === '') {
             alert('Please login first')
             window.location.assign('/login')
         }
-        else if (this.props.role == 'participant') {
+        else if (this.props.role === 'participant') {
             this.creditCardConfigure()
             this.omiseCardHandler()
         }

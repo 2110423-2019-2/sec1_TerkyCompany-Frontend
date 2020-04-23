@@ -3,9 +3,9 @@ import './ErrorMessage.css'
 import PropTypes from 'prop-types';
 
 class ErrorMessage extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
         if(!this.props.show){

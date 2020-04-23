@@ -3,7 +3,6 @@ import ReactToPDF from 'react-to-print';
 import Ticket from './Ticket';
 import './TicketPage.css';
 import axios from "axios";
-import cookie from "cookie";
 
 class TicketPage extends React.Component {
     constructor(props) {
@@ -34,10 +33,10 @@ class TicketPage extends React.Component {
             let temp = spl[i].split('=')
             // console.log('temp: ',temp)
             ck[temp[0].trim()] = temp[1]
-            if (temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if (temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s += 1
         }
-        if (s == 2) {
+        if (s === 2) {
             this.setState({
                 isLoading: false,
                 cookie: {

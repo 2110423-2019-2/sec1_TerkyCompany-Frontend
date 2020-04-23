@@ -28,12 +28,12 @@ class Workshoplistpage extends Component {
             let temp = spl[i].split('=')
             // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
 
         }
         
-        if(s==2) {
+        if(s===2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],
@@ -74,11 +74,11 @@ class Workshoplistpage extends Component {
                     <div className="side-menu">
                         <div id="textzone">
                             <ul id="link-side">
-                                <li><a id="link-side" href="#">My Workshop</a></li>
+                                <li><a id="link-side" href="/workshoplist">My Workshop</a></li>
                                 {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
-                                <li><a id="link-side" href="#">Certificate</a></li>
-                                <li><a id="link-side" href="#">Payment</a></li>
-                                <li><a id="link-side" href="#">Confirmation</a></li>
+                                <li><a id="link-side" href="/workshoplist">Certificate</a></li>
+                                <li><a id="link-side" href="/workshoplist">Payment</a></li>
+                                <li><a id="link-side" href="/workshoplist">Confirmation</a></li>
                             </ul>
                         </div>
                     </div>
