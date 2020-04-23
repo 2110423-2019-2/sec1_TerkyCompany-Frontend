@@ -43,11 +43,11 @@ class Button extends React.Component {
             submitFormTarget: '#credit-card',
             onCreateTokenSuccess: (token) => {
                 console.log(token)
-                Axios.post("http://localhost:3001/payment/create", { 'email': 'test@gmail.com', 'name': this.props.username, 'amount': this.props.workshop['cost'], 'token': token }).then(res => {
+                Axios.post(`${process.env.BACKEND_API}/payment/create`, { 'email': 'test@gmail.com', 'name': this.props.username, 'amount': this.props.workshop['cost'], 'token': token }).then(res => {
 
                     if (res.data.status === 'successful') {
                         console.log(res.data.status)
-                        return Axios.post("http://localhost:3001/books/create", {
+                        return Axios.post(`${process.env.BACKEND_API}/books/create`, {
                             "workshop": this.props.workshop['id'],
                             "memberT": this.props.username,
                             "hasParticipated": false,

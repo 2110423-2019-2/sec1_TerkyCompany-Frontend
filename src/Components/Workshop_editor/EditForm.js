@@ -193,13 +193,13 @@ class EditForm extends Component {
             }
             console.log("sending")
             //console.log(sendData)
-            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
+            axios.put(`${process.env.BACKEND_API}/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
             alert("Submitted")
             //console.log(this.state.content)
-            axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
+            axios.get(`${process.env.BACKEND_API}/tags/deletebyid/${this.props.workshopid}`).then(res => {
                console.log(res)
             })
             console.log(this.state.selectedValues)
@@ -209,7 +209,7 @@ class EditForm extends Component {
                     "workshopId":this.props.workshopid
                     }
                 console.log(sendTag)
-                axios.post(`http://localhost:3001/tags/create`,sendTag)
+                axios.post(`${process.env.BACKEND_API}/tags/create`,sendTag)
                 }
             )
         }
@@ -247,7 +247,7 @@ class EditForm extends Component {
     componentDidMount() {
         //get workshopid from workshopEditPage
         //console.log(this.props.workshopid)
-        axios.get(`http://localhost:3001/workshops/${this.props.workshopid}`).then(res => { 
+        axios.get(`${process.env.BACKEND_API}/workshops/${this.props.workshopid}`).then(res => { 
             let initData = res.data
             console.log(initData.owner)
             console.log(this.state.username)
@@ -281,7 +281,7 @@ class EditForm extends Component {
             this.setState( initState ) 
             console.log(this.state.content)
         })
-        axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
+        axios.get(`${process.env.BACKEND_API}/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data 
             console.log(initTag)
             //console.log(initTag[1])

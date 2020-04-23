@@ -40,7 +40,7 @@ class WorkshopDetail extends React.Component {
         console.log('okkkkk');
         const { ID } = this.props.match.params
         console.log(ID)
-        axios.get(`http://localhost:3001/workshops/${ID}`).then(res => {
+        axios.get(`${process.env.BACKEND_API}/workshops/${ID}`).then(res => {
             console.log("from workshop > ", res.data)
             //all workshop data is contain in json key "0"
             let initData = res.data
@@ -62,7 +62,7 @@ class WorkshopDetail extends React.Component {
                 }
             })
             //console.log(this.state)
-            axios.get(`http://localhost:3001/tags/findbyid/${ID}`).then(res => {
+            axios.get(`${process.env.BACKEND_API}/tags/findbyid/${ID}`).then(res => {
                 let initTag = res.data
                 let initState = this.state
                 Object.values(initTag).forEach(element => {

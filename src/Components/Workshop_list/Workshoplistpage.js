@@ -45,7 +45,7 @@ class Workshoplistpage extends Component {
 
         if(ck['userType'] === "owner")
         {
-            axios.get('http://localhost:3001/workshops/findbyowner/'+ck['username'])
+            axios.get(`${process.env.BACKEND_API}/workshops/findbyowner/`+ck['username'])
             .then(res => {
                 console.log(res)
                 this.setState({
@@ -55,7 +55,7 @@ class Workshoplistpage extends Component {
         }
         else if(ck['userType'] === "participant")
         {
-            axios.get('http://localhost:3001/books/findbyparticipant/'+ck['username'])
+            axios.get(`${process.env.BACKEND_API}/books/findbyparticipant/`+ck['username'])
             .then(res => {
                 console.log(res)
                 this.setState({

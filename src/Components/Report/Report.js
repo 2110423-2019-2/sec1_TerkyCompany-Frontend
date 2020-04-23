@@ -62,7 +62,7 @@ class Report extends React.Component {
         }
         console.log("sending")
         console.log(sendData)
-        axios.post('http://localhost:3001/feedbacks/create', sendData ).then(res => {
+        axios.post(`${process.env.BACKEND_API}/feedbacks/create`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })

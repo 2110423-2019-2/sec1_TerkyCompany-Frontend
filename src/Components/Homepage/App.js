@@ -16,8 +16,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(process.env);
     console.log('cookie now : ',document.cookie)
-    axios.get('http://localhost:3001/workshops')
+    axios.get(`${process.env.BACKEND_API}/workshops`)
       .then(res => {
         console.log(res)
         this.setState({

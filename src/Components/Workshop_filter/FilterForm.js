@@ -110,7 +110,7 @@ class FilterForm extends Component {
     async componentDidMount() {
         let allWorkshop = []
         let shownList = []
-        await axios.get(`http://localhost:3001/workshops`).then(res => {
+        await axios.get(`${process.env.BACKEND_API}/workshops`).then(res => {
             console.log("got")
             //allWorkshop = res.data;
             allWorkshop = res.data
@@ -121,7 +121,7 @@ class FilterForm extends Component {
             })
         allWorkshop.forEach(element => {
             element.tags = []
-            axios.get(`http://localhost:3001/tags/findbyid/`+element.id).then(res => {
+            axios.get(`${process.env.BACKEND_API}/tags/findbyid/`+element.id).then(res => {
                 res.data.forEach(e => {
                     element.tags.push({name:e.tag.toLowerCase()})
                 })
