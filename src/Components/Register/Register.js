@@ -69,7 +69,7 @@ class Register extends React.Component {
         }
         console.log("sending")
         console.log(sendData)
-        axios.post(`${process.env.BACKEND_API}/members-t/create`, sendData ).then(res => {
+        axios.post(`${process.env.REACT_APP_URL}/members-t/create`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })

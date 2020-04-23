@@ -25,10 +25,10 @@ class Button extends React.Component {
     }
 
     handleLoad = () => {
-        console.log(window.OmiseCard)
+        // console.log(window.OmiseCard)
         OmiseCard = window.OmiseCard
         OmiseCard.configure({
-            publicKey: 'pkey_test_5jat0453twxxl7wh47y',
+            publicKey: process.env.REACT_APP_OMMISE_KEY,
             currency: 'thb',
             image: 'YOUR_LOGO_URL',
             frameLabel: 'Matcher',
@@ -42,12 +42,12 @@ class Button extends React.Component {
             amount: this.props.workshop['cost'] * 100,
             submitFormTarget: '#credit-card',
             onCreateTokenSuccess: (token) => {
-                console.log(token)
-                Axios.post(`${process.env.BACKEND_API}/payment/create`, { 'email': 'test@gmail.com', 'name': this.props.username, 'amount': this.props.workshop['cost'], 'token': token }).then(res => {
+                // console.log(token)
+                Axios.post(`${process.env.REACT_APP_URL}/payment/create`, { 'email': 'test@gmail.com', 'name': this.props.username, 'amount': this.props.workshop['cost'], 'token': token }).then(res => {
 
                     if (res.data.status === 'successful') {
-                        console.log(res.data.status)
-                        return Axios.post(`${process.env.BACKEND_API}/books/create`, {
+                        // console.log(res.data.status)
+                        return Axios.post(`${process.env.REACT_APP_URL}/books/create`, {
                             "workshop": this.props.workshop['id'],
                             "memberT": this.props.username,
                             "hasParticipated": false,
@@ -57,7 +57,7 @@ class Button extends React.Component {
                     }
                 })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         var workshopID = res.data.workshop
                         window.location.assign("/ticket/" + workshopID)
                     })

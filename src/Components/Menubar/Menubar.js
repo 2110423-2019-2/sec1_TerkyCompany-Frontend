@@ -13,7 +13,7 @@ class Menubar extends Component {
 
 
     componentDidMount() {
-        console.log(document.cookie)
+        // console.log(document.cookie)
     }
 
     render() {

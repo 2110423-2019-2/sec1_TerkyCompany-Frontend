@@ -51,8 +51,8 @@ const ReviewButton  = (props) => {
         console.log(sendData)
         if (props.oldReview !== {} && props.oldReview !== undefined) {
             console.log("put")
-            axios.delete(`${process.env.BACKEND_API}/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
-                return axios.post(`${process.env.BACKEND_API}/reviews/create`, sendData )
+            axios.delete(`${process.env.REACT_APP_URL}/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
+                return axios.post(`${process.env.REACT_APP_URL}/reviews/create`, sendData )
             }).then(res => {
                 console.log(res.data)
             })
@@ -62,7 +62,7 @@ const ReviewButton  = (props) => {
         }
         else {
             console.log("post")
-            axios.post(`${process.env.BACKEND_API}/reviews/create`, sendData ).then(res => {
+            axios.post(`${process.env.REACT_APP_URL}/reviews/create`, sendData ).then(res => {
                 console.log(res.data)
             })
         }

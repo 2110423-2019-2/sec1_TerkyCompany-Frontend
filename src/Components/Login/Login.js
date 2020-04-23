@@ -43,7 +43,7 @@ class Login extends React.Component {
             this.setState({ errorMessage: 'password must shorter than 20 characters' })
         }
         //this means user is in database
-        axios.post(`${process.env.BACKEND_API}/auth/login`, data).then(res => {
+        axios.post(`${process.env.REACT_APP_URL}/auth/login`, data).then(res => {
             console.log(res.status)
             if (res.status === 201) {
                 //pass login
@@ -52,7 +52,7 @@ class Login extends React.Component {
                     token: res.data.access_token
                 })
 
-                return axios.get(`${process.env.BACKEND_API}/profile`, { headers: { "Authorization": `Bearer ${this.state.token}` } })
+                return axios.get(`${process.env.REACT_APP_URL}/profile`, { headers: { "Authorization": `Bearer ${this.state.token}` } })
             }
             
         })

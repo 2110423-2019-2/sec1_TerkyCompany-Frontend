@@ -317,7 +317,7 @@ class Form extends React.Component {
             }
             console.log("sending")
             console.log(sendData)
-            axios.post(`${process.env.BACKEND_API}/workshops/create`, sendData).then(res => {
+            axios.post(`${process.env.REACT_APP_URL}/workshops/create`, sendData).then(res => {
                 //console.log(res);
                 console.log(res.data);
                 //console.log(nowState.tags)
@@ -329,7 +329,7 @@ class Form extends React.Component {
                         "workshopId": workshopId
                     }
                     console.log(sendTag)
-                    axios.post(`${process.env.BACKEND_API}/tags/create`, sendTag)
+                    axios.post(`${process.env.REACT_APP_URL}/tags/create`, sendTag)
                 }
                 )
             }

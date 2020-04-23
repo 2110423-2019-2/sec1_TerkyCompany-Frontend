@@ -46,14 +46,14 @@ class TicketPage extends React.Component {
             })
         }
         const { ID } = this.props.match.params
-        axios.get(`${process.env.BACKEND_API}/books/findone/` + ID + '/' + ck['username']).then(res => {
+        axios.get(`${process.env.REACT_APP_URL}/books/findone/` + ID + '/' + ck['username']).then(res => {
             console.log("from book > ", res.data)
             this.setState({
                 data: {
                     holderName : res.data.memberT
                 }
             })
-            return axios.get(`${process.env.BACKEND_API}/workshops/` + ID)
+            return axios.get(`${process.env.REACT_APP_URL}/workshops/` + ID)
         }).then(res2 => {
             console.log("from workshop > ", res2.data)
             this.setState({

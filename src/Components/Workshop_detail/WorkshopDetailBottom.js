@@ -21,11 +21,11 @@ class WorkshopDetailBottom extends React.Component {
         if (this.props.workshop.id !== nextProps.workshop.id) {
             console.log(nextProps.workshop.id)
             
-            await axios.get(`${process.env.BACKEND_API}/reviews/findcomment/${nextProps.workshop.id}/${nextProps.username}`).then(res => {
+            await axios.get(`${process.env.REACT_APP_URL}/reviews/findcomment/${nextProps.workshop.id}/${nextProps.username}`).then(res => {
                 console.log(res.data)
                 this.setState({oldReview:res.data[0]})
             })
-            await axios.get(`${process.env.BACKEND_API}/reviews/findbyworkshop/${nextProps.workshop.id}`).then(res => {
+            await axios.get(`${process.env.REACT_APP_URL}/reviews/findbyworkshop/${nextProps.workshop.id}`).then(res => {
                 //allReview = res.data
                 this.setState({reviews:res.data})
             })

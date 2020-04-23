@@ -16,11 +16,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(process.env);
-    console.log('cookie now : ',document.cookie)
-    axios.get(`${process.env.BACKEND_API}/workshops`)
+    // console.log(process.env.REACT_APP_URL);
+    // console.log(process.env.REACT_APP_OMMISE_KEY);
+    // console.log('cookie now : ',document.cookie)
+    axios.get(`${process.env.REACT_APP_URL}/workshops`)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           workshops: res.data.slice(0, 5)
         })
@@ -43,7 +44,7 @@ class App extends Component {
       speed: 1000,
     }
     if (this.state.isLoading) return null
-    console.log("hello Homepage")
+    // console.log("hello Homepage")
     return (
       <div className="App">
 
