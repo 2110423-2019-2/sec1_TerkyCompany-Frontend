@@ -346,7 +346,8 @@ class Form extends React.Component {
             //     }).catch((error) => {
             // });
             // alert("submited picture")
-
+            alert("Workshop created")
+            window.location.assign('/workshoplist')
         }
         else {
             alert("Please valid your information")
