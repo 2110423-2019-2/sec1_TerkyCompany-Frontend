@@ -3,3 +3,4 @@ debug.log
 d
 .gitignore
 README.md
+Dockerrun.aws.json
