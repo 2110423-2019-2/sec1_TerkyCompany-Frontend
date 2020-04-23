@@ -3,10 +3,12 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    margin-top: 2%;
-    margin-bottom: 8%;
+    padding-top: 2%;
+    padding-bottom: 8%;
     flex-direction: column;
-    padding: auto;
+    /* padding: auto; */
+    /* background-image: linear-gradient(white,#182978); */
+    background-image: linear-gradient(to top right,rgb(189, 203, 231) , whitesmoke);
 }
 
 .register-header {
@@ -18,7 +20,7 @@
     font-family: B612;
     font-style: normal;
     font-weight: bold;
-    color: #CC670A;
+    color: #182978;
 }
 
 .register-container {
@@ -29,7 +31,7 @@
     padding-right: 1.75%;
     padding-top: 1.5%;
     padding-bottom: 5%;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
     margin:0 35%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
@@ -57,7 +59,7 @@
     font-family: B612;
     font-style: normal;
     font-weight: bold;
-    color: #CC670A;
+    color: #182978;
     margin-bottom: 0.25%;
 }
 
@@ -74,7 +76,7 @@
 .register-button {
     width: 100%;
     border-radius: 7px;
-    background-color: #CC670A;
+    background-color: #182978;
     color: #FFFFFF;
     margin-top: 8%;
     margin-bottom: 1%;

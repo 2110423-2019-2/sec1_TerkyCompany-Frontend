@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 
 class Workshoplistpage extends Component {
@@ -18,13 +18,6 @@ class Workshoplistpage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/workshops')
-            .then(res => {
-                console.log(res)
-                this.setState({
-                    workshops: res.data
-                })
-            })
 
         //format cookie
         let spl = document.cookie.split(';')
@@ -47,6 +40,29 @@ class Workshoplistpage extends Component {
                 role: ck['userType']
             })
         }
+
+        console.log("state >> ",ck['username'])
+
+        if(ck['userType'] === "owner")
+        {
+            axios.get('http://localhost:3001/workshops/findbyowner/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
+        else if(ck['userType'] === "participant")
+        {
+            axios.get('http://localhost:3001/books/findbyparticipant/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
     }
 
     render() {
@@ -59,6 +75,7 @@ class Workshoplistpage extends Component {
                         <div id="textzone">
                             <ul id="link-side">
                                 <li><a id="link-side" href="#">My Workshop</a></li>
+                                {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
                                 <li><a id="link-side" href="#">Certificate</a></li>
                                 <li><a id="link-side" href="#">Payment</a></li>
                                 <li><a id="link-side" href="#">Confirmation</a></li>

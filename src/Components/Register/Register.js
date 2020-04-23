@@ -64,7 +64,8 @@ class Register extends React.Component {
             "isSuspended": false,
             "userType": this.state.registerFlag,
             "organization": this.state.organization,
-            "nationalID": this.state.nationalId
+            "nationalID": this.state.nationalId,
+            "profileURL": "test.jpg"
         }
         console.log("sending")
         console.log(sendData)

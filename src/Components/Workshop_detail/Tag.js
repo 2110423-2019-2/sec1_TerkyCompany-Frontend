@@ -9,9 +9,10 @@ class Tag extends React.Component {
     }
 
     render() {
+        console.log("here8")
         return (
             <div className='Tag topic'>
-                <a className='link' href=''>{this.props.tag}</a>
+                <a className='link' href='/browse'>{this.props.tag}</a>
             </div>
         );
         

@@ -36,6 +36,7 @@ class Footer extends Component {
                             <div id="link-footer">
                                 <div><a id="link-footer" href="#">Collaborating with Matcher</a></div>
                                 <div><a id="link-footer" href="#">About us</a></div>
+                                <div><a id="link-footer" href="/report">Send us feedbacks</a></div>
                             </div>
                         </div>
                     </div>

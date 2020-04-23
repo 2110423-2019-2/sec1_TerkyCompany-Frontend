@@ -3,6 +3,7 @@ import './EditForm.css'
 import InputBox from './InputBox'
 import axios from 'axios'
 import { useParams, Route } from 'react-router-dom';
+import {state} from './WorkshopEditPage' 
 
 class EditForm extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class EditForm extends Component {
                 tags:''
             },
             content:{
-                workshopName:'test',
+                workshopName:'undefine',
                 workshopPic:null,
                 speakerName:'',
                 date:null,
@@ -37,10 +38,11 @@ class EditForm extends Component {
                 ddate:null,
                 dtime:null,
                 description:'',
+                publishTime:'',
                 tags:null
             },
-            options: [{name: 'Srigar', id: 1},{name: 'Sam', id: 2},{name: 'Johnny', id: 3}],
-            selectedValues: [{name: 'Srigar', id: 1},],
+            options: [{name: 'business', id: 1},{name: 'data', id: 2},{name: 'design', id: 3},{name:"technology",id:4}],
+            selectedValues: [],
             initData: [],
         }
         this.handleChange = this.handleChange.bind(this)
@@ -78,10 +80,17 @@ class EditForm extends Component {
                 }
                 break
             case "workshopPic" :
-                err.workshopPic = value === '' ? "This cannot be empty" : '' 
-                content.workshopPic = value
-                console.log(value)
-                break
+                if (value === '') {
+                    err.workshopPic = "This cannot be empty"
+                }
+                else if (value.length > 512) {
+                    err.workshopPic = "File's name is too long"
+                }
+                else {
+                    err.workshopPic = ""
+                    content.workshopPic = e.target.files[0] ;
+                }
+                break;
             case "date" :
                 err.date = value == null ? "This cannot be empty" : '' 
                 content.date = value 
@@ -148,6 +157,9 @@ class EditForm extends Component {
         content.tags = selectedList
         this.setState({errMsg:err, content:content})
     }
+    onCorrectUser = (ownerUser,loginUser,urlUser) => {
+        return ownerUser == loginUser && loginUser == urlUser && urlUser==ownerUser
+    }
 
     submitclick = () => {
         console.log("submit clicked")
@@ -166,7 +178,8 @@ class EditForm extends Component {
         else {
             let nowState = this.state.content
             let sendData = {
-                "id": "1",
+                "image" :this.state.workshopPic,
+                "req" : {
                 "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
                 "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
                 "capacity": nowState.cap,
@@ -177,16 +190,30 @@ class EditForm extends Component {
                 "publishTime": "2015-12-20T03:01:01.000Z",
                 "description": nowState.description,
                 "speakerName": nowState.speakerName,
-                "pictureURL": "www"
+                "pictureURL": "",
+                "owner": nowState.owner}
             }
             console.log("sending")
-            console.log(sendData)
-            axios.put(`http://localhost:3000/workshops/1/update`, sendData ).then(res => {
+            //console.log(sendData)
+            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
             alert("Submitted")
-            console.log(this.state.content)
+            //console.log(this.state.content)
+            axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
+               console.log(res)
+            })
+            console.log(this.state.selectedValues)
+            this.state.selectedValues.forEach(element=>{let sendTag = {
+                    "workshop":this.props.workshopid,
+                    "tag":element.name,
+                    "workshopId":this.props.workshopid
+                    }
+                console.log(sendTag)
+                axios.post(`http://localhost:3001/tags/create`,sendTag)
+                }
+            )
         }
     }
     cancelclick() {
@@ -220,15 +247,25 @@ class EditForm extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:3000/workshops/1/get`).then(res => { 
-            let initData = res.data[0] 
+        //get workshopid from workshopEditPage
+        //console.log(this.props.workshopid)
+        axios.get(`http://localhost:3001/workshops/${this.props.workshopid}`).then(res => { 
+            let initData = res.data
+            console.log(initData.owner)
+            console.log(this.state.username)
+            console.log(this.props.urlUsername)
+            //check real owner
+            if (!this.onCorrectUser(initData.owner,this.state.username,this.props.urlUsername)) {
+                alert("Invalid user")
+                return
+            }
             //console.log(initData[0])
             let initState = this.state.content
             let startTime = this.convertTimeStampToTime(initData.startTime)
             let endTime = this.convertTimeStampToTime(initData.endTime)
             let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
-            // console.log("inition")
-            // console.log(initData)
+            console.log(`\\${initData.pictureURL.split(`\\`)[2]}`)
+             console.log(initData)
             // console.log(initData.place)
             initState.workshopName = initData.name
             initState.speakerName = initData.speakerName
@@ -240,12 +277,31 @@ class EditForm extends Component {
             initState.place = initData.place
             initState.ddate = deadTime.date
             initState.dtime = deadTime.time
-            initState.description = initData.description 
+            initState.publishTime = initData.publishTime
+            initState.description = initData.description
+            //initState.workshopPic = `\\${initData.pictureURL.split(`\\`)[2]}` 
             this.setState( initState ) 
+            console.log(this.state.content)
+        })
+        axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
+            let initTag = res.data 
+            console.log(initTag)
+            //console.log(initTag[1])
+            let initState = this.state
+            Object.values(initTag).forEach(element => {
+                //console.log(element.tag)
+                let tagData = {
+                    name : element.tag.toLowerCase(),
+                }
+                //console.log(Object.values(initState.selectedValues))
+                initState.selectedValues = initState.selectedValues.concat(tagData)
+            })
+            this.setState(initState)
+            //console.log(this.state.selectedValues)
         })
     }
     componentWillMount(){
-
+            
             let spl = document.cookie.split(';')
             let ck = {}
             let s=0
@@ -268,8 +324,6 @@ class EditForm extends Component {
     }
 
     render() {
-        alert("this role")
-        alert(this.state.role)
         if (this.state.isLoading) return null
         console.log("hello Workshopeditor")
         return (

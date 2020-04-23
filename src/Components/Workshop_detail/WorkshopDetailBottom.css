@@ -1,6 +1,10 @@
-.button {
-    background-color: whitesmoke !important;
+.comment {
+    margin: 2% 10%;
     font-family: B612;
     font-style: normal;
     font-weight: normal;
+}
+
+#comment-title {
+    color: black;
 }
