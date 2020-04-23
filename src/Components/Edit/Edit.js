@@ -36,7 +36,7 @@ class Edit extends React.Component {
     }
 
     componentDidMount(){
-
+        // get init data into state
     }
 
     handleChangeDate(value,e){
@@ -120,30 +120,26 @@ class Edit extends React.Component {
                     <form onSubmit={this.handleEdit}>
                         <div className='edit-component-full'>
                             <label className='label'>Username</label><br/>
-                            <input className='input-box' type='text' name='username' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" placeholder=' 5-20 characters and numbers ' required />
+                            <input className='input-box' type='text' name='username' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.username} required />
                         </div>
                         <div className='edit-subcontainer'> 
                             <div className='edit-component-half'>
                                 <label className='label'>Password</label><br/>
-                                <input className='input-box' type='password' name='password' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" placeholder=' 5-20 characters and numbers ' required />
-                            </div>
-                            <div className='edit-component-half'>
-                                <label className='label'>Confirm Password</label><br/>
-                                <input className='input-box' type='password' style={{'background-color': this.state.checkConfirmPassword}} name='confirmPassword' onChange={this.handleChangeConfirmPassword} pattern="[A-Za-z0-9]{5,20}" placeholder='Comfirm your username' required />
+                                <input className='input-box' type='text' name='password' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.password}  required />
                             </div>
                         </div>
                         <div className='edit-component-full'>
                             <label className='label'>Email</label><br/>
-                            <input className='input-box' type='email' name='email' onChange={this.handleChange} placeholder='Enter your email' required />
+                            <input className='input-box' type='email' name='email' onChange={this.handleChange} value={this.state.email} required />
                         </div>
                         <div className='edit-subcontainer'> 
                             <div className='edit-component-half'>
                                 <label className='label'>First Name</label><br/>
-                                <input className='input-box' type='text' name='firstName' onChange={this.handleChange} pattern="[A-Za-z]{5,20}" placeholder=' 5-20 characters ' required />
+                                <input className='input-box' type='text' name='firstName' onChange={this.handleChange} pattern="[A-Za-z]{5,20}" value={this.state.firstName} required />
                             </div>
                             <div className='edit-component-half'>
                                 <label className='label'>Last Name</label><br/>
-                                <input className='input-box' type='text' name='lastName' onChange={this.handleChange}  pattern="[A-Za-z]{5,30}" placeholder='Enter your last name' required />
+                                <input className='input-box' type='text' name='lastName' onChange={this.handleChange}  pattern="[A-Za-z]{5,30}" value={this.state.lastName} required />
                             </div>
                         </div>
                         <div className='edit-subcontainer'> 
@@ -167,12 +163,12 @@ class Edit extends React.Component {
                         </div>
                         <div className='edit-component-full' id='organization-container'>
                                 <label className='label'>Organization</label><br/>
-                                <input className='input-box' type='text' name='organization' onChange={this.handleChange} pattern="[A-Za-z]{5,30}"  placeholder='Enter your organization' required />
+                                <input className='input-box' type='text' name='organization' onChange={this.handleChange} pattern="[A-Za-z]{5,30}"  value={this.state.organization} required />
                         </div>
                         <div className='edit-subcontainer'> 
                             <div className='edit-component-half'>
                                 <label className='label'>National ID</label><br/>
-                                <input className='input-box' type='text' name='nationalId' onChange={this.handleChange} pattern="[0-9]{13}" minlength='13' maxlength='13' placeholder='Enter your National ID' required />
+                                <input className='input-box' type='text' name='nationalId' onChange={this.handleChange} pattern="[0-9]{13}" minlength='13' maxlength='13' value={this.state.nationalId} required />
                             </div>
                             <div className='edit-component-half'>
                                 <label className='label'>Role</label><br/>
