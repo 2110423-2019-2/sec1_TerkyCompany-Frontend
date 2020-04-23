@@ -23,10 +23,10 @@ class WorkshopCreatePage extends React.Component {
         {
             let temp = spl[i].split('=')
             ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
         }
-        if(s==2) {
+        if(s===2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],
@@ -41,7 +41,7 @@ class WorkshopCreatePage extends React.Component {
             window.location.assign('/login');
             return null
         }
-        if (this.state.role != "owner") {
+        if (this.state.role !== "owner") {
             console.log("cookie");
             console.log(this.state);
             window.alert("Participant can't create a workshop, please login as an Owner");

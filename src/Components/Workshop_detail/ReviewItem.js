@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./ReviewItem.css";
 import ReactStars from 'react-rating-stars-component'
 

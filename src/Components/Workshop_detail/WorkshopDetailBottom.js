@@ -15,9 +15,9 @@ class WorkshopDetailBottom extends React.Component {
         }
     }
     async componentWillReceiveProps(nextProps) {
-        let allReview = []
-        let initReviews = this.state.reviews
-        let oldReview = this.state.oldReview
+        // let allReview = []
+        // let initReviews = this.state.reviews
+        // let oldReview = this.state.oldReview
         if (this.props.workshop.id !== nextProps.workshop.id) {
             console.log(nextProps.workshop.id)
             

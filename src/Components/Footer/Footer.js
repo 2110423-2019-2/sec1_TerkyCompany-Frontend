@@ -23,9 +23,9 @@ class Footer extends Component {
                         <div>
                             <h3>Our Workshops</h3>
                             <div id="link-footer">
-                                <div><a id="link-footer" href="#">Tech</a></div>
-                                <div><a id="link-footer" href="#">Art</a></div>
-                                <div><a id="link-footer" href="#">Economic</a></div>
+                                <div><a id="link-footer" href="/browse">Tech</a></div>
+                                <div><a id="link-footer" href="/browse">Art</a></div>
+                                <div><a id="link-footer" href="/browse">Economic</a></div>
                             </div>
                         </div>
                     </div>
@@ -34,8 +34,7 @@ class Footer extends Component {
                         <div>
                             <h3>Collaborating with us</h3>
                             <div id="link-footer">
-                                <div><a id="link-footer" href="#">Collaborating with Matcher</a></div>
-                                <div><a id="link-footer" href="#">About us</a></div>
+                                <div><a id="link-footer" href="/about">About us</a></div>
                                 <div><a id="link-footer" href="/report">Send us feedbacks</a></div>
                             </div>
                         </div>
