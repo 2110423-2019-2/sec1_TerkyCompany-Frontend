@@ -20,8 +20,7 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
-        if(document.cookie !== '')
-        {
+        if (document.cookie !== '') {
             alert('You are already logged in!')
             window.location.assign('/')
         }
@@ -53,24 +52,23 @@ class Login extends React.Component {
                     token: res.data.access_token
                 })
 
-                axios.get('http://localhost:3001/profile',{ headers: {"Authorization" : `Bearer ${this.state.token}`} }).then(
-                    res2 => {
-                        console.log('data after authen: ', res2.data)
-                        const cookies = new Cookies();
-                        cookies.set('username',res2.data.username)
-                        cookies.set('userType',res2.data.userType)
-                    }
-                ).then(window.location.assign('/'))
-
+                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } })
             }
-            else {
+            
+        })
+            .then(res => {
+                if (res !== "fail") {
+                    console.log('data after authen: ', res.data)
+                    const cookies = new Cookies();
+                    cookies.set('username', res.data.username)
+                    cookies.set('userType', res.data.userType)
+                    window.location.assign('/')
+                }
+                
+            },e => {
                 this.setState({ show: true });
                 this.setState({ errorMessage: 'Incorrect username or password' })
-            }
-        }, e => {
-            this.setState({ show: true });
-            this.setState({ errorMessage: 'Incorrect username or password' })
-        })
+            })
 
 
     }
@@ -94,8 +92,8 @@ class Login extends React.Component {
                             <input className='login-button' type='submit' value='Login' />
                         </div>
                         <div className='link-container'>
-                            <div className='link-component'><a className='link' href=''>Create a free Matcher Account</a></div>
-                            <div className='link-component'><a className='link' href=''>forgot your password?</a></div>
+                            <div className='link-component'><a className='link' href='/register'>Create a free Matcher Account</a></div>
+                            <div className='link-component'><a className='link' href='/login'>forgot your password?</a></div>
                         </div>
                     </form>
                 </div>

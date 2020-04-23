@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Workshoplistpage.css';
 import WorkshopItem from '../WorkshopItem/WorkshopItem';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 
 class Workshoplistpage extends Component {
@@ -18,13 +18,6 @@ class Workshoplistpage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/workshops')
-            .then(res => {
-                console.log(res)
-                this.setState({
-                    workshops: res.data
-                })
-            })
 
         //format cookie
         let spl = document.cookie.split(';')
@@ -35,16 +28,39 @@ class Workshoplistpage extends Component {
             let temp = spl[i].split('=')
             // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
 
         }
         
-        if(s==2) {
+        if(s===2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],
                 role: ck['userType']
+            })
+        }
+
+        console.log("state >> ",ck['username'])
+
+        if(ck['userType'] === "owner")
+        {
+            axios.get('http://localhost:3001/workshops/findbyowner/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
+        else if(ck['userType'] === "participant")
+        {
+            axios.get('http://localhost:3001/books/findbyparticipant/'+ck['username'])
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
             })
         }
     }
@@ -58,10 +74,11 @@ class Workshoplistpage extends Component {
                     <div className="side-menu">
                         <div id="textzone">
                             <ul id="link-side">
-                                <li><a id="link-side" href="#">My Workshop</a></li>
-                                <li><a id="link-side" href="#">Certificate</a></li>
-                                <li><a id="link-side" href="#">Payment</a></li>
-                                <li><a id="link-side" href="#">Confirmation</a></li>
+                                <li><a id="link-side" href="/workshoplist">My Workshop</a></li>
+                                {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
+                                <li><a id="link-side" href="/workshoplist">Certificate</a></li>
+                                <li><a id="link-side" href="/workshoplist">Payment</a></li>
+                                <li><a id="link-side" href="/workshoplist">Confirmation</a></li>
                             </ul>
                         </div>
                     </div>

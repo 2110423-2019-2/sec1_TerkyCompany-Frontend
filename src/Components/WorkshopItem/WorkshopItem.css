@@ -32,6 +32,7 @@ p {
     hyphens: auto;
 }
 
-h3 {
+#item-h3 {
     align-self: center;
+    color: black !important;
 }

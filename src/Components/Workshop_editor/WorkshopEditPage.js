@@ -11,13 +11,20 @@ class WorkshopEditPage extends React.Component {
             content: [],
             username : "",
             role : "",
+            workshopID : "",
+            urlname : "",
         }
         
     }
 
     componentWillMount(){
         //format cookie
-        console.log("component did mount")
+        const { workshopId,username} = this.props.match.params
+        this.setState({
+            workshopID:workshopId,
+            urlname:username,
+        })
+        console.log("component did mount")  
         let spl = document.cookie.split(';')
         let ck = {}
         let s=0
@@ -26,10 +33,10 @@ class WorkshopEditPage extends React.Component {
             let temp = spl[i].split('=')
             // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
         }
-        if(s==2) {
+        if(s===2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],
@@ -37,7 +44,10 @@ class WorkshopEditPage extends React.Component {
             })
         }
     }
-    
+    componentDidMount() {
+        console.log(this.state.workshopID)
+    }
+
     render() {
         if(this.state.isLoading) return null
         if (document.cookie === ""){ 
@@ -45,7 +55,7 @@ class WorkshopEditPage extends React.Component {
             window.location.assign('/login');
             return null
         }
-        if (this.state.role != "owner") {
+        if (this.state.role !== "owner") {
             console.log("cookie");
             console.log(this.state);
             window.alert("Participant can't edit a workshop, please login as an Owner");
@@ -61,7 +71,7 @@ class WorkshopEditPage extends React.Component {
                     <h1>Edit Workshop</h1>
                     <div className="dropdown-divider"></div>
                     <div>
-                        <EditForm id="form"/>
+                        <EditForm id="form" workshopid={this.state.workshopID} urlUsername={this.state.urlname}/>
                     </div>
                 </div>
                 <div id="sidebar">

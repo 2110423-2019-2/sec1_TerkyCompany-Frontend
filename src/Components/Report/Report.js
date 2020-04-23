@@ -1,6 +1,6 @@
 import React from 'react';
 import './Report.css';
-import Axios from 'axios';
+import axios from 'axios';
 
 class Report extends React.Component {
     constructor(props) {
@@ -9,12 +9,43 @@ class Report extends React.Component {
             isLoading: false,
             subject: "website",
             description:"",
-        }   
+            username: "",
+            role: "",
+        }
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmitReport = this.handleSubmitReport.bind(this);
     }
 
     componentDidMount() {
+
+        //format cookie
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
+                s+=1 
+
+        }
+        
+        if(s===2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
+
+        if(document.cookie === '') {
+            // alert("Please login first!")
+            window.location.assign("/login")
+        }
+
     }
 
     handleChange(e) {
@@ -23,10 +54,19 @@ class Report extends React.Component {
 
     handleSubmitReport(e) {
         //handle backend
-        axios.post(`http://localhost:3001/workshops/create`, sendData ).then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
+        let sendData ={
+          'subject': this.state.subject,
+          'description': this.state.description,
+          'memberT' : this.state.username,
+          'memberTUsername': this.state.username,
+        }
+        console.log("sending")
+        console.log(sendData)
+        axios.post('http://localhost:3001/feedbacks/create', sendData ).then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+        
     }
 
     render() {

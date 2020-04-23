@@ -4,7 +4,7 @@
     align-items: stretch;
     width: 1050px;
     height: 450px;
-    background-color: #E48D26 ;    
+    background-color: #182978;    
     border-radius: 80px 0px 225px 80px;
     
 }
@@ -14,7 +14,7 @@
     width: 45%;
     height: 100%;
     border-radius: 18% 0% 0% 18%;
-    background-color:#FADCAE;
+    background-color:#6688CC;
     
 }
 
@@ -35,7 +35,7 @@
     height: 25%;
 }
 #workshopName h2 {
-    color: #FFF0D9;
+    color: whitesmoke;
     font-size: 45px ;
 }
 
@@ -47,7 +47,7 @@
     height: 10%;
 }
 .desc p{
-    color : #FADCAE;
+    color : whitesmoke;
     font-size: 30px;
     margin:0px;
 }

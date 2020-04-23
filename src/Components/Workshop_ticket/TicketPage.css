@@ -13,17 +13,20 @@
     height: 10vh;
 }
 #button-wrapper button {
-    background-color: #FADCAE;
+    background-color: #182978;
+    color: white;
     font-size: 30px;
+    font-weight: bold;
     width: 100%;
     height: 100%;
     border-radius: 10px;
 
 }
 #button-wrapper button:hover {
-    background-color: #FFF0D9;
+    background-color: #ACBFE6;
+    color: black;
 }
 h1 {
-    color: burlywood;
+    color: #182978;
     padding-top: 40px;
 }

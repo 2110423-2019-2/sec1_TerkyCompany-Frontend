@@ -2,8 +2,10 @@
     display: flex;
     justify-content: center;
     margin: 0;
-    padding: 2% 10%;
-    background-color : #fafafa;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    background-image: #FFFFFF;
 }
 
 #box {
@@ -16,8 +18,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgba(204, 115, 10, 0.12);
+    background-color: #ACBFE6;
     padding: 2%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 16px;
 }
 .header-detail {
     align-self: left;
@@ -31,7 +36,7 @@
     height: auto;
     display: flex;
     margin: 0;
-    background-color: #FFE8C7;
+    background-color: #ACBFE6;
 }
 
 .body-details {

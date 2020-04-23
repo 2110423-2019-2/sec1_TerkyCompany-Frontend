@@ -53,7 +53,7 @@ class Register extends React.Component {
         console.log(this.state.dateOfBirth)
         console.log(typeof this.state.dateOfBirth)
         
-        let date  = this.convertMonthToDate(this.state.dateOfBirth)
+        // let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
             "username": this.state.username,
             "password":this.state.password,
@@ -64,7 +64,8 @@ class Register extends React.Component {
             "isSuspended": false,
             "userType": this.state.registerFlag,
             "organization": this.state.organization,
-            "nationalID": this.state.nationalId
+            "nationalID": this.state.nationalId,
+            "profileURL": "test.jpg"
         }
         console.log("sending")
         console.log(sendData)

@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #FFFAE2;
+    background-color: #182978;
     font-family: B612;
     font-size: 18px !important;
 }
@@ -14,3 +14,6 @@ button {
     border: 2px solid !important;
 }
 
+.nav-link {
+    color: rgb(191, 203, 219) !important;
+}

@@ -18,7 +18,7 @@ class WorkshopDetailHeader extends React.Component {
         return(
             <div className='header'>
                 <div className='header-image' id='box'>
-                    <img src={workshop.pictureUrl} width='1000em' height='400em' />
+                    <img alt='' src={workshop.pictureUrl} width='1000em' height='400em' />
                 </div>
                 <div className='header-details' id='box'>
                     <div className='header-detail' id='name'>{workshop.name}</div>
@@ -26,7 +26,7 @@ class WorkshopDetailHeader extends React.Component {
                     <div className='header-detail' id='time'>{workshop.startTime} - {workshop.endTime}</div>
                     <div className='header-detail' id='seat'>{workshop.notAvailableSeat}/{workshop.totalSeat}</div>
                     <div className='header-detail' id='cost'>{workshop.cost} Baht</div>
-                    <Button role={this.props.role} username={this.props.username} />
+                    <Button role={this.props.role} username={this.props.username} workshop={this.props.workshop} />
                 </div>
             </div>
         );
