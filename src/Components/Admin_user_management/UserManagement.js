@@ -19,7 +19,24 @@ class UserManagement extends Component {
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3001/members-t/').then(res => {
+            //console.log(res.data)
+            let initUsers = res.data
+            let initState = this.state
+                Object.values(initUsers).forEach(element => {
+                    let getUser = {
+                        "username":element.username,
+                        "role":element.userType,
+                        "isBanned":element.isSuspended
+                        }
+                    //console.log(getUser)
+                    console.log(initState.users)
+                    initState.users.push(getUser)
+                    //console.log(initState.users)
+                })
+                this.setState(initState)
 
+        })
     }
 
     showUser = (user) => {

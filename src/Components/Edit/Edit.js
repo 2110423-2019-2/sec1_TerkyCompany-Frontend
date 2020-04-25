@@ -30,6 +30,16 @@ class Edit extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(this);
     }
+    convertTimeStampToTime = (timeStamp) => {
+        let time = timeStamp.slice(11,16)
+        let date = timeStamp.slice(0,10)
+        let timeAndDate = {"time":time, "date":date}
+        return timeAndDate
+    }
+    convertDateAndTimeToTimeStamp = (date, time) => {
+        let timeStamp = `${date}T${time}:00.000Z`
+        return timeStamp
+    }
 
     componentWillMount(){
 
@@ -37,6 +47,29 @@ class Edit extends React.Component {
 
     componentDidMount(){
         // get init data into state
+        const { username} = this.props.match.params
+        axios.get(`http://localhost:3001/members-t/findbyusername/${username}`).then(res => {
+            //console.log(res.data)
+            let initUsers = res.data
+            let initState = this.state
+            console.log(initUsers)
+            initState = {
+                "username": initUsers.username,
+                "password": '',
+                "confirmPassword": '',
+                "email": initUsers.email,
+                "firstName": initUsers.fullname.split(" ")[0],
+                "lastName": initUsers.fullname.split(" ")[1],
+                "dateOfBirth": new Date(initUsers.dateOfBirth),
+                "gender": initUsers.gender,
+                "organization": initUsers.organization,
+                "nationalId": initUsers.nationalID,
+                "registerFlag": initUsers.userType,
+            }
+            console.log(initState)
+            this.setState(initState)
+
+        })
     }
 
     handleChangeDate(value,e){
