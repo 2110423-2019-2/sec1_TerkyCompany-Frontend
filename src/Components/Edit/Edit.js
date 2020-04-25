@@ -52,8 +52,7 @@ class Edit extends React.Component {
             //console.log(res.data)
             let initUsers = res.data
             let initState = this.state
-            console.log(initState.dateOfBirth)
-            console.log(initUsers.dateOfBirth)
+            console.log(initUsers)
             initState = {
                 "username": initUsers.username,
                 "password": '',
@@ -67,7 +66,7 @@ class Edit extends React.Component {
                 "nationalId": initUsers.nationalID,
                 "registerFlag": initUsers.userType,
             }
-                
+            console.log(initState)
             this.setState(initState)
 
         })
