@@ -78,16 +78,19 @@ class Button extends React.Component {
             this.creditCardConfigure()
             this.omiseCardHandler()
         }
+        else if (this.props.role == 'admin') {
+            window.location.assign("/management/workshop/"+this.props.workshop.id+"/edit")
+        }
         else {
             //goto edit page
             ///workshopeditor/:username/:workshopId
-            window.location.assign("/workshopeditor/"+this.props.username+"/"+this.props.workshop.id)
+            window.location.assign("/workshopeditor/"+this.props.workshop.id)
         }
     }
 
 
     render() {
-        if (this.props.role === 'owner') {
+        if (this.props.role === 'owner' || this.props.role === 'admin') {
             return <div>
                 <button id='credit-card' className='button' onClick={this.handleClick} >Edit</button>
             </div>
