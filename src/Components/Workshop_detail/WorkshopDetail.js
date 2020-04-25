@@ -51,7 +51,7 @@ class WorkshopDetail extends React.Component {
                     place: initData.place,
                     startTime: this.convertTimeStampToTime(initData.startTime).time,
                     endTime: this.convertTimeStampToTime(initData.endTime).time,
-                    pictureUrl: '/test.jpg',
+                    pictureUrl: res.data.pictureURL,
                     cost: res.data.cost,
                     notAvailableSeat: res.data.reservedSeat,
                     totalSeat: res.data.capacity,

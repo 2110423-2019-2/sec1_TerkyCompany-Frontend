@@ -294,60 +294,69 @@ class Form extends React.Component {
         }
         this.setState({ errMsg: err })
         if (valid) {
-            let nowState = this.state.content
-            // const formData = new FormData();
-            // formData.append('myImage',this.state.workshopPic);
-            console.log("image > ",this.state.workshopPic)
-            let sendData = {
-                "image": this.state.workshopPic,
-                "request": {
-                    "startTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.sTime),
-                    "endTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.eTime),
-                    "capacity": nowState.cap,
-                    "cost": nowState.cost,
-                    "name": nowState.workshopName,
-                    "place": nowState.place,
-                    "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate, nowState.dtime),
-                    "publishTime": "2015-12-20T03:01:01.000Z",
-                    "description": nowState.description,
-                    "speakerName": nowState.speakerName,
-                    "pictureURL": "",
-                    "owner": nowState.owner
-                }
-            }
+            // let nowState = this.state.content
+            let formData = new FormData();
+            formData.append('upload',this.state.content.workshopPic);
+            console.log(formData)
+            console.log("image > ",this.state.content.workshopPic)
             console.log("sending")
-            console.log(sendData)
-            axios.post(`http://localhost:3001/workshops/create`, sendData).then(res => {
-                //console.log(res);
-                console.log(res.data);
-                //console.log(nowState.tags)
-                let workshopId = res.data.id
-                nowState.tags.forEach(element => {
-                    let sendTag = {
-                        "workshop": workshopId,
-                        "tag": element.name,
-                        "workshopId": workshopId
+            // console.log(sendData)
+            // console.log(this.state.workshopPic)
+            let data = {upload:this.state.content.workshopPic}
+            console.log(data)
+            axios.post(`http://localhost:3001/workshops/fileupload`,formData).then(res=>{
+                console.log(res.data)
+                let nowState = this.state.content
+                let sendData = {
+                    "image": res.data,
+                    "request": {
+                        "startTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.sTime),
+                        "endTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.eTime),
+                        "capacity": nowState.cap,
+                        "cost": nowState.cost,
+                        "name": nowState.workshopName,
+                        "place": nowState.place,
+                        "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate, nowState.dtime),
+                        "publishTime": "2015-12-20T03:01:01.000Z",
+                        "description": nowState.description,
+                        "speakerName": nowState.speakerName,
+                        "pictureURL": res.data,
+                        "owner": nowState.owner
                     }
-                    console.log(sendTag)
-                    axios.post(`http://localhost:3001/tags/create`, sendTag)
                 }
-                )
-            }
-            )
+                console.log("send:",sendData)
+                axios.post(`http://localhost:3001/workshops/create`, sendData.request).then(res => {
+                    //console.log(res);
+                    console.log(res.data);
+                    //console.log(nowState.tags)
+                    let workshopId = res.data.id
+                    nowState.tags.forEach(element => {
+                        let sendTag = {
+                            "workshop": workshopId,
+                            "tag": element.name,
+                            "workshopId": workshopId
+                        }
+                        console.log(sendTag)
+                        axios.post(`http://localhost:3001/tags/create`, sendTag)
+                    }
+                    )
+            })
+            
 
-            // const config = {
-            //     headers: {
-            //         'image': formData
-            //     } 
-            // };
+            const config = {
+                headers: {
+                    'image': formData
+                } 
+            };
             // axios.post(`/localhost:3001/workshops/WORKSHOPID/picture`,config)
             //     .then((response) => {
             //         alert("The file is successfully uploaded");
             //     }).catch((error) => {
             // });
-            // alert("submited picture")
+            alert("submited picture")
 
-        }
+        })
+    }
         else {
             alert("Please valid your information")
         }
