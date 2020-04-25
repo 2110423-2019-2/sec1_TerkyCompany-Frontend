@@ -33,7 +33,7 @@ class InputBox extends Component {
                 </div>
             )
         }
-        if(this.props.type === "file") {
+        else if(this.props.type === "file") {
             return (
                 <div>
                     <label >{this.props.label}</label>
@@ -43,7 +43,7 @@ class InputBox extends Component {
                 </div>
             )
         }
-        if(this.props.type === "text") {
+        else if(this.props.type === "text") {
             return (
                 <div>
                     <label>{this.props.label}</label>
@@ -53,7 +53,7 @@ class InputBox extends Component {
                 </div>
             )
         }
-        if(this.props.type === "dropD") {
+        else if(this.props.type === "dropD") {
             return (
                 <div>
                     <label>{this.props.label}</label>
