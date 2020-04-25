@@ -19,12 +19,22 @@ class UserManagement extends Component {
     }
 
     componentDidMount() {
+        axios.get('http://localhost:3001/members-t/').then(res => {
+            console.log(res.data)
+            let initUsers = res.data
+            let users = []
+            let initState = this.state
+                Object.values(initUsers).forEach(element => {
+                    initState.users = initState.users.concat(`${element.username}`)
+                })
+                this.setState(initState)
 
+        })
     }
 
     showUser = (user) => {
         return (
-            <div className="col-md">
+            <div className="col-md">tea
                 <UserItem username={user}/>
             </div>
         )
