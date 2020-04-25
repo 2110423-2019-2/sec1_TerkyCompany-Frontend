@@ -232,7 +232,7 @@ class EditForm extends Component {
         this.setState({content:content})
         console.log(this.state.content)
         console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
-    }
+    }   
 
     convertTimeStampToTime = (timeStamp) => {
         let time = timeStamp.slice(11,16)
