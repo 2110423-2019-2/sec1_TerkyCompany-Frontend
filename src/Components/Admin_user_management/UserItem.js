@@ -7,9 +7,9 @@ class UserItem extends React.Component {
         super(props);
         this.state = {
             isLoading: false,
-            username: this.props.username,
-            role:"Owner",
-            isBanned:false
+            username: this.props.user.username,
+            role: this.props.user.role,
+            isBanned: this.props.user.isBanned
         }
     }
 

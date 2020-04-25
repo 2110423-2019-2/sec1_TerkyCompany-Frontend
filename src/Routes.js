@@ -38,7 +38,6 @@ class Routes extends Component {
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
                         <Route exact path="/login" component={Login} />
-                        <Route exact path="/workshopeditor" component={WorkshopeditPage} />
                         <Route exact path="/browse" component={WorkshopfilterPage} />
                         <Route exact path="/ticket" component={TicketPage} />
                         <Route path="/ticket/:ID" component={TicketPage} />
@@ -50,6 +49,7 @@ class Routes extends Component {
                         <Route exact path="/management/user" component={UserManagement} />
                         <Route exact path="/management/workshop" component={WorkshopManagement} />
                         <Route exact path="/management/user/:username/edit" component={Edit} />
+                        <Route exact path="/management/workshop/:workshopId/edit" component={WorkshopeditPage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />

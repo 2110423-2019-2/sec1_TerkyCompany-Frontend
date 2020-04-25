@@ -11,7 +11,7 @@ class UserManagement extends Component {
         super(props)
         this.state = {
             isLoading: true,
-            users: ["user1","user2","user3","user4"],
+            users: [{username:"user1",role:"Owner",isBanned:false},{username:"user2",role:"Participant",isBanned:true}],
             username: '',
             role: ''
             
@@ -25,7 +25,7 @@ class UserManagement extends Component {
     showUser = (user) => {
         return (
             <div className="col-md">
-                <UserItem username={user}/>
+                <UserItem user={user}/>
             </div>
         )
     }
@@ -54,7 +54,7 @@ class UserManagement extends Component {
                     <div className="show-list">
                         <div className="list-header">
                             <h1 id="my-workshop-title">User Management
-                            <Button variant="primary" className="user-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
+                            <Button variant="primary" className="plus-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
                             </h1>
                         </div>
                         <div className="dropdown-divider"></div>
