@@ -37,7 +37,7 @@ class EditForm extends Component {
                 dtime:null,
                 description:'',
                 publishTime:'',
-                tags:null
+                tags:[]
             },
             options: [{name: 'business', id: 1},{name: 'data', id: 2},{name: 'design', id: 3},{name:"technology",id:4}],
             selectedValues: [],
@@ -309,6 +309,7 @@ class EditForm extends Component {
                 }
                 //console.log(Object.values(initState.selectedValues))
                 initState.selectedValues = initState.selectedValues.concat(tagData)
+                initState.content.tags.push(tagData)
             })
             this.setState(initState)
             //console.log(this.state.selectedValues)
