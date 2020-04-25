@@ -99,7 +99,7 @@ class Edit extends React.Component {
             "fullname": this.state.firstName + " " + this.state.lastName,
             "gender": this.state.gender,
             "isSuspended": false,
-            "userType": this.state.editFlag,
+            "userType": this.state.registerFlag,
             "organization": this.state.organization,
             "nationalID": this.state.nationalId,
             "profileURL": "test.jpg"
@@ -187,8 +187,10 @@ class Edit extends React.Component {
                             <div className='edit-component-half'>
                                 <label className='label'>Gender</label><br/>
                                 <div className='edit-subcontainer-radio' onChange={this.handleChange} >
-                                    <input className='input-radio' id='r1' type='radio' value='male' name='gender' defaultChecked/>Male
-                                    <input className='input-radio' id='r2' type='radio' value='female' name='gender'/>Female
+                                    {this.state.gender == 'male' && <input className='input-radio' id='r1' type='radio' value='male' name='gender' defaultChecked>Male</input>}
+                                    {this.state.gender == 'male' && <input className='input-radio' id='r2' type='radio' value='female' name='gender'>Female</input>}
+                                    {this.state.gender == 'female' && <input className='input-radio' id='r1' type='radio' value='male' name='gender'>Male</input>}
+                                    {this.state.gender == 'female' && <input className='input-radio' id='r2' type='radio' value='female' name='gender' defaultChecked>Female</input>}
                                 </div>
                             </div>
                         </div>
@@ -204,8 +206,10 @@ class Edit extends React.Component {
                             <div className='edit-component-half'>
                                 <label className='label'>Role</label><br/>
                                 <div className='edit-subcontainer-radio' onChange={this.handleChange} >
-                                    <input className='input-radio' id='r3' type='radio' value='owner' name='editFlag' defaultChecked/>Owner
-                                    <input className='input-radio' id='r4' type='radio' value='participant' name='editFlag'/>Participant
+                                    {this.state.registerFlag == 'owner' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag' defaultChecked>Owner</input>}
+                                    {this.state.registerFlag == 'owner' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag'>Participant</input>}
+                                    {this.state.registerFlag == 'participant' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag'>Owner</input>}
+                                    {this.state.registerFlag == 'participant' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag' defaultChecked>Participant</input>}
                                 </div>
                             </div>
                         </div>
