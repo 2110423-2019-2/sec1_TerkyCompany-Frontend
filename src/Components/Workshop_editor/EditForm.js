@@ -44,6 +44,7 @@ class EditForm extends Component {
             options: [{name: 'business', id: 1},{name: 'data', id: 2},{name: 'design', id: 3},{name:"technology",id:4}],
             selectedValues: [],
             initData: [],
+            usernam :'',
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -158,7 +159,7 @@ class EditForm extends Component {
         this.setState({errMsg:err, content:content})
     }
     onCorrectUser = (ownerUser,loginUser,urlUser) => {
-        return ownerUser == loginUser && loginUser == urlUser && urlUser==ownerUser
+        return (ownerUser == loginUser ) || (this.state.role == "admin")
     }
 
     submitclick = () => {
@@ -249,6 +250,7 @@ class EditForm extends Component {
     componentDidMount() {
         //get workshopid from workshopEditPage
         //console.log(this.props.workshopid)
+        
         axios.get(`http://localhost:3001/workshops/${this.props.workshopid}`).then(res => { 
             let initData = res.data
             console.log(initData.owner)

@@ -49,7 +49,7 @@ class Routes extends Component {
                         <Route exact path="/management/user" component={UserManagement} />
                         <Route exact path="/management/workshop" component={WorkshopManagement} />
                         <Route exact path="/management/user/:username/edit" component={Edit} />
-                        <Route exact path="/management/workshop/:workshopId/edit" component={WorkshopeditPage} />
+                        <Route exact path="/management/workshop/:workshopId/:username/edit" component={WorkshopeditPage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />
