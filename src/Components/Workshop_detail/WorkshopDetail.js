@@ -51,7 +51,7 @@ class WorkshopDetail extends React.Component {
                     place: initData.place,
                     startTime: this.convertTimeStampToTime(initData.startTime).time,
                     endTime: this.convertTimeStampToTime(initData.endTime).time,
-                    pictureUrl: '/test.jpg',
+                    pictureUrl: res.data.pictureURL,
                     cost: res.data.cost,
                     notAvailableSeat: res.data.reservedSeat,
                     totalSeat: res.data.capacity,
@@ -80,12 +80,12 @@ class WorkshopDetail extends React.Component {
             let temp = spl[i].split('=')
             // console.log('temp: ',temp)
             ck[temp[0].trim()] = temp[1]
-            if (temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if (temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s += 1
 
         }
 
-        if (s == 2) {
+        if (s === 2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],

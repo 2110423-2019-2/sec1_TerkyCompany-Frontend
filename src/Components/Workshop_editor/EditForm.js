@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import './EditForm.css'
 import InputBox from './InputBox'
-import axios from 'axios'
-import { useParams, Route } from 'react-router-dom';
-import {state} from './WorkshopEditPage' 
+import axios from 'axios' 
 
 class EditForm extends Component {
     constructor(props) {
@@ -158,7 +156,7 @@ class EditForm extends Component {
         this.setState({errMsg:err, content:content})
     }
     onCorrectUser = (ownerUser,loginUser,urlUser) => {
-        return ownerUser == loginUser && loginUser == urlUser && urlUser==ownerUser
+        return ownerUser === loginUser && loginUser === urlUser && urlUser===ownerUser
     }
 
     submitclick = () => {
@@ -310,10 +308,10 @@ class EditForm extends Component {
                 let temp = spl[i].split('=')
                 console.log('temp: ',temp)
                 ck[temp[0].trim()]=temp[1]
-                if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+                if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                     s+=1 
             }
-            if(s==2) {
+            if(s===2) {
                 this.setState({
                     isLoading: false,
                     username: ck['username'],

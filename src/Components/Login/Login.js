@@ -92,8 +92,8 @@ class Login extends React.Component {
                             <input className='login-button' type='submit' value='Login' />
                         </div>
                         <div className='link-container'>
-                            <div className='link-component'><a className='link' href=''>Create a free Matcher Account</a></div>
-                            <div className='link-component'><a className='link' href=''>forgot your password?</a></div>
+                            <div className='link-component'><a className='link' href='/register'>Create a free Matcher Account</a></div>
+                            <div className='link-component'><a className='link' href='/login'>forgot your password?</a></div>
                         </div>
                     </form>
                 </div>
