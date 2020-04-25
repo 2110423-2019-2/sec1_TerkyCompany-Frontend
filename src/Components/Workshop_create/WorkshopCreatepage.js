@@ -23,10 +23,10 @@ class WorkshopCreatePage extends React.Component {
         {
             let temp = spl[i].split('=')
             ck[temp[0].trim()]=temp[1]
-            if(temp[0].trim() == 'username' || temp[0].trim() == 'userType')
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
         }
-        if(s==2) {
+        if(s===2) {
             this.setState({
                 isLoading: false,
                 username: ck['username'],

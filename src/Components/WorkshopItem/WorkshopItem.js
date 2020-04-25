@@ -7,7 +7,7 @@ class WorkshopItem extends Component {
         console.log("check item >", this.props.item.id)
         this.state = {
             workshop_id: this.props.item.id,
-            image_name: "test.jpg",
+            image_name: this.props.item.pictureURL,
             workshop_name: this.props.item.name,
             workshop_detail: this.props.item.description.slice(0, 90),
             start: this.convertTimeStampToTime(this.props.item.startTime),
@@ -41,7 +41,7 @@ class WorkshopItem extends Component {
         if (this.state.isLoading) return null
         return (
             <div onClick={this.goto} className="workshop-item" >
-                <img src={this.state.image_name} height="200" width="300"></img>
+                <img alt='' src={this.state.image_name} height="200" width="300"></img>
                 <h3 id="item-h3" >{this.state.workshop_name}</h3>
                 <p>{this.state.workshop_detail}</p>
                 <h6>{this.state.start.date} {this.state.start.time} to {this.state.end.date} {this.state.end.time}</h6>
