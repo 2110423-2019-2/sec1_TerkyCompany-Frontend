@@ -178,30 +178,41 @@ class EditForm extends Component {
         }
         else {
             let nowState = this.state.content
-            let sendData = {
-                "image" :this.state.workshopPic,
-                "req" : {
-                "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
-                "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
-                "capacity": nowState.cap,
-                "cost": nowState.cost,
-                "name": nowState.workshopName,
-                "place": nowState.place,
-                "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
-                "publishTime": "2015-12-20T03:01:01.000Z",
-                "description": nowState.description,
-                "speakerName": nowState.speakerName,
-                "pictureURL": "",
-                "owner": nowState.owner}
-            }
+            let formData = new FormData();
+            formData.append('upload',this.state.content.workshopPic);
             console.log("sending")
             console.log(this.props.workshopid)
-            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
+            axios.post(`http://localhost:3001/workshops/fileupload`,formData).then(res=>{
+                console.log(res.data)
+                let sendData = {
+                    "image" :res.data,
+                    "req" : {
+                    "startTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.sTime),
+                    "endTime": this.convertDateAndTimeToTimeStamp(nowState.date,nowState.eTime),
+                    "capacity": nowState.cap,
+                    "cost": nowState.cost,
+                    "name": nowState.workshopName,
+                    "place": nowState.place,
+                    "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate,nowState.dtime),
+                    "publishTime": "2015-12-20T03:01:01.000Z",
+                    "description": nowState.description,
+                    "speakerName": nowState.speakerName,
+                    "pictureURL": res.data,
+                    "owner": nowState.owner}
+                }
+                axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
                 console.log(res);
                 console.log(res.data);
+                })
+                
             })
+            /*axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
+                console.log(res);
+                console.log(res.data);
+            })*/
             alert("Submitted")
             //console.log(this.state.content)
+            //---------------------------------------------------tag-------------------------------
             axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
                console.log(res)
             })
