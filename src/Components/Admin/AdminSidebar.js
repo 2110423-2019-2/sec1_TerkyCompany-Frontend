@@ -21,8 +21,8 @@ class AdminSidebar extends Component {
             <div className="side-menu">
                 <div id="textzone">
                     <ul id="link-side">
-                        <li><a id="link-side" href='/management/user'>Workshop Management</a></li>
-                        <li><a id="link-side" href='/management/workshop'>User Management</a></li>
+                        <li><a id="link-side" href='/management/workshop'>Workshop Management</a></li>
+                        <li><a id="link-side" href='/management/user'>User Management</a></li>
                     </ul>
                 </div>
             </div>

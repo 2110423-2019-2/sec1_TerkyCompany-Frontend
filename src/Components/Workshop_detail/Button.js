@@ -78,6 +78,9 @@ class Button extends React.Component {
             this.creditCardConfigure()
             this.omiseCardHandler()
         }
+        else if (this.props.role == 'admin') {
+            window.location.assign("/management/workshop/"+this.props.workshop.id+"/edit")
+        }
         else {
             //goto edit page
             ///workshopeditor/:username/:workshopId

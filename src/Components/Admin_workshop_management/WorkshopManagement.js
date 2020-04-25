@@ -36,7 +36,7 @@ class WorkshopManagement extends React.Component {
                 <div className="show-list">
                     <div className="list-header">
                         <h1 id="my-workshop-title">Workshop Management
-                        <Button variant="primary" className="user-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
+                        <Button variant="primary" className="plus-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
                         </h1>
                     </div>
                     <div className="dropdown-divider"></div>

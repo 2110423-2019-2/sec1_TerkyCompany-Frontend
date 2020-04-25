@@ -11,7 +11,7 @@ class UserManagement extends Component {
         super(props)
         this.state = {
             isLoading: true,
-            users: ["user1","user2","user3","user4"],
+            users: [{username:"user1",role:"Owner",isBanned:false},{username:"user2",role:"Participant",isBanned:true}],
             username: '',
             role: ''
             
@@ -20,12 +20,19 @@ class UserManagement extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/members-t/').then(res => {
-            console.log(res.data)
+            //console.log(res.data)
             let initUsers = res.data
-            let users = []
             let initState = this.state
                 Object.values(initUsers).forEach(element => {
-                    initState.users = initState.users.concat(`${element.username}`)
+                    let getUser = {
+                        "username":element.username,
+                        "role":element.userType,
+                        "isBanned":element.isSuspended
+                        }
+                    //console.log(getUser)
+                    console.log(initState.users)
+                    initState.users.push(getUser)
+                    //console.log(initState.users)
                 })
                 this.setState(initState)
 
@@ -34,8 +41,8 @@ class UserManagement extends Component {
 
     showUser = (user) => {
         return (
-            <div className="col-md">tea
-                <UserItem username={user}/>
+            <div className="col-md">
+                <UserItem user={user}/>
             </div>
         )
     }
@@ -64,7 +71,7 @@ class UserManagement extends Component {
                     <div className="show-list">
                         <div className="list-header">
                             <h1 id="my-workshop-title">User Management
-                            <Button variant="primary" className="user-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
+                            <Button variant="primary" className="plus-button" size="sm" onClick={() => this.handleAdd()}>+</Button>
                             </h1>
                         </div>
                         <div className="dropdown-divider"></div>
