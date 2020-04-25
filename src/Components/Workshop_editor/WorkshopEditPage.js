@@ -55,7 +55,7 @@ class WorkshopEditPage extends React.Component {
             window.location.assign('/login');
             return null
         }
-        if (this.state.role != "owner") {
+        if (this.state.role != "owner" && this.state.role != "admin") {
             console.log("cookie");
             console.log(this.state);
             window.alert("Participant can't edit a workshop, please login as an Owner");

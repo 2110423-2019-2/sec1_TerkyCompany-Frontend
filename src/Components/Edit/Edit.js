@@ -122,11 +122,9 @@ class Edit extends React.Component {
                             <label className='label'>Username</label><br/>
                             <input className='input-box' type='text' name='username' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.username} required />
                         </div>
-                        <div className='edit-subcontainer'> 
-                            <div className='edit-component-half'>
-                                <label className='label'>Password</label><br/>
-                                <input className='input-box' type='text' name='password' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.password}  required />
-                            </div>
+                        <div className='edit-component-full'>
+                            <label className='label'>Password</label><br/>
+                            <input className='input-box' type='text' name='password' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.password}  required />
                         </div>
                         <div className='edit-component-full'>
                             <label className='label'>Email</label><br/>

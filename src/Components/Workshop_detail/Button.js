@@ -84,7 +84,7 @@ class Button extends React.Component {
         else {
             //goto edit page
             ///workshopeditor/:username/:workshopId
-            window.location.assign("/workshopeditor/"+this.props.username+"/"+this.props.workshop.id)
+            window.location.assign("/workshopeditor/"+this.props.workshop.id)
         }
     }
 
