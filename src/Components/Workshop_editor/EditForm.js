@@ -145,9 +145,10 @@ class EditForm extends Component {
     onSelect = (selectedList, selectedItem) => {
         let err = this.state.errMsg 
         let content = this.state.content 
+        let selValue = this.state.selectedValues
         err.tags = selectedList.length === 0 ? "This cannot be empty" : ''
         content.tags = selectedList
-        this.setState({errMsg:err, content:content})
+        this.setState({errMsg:err, content:content, selValue:selectedList})
     }
 
     onRemove = (selectedList, removedItem) => {
@@ -194,8 +195,8 @@ class EditForm extends Component {
                 "owner": nowState.owner}
             }
             console.log("sending")
-            //console.log(sendData)
-            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData ).then(res => {
+            console.log(this.props.workshopid)
+            axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
                 console.log(res);
                 console.log(res.data);
             })
@@ -205,7 +206,8 @@ class EditForm extends Component {
                console.log(res)
             })
             console.log(this.state.selectedValues)
-            this.state.selectedValues.forEach(element=>{let sendTag = {
+            console.log(this.state.content.tags)
+            this.state.content.tags.forEach(element=>{let sendTag = {
                     "workshop":this.props.workshopid,
                     "tag":element.name,
                     "workshopId":this.props.workshopid

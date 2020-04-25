@@ -20,7 +20,7 @@ class WorkshopEditPage extends React.Component {
     componentWillMount(){
         //format cookie
         const { workshopId,username} = this.props.match.params
-        console.log(username)
+        console.log(workshopId)
         this.setState({
             workshopID:workshopId,
             urlname:username,
