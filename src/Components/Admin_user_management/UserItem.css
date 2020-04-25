@@ -26,9 +26,9 @@
 .plus-button {
     margin-left: 1.5em;
     padding: 0px;
-    height: 50px;
-    width: 50px;
-    font-size: larger;
+    height: 60px;
+    width: 60px;
+    font-size: 30px !important; 
 }
 
 .in-h5 {
