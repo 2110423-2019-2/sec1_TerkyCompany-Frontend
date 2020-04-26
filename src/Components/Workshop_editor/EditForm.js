@@ -282,21 +282,7 @@ class EditForm extends Component {
     }
     cancelclick() {
         console.log("cancel clicked")
-        console.log(window.location.host)
-        let err = this.state.errMsg 
-        let content = this.state.content
-        content.workshopName = "miw.tanakorn"
-        this.setState({errMsg:err, content:content})
-        console.log(this.state.content);
-        
-        //let content = this.state.content
-        content.workshopName = "miw.tanakorn"
-        let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
-        content.dtime = timeAndDate["time"]
-        content.ddate = timeAndDate["date"]
-        this.setState({content:content})
-        console.log(this.state.content)
-        console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+        window.location.assign('/workshop-detail/'+this.props.workshopid);
     }   
 
     convertTimeStampToTime = (timeStamp) => {
