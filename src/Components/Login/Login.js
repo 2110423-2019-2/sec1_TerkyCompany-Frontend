@@ -47,12 +47,14 @@ class Login extends React.Component {
             console.log(res.status)
             if (res.status === 201) {
                 //pass login
+                if(res.data.isSuspended !== true){
                 console.log(res.data.access_token)
                 this.setState({
                     token: res.data.access_token
                 })
 
-                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } })
+                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } })}
+                this.setState({ errorMessage: 'you are banned' })
             }
             
         })
