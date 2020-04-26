@@ -11,7 +11,7 @@ class UserManagement extends Component {
         super(props)
         this.state = {
             isLoading: true,
-            users: [{username:"user1",role:"owner",isBanned:false},{username:"user2",role:"participant",isBanned:true}],
+            users: [],
             username: '',
             role: ''
             
@@ -51,19 +51,19 @@ class UserManagement extends Component {
         window.location.assign('/register');
     }
     render() {
-        // if(this.state.isLoading) return null
-        // if (document.cookie === ""){ 
-        //     window.alert("Please login first");
-        //     window.location.assign('/login');
-        //     return null
-        // }
-        // if (this.state.role != "admin") {
-        //     console.log("cookie");
-        //     console.log(this.state);
-        //     window.alert("Permission Denied");
-        //     window.location.assign('/');
-        //     return null
-        // }
+        if(this.state.isLoading) return null
+        if (document.cookie === ""){ 
+            window.alert("Please login first");
+            window.location.assign('/login');
+            return null
+        }
+        if (this.state.role != "admin") {
+            console.log("cookie");
+            console.log(this.state);
+            window.alert("Permission Denied");
+            window.location.assign('/');
+            return null
+        }
         return (
             <div>
                 <div className="flex-container" id="flex-container">

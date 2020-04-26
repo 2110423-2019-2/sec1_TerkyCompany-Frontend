@@ -88,11 +88,16 @@ class Button extends React.Component {
         }
     }
 
+    deleteClick = e =>  {
+        //del workshop
+    }
+
 
     render() {
         if (this.props.role === 'owner' || this.props.role === 'admin') {
             return <div>
-                <button id='credit-card' className='button' onClick={this.handleClick} >Edit</button>
+                <button className='detail-button' onClick={this.handleClick} >Edit</button>
+                {<button className='detail-button' onClick={this.deleteClick} >Delete</button> && this.props.role === 'admin'}
             </div>
         }
         else {
@@ -104,7 +109,7 @@ class Button extends React.Component {
                         onLoad={this.handleLoad}
                     />
                     <form >
-                        <button id='credit-card' className='button' onClick={this.handleClick} >Join</button>
+                        <button id='credit-card' className='detail-button' onClick={this.handleClick} >Join</button>
                     </form>
                 </div>
             );

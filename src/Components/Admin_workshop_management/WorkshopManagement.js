@@ -16,19 +16,19 @@ class WorkshopManagement extends React.Component {
         window.location.assign('/workshopCreatePage');
     }
     render() {
-        // if(this.state.isLoading) return null
-        // if (document.cookie === ""){ 
-        //     window.alert("Please login first");
-        //     window.location.assign('/login');
-        //     return null
-        // }
-        // if (this.state.role != "admin") {
-        //     console.log("cookie");
-        //     console.log(this.state);
-        //     window.alert("Permission Denied");
-        //     window.location.assign('/');
-        //     return null
-        // }
+        if(this.state.isLoading) return null
+        if (document.cookie === ""){ 
+            window.alert("Please login first");
+            window.location.assign('/login');
+            return null
+        }
+        if (this.state.role != "admin") {
+            console.log("cookie");
+            console.log(this.state);
+            window.alert("Permission Denied");
+            window.location.assign('/');
+            return null
+        }
         if(this.state.isLoading) return null
         return (
             <div className="flex-container" id="flex-container">

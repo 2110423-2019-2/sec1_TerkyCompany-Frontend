@@ -20,7 +20,7 @@ class WorkshopEditPage extends React.Component {
     componentWillMount(){
         //format cookie
         const { workshopId,username} = this.props.match.params
-        console.log(username)
+        console.log(workshopId)
         this.setState({
             workshopID:workshopId,
             urlname:username,
@@ -64,16 +64,16 @@ class WorkshopEditPage extends React.Component {
             return null
         }
         return (
-            <div id="container">
+            <div className="flex-container" id="flex-container">
                 <div id="sidebar">
                     <SideBar content={this.state.content}/>
                 </div>
                 <div className="show-list">
                     <h1>Edit Workshop</h1>
-                    <div className="dropdown-divider"></div>
-                    <div>
-                        <EditForm id="form" workshopid={this.state.workshopID} urlUsername={this.state.urlname}/>
-                    </div>
+                <div className="dropdown-divider"></div>
+                <div>
+                    <EditForm id="form" workshopid={this.state.workshopID} urlUsername={this.state.urlname}/>
+                </div>
                 </div>
                 <div id="sidebar">
                     <SideBar content={this.state.content}/>
