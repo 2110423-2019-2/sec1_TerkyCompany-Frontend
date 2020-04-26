@@ -35,8 +35,27 @@ class UserManagement extends Component {
                     //console.log(initState.users)
                 })
                 this.setState(initState)
-
+            this.setState({isLoading:false})
         })
+
+        let spl = document.cookie.split(';')
+        let ck = {}
+        let s=0
+        for(let i=0 ;i< spl.length ; i++)
+        {
+            let temp = spl[i].split('=')
+            // console.log('temp: ',temp)
+            ck[temp[0].trim()]=temp[1]
+            if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
+                s+=1 
+        }
+        if(s===2) {
+            this.setState({
+                isLoading: false,
+                username: ck['username'],
+                role: ck['userType']
+            })
+        }
     }
 
     showUser = (user) => {
@@ -57,7 +76,7 @@ class UserManagement extends Component {
             window.location.assign('/login');
             return null
         }
-        if (this.state.role != "admin") {
+        if (this.state.role !== "admin") {
             console.log("cookie");
             console.log(this.state);
             window.alert("Permission Denied");
