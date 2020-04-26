@@ -48,30 +48,36 @@ class Login extends React.Component {
             console.log(res.data)
             if (res.status === 201) {
                 //pass login
-                if(res.data.isSuspended !== true){
-                console.log(res.data.access_token)
-                this.setState({
-                    token: res.data.access_token
-                })
-
-                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } })}
+                if(res.data.isSuspended == true){
+                this.setState({ show: true });
                 this.setState({ errorMessage: 'you are banned' })
+                }
+                else{
+                    console.log(res.data.access_token)
+                    this.setState({
+                        token: res.data.access_token
+                    })
+                return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } }).then(res => {
+                    if (res !== "fail") {
+                        console.log('data after authen: ', res.data)
+                        const cookies = new Cookies();
+                        cookies.set('username', res.data.username)
+                        cookies.set('userType', res.data.userType)
+                        window.location.assign('/')
+                    }
+                    
+                },e => {
+                    this.setState({ show: true });
+                    this.setState({ errorMessage: 'Incorrect username or password' })
+                })}
             }
             
+            
+        },e => {
+            this.setState({ show: true });
+            this.setState({ errorMessage: 'Incorrect username or password' })
         })
-            .then(res => {
-                if (res !== "fail") {
-                    console.log('data after authen: ', res.data)
-                    const cookies = new Cookies();
-                    cookies.set('username', res.data.username)
-                    cookies.set('userType', res.data.userType)
-                    window.location.assign('/')
-                }
-                
-            },e => {
-                this.setState({ show: true });
-                this.setState({ errorMessage: 'Incorrect username or password' })
-            })
+            
 
 
     }
