@@ -68,7 +68,6 @@ class Edit extends React.Component {
                 "nationalId": initUsers.nationalID,
                 "registerFlag": initUsers.userType,
                 "isSuspended" : initUsers.isSuspended,
-                "previousUsername":initUsers.username,
             }
             console.log(initState)
             this.setState(initState)
@@ -96,28 +95,25 @@ class Edit extends React.Component {
         
         let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
-            "username": this.state.username,
             "password":this.state.password,
             "email": this.state.email,
             "dateOfBirth": this.convertMonthToDate(this.state.dateOfBirth),
             "fullname": this.state.firstName + " " + this.state.lastName,
             "gender": this.state.gender,
             "isSuspended": this.state.isSuspended,
-            "userType": this.state.registerFlag,
             "organization": this.state.organization,
             "nationalID": this.state.nationalId,
         }
         console.log("sending")
         console.log(sendData)
-        await axios.delete(`http://localhost:3001/members-t/${this.state.previousUsername}/delete`)
-        await axios.post(`http://localhost:3001/members-t/create`, sendData ).then(res => {
+        await axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })
         
-        window.alert('You are now our member!')
+        window.alert('Edit data complete')
         console.log('Jobs done!');
-        window.location.assign('/')
+        //window.location.assign('/')
     }
 
     convertMonthToDate = (date) => {
