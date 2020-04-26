@@ -106,7 +106,7 @@ class Edit extends React.Component {
         }
         console.log("sending")
         console.log(sendData)
-        await axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
+            axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })
