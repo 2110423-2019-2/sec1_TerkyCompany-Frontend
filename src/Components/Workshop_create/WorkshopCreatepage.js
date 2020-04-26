@@ -49,16 +49,16 @@ class WorkshopCreatePage extends React.Component {
             return null
         }
         return (
-            <div id="container">
+            <div className="flex-container" id="flex-container">
                 <div id="sidebar">
                     <SideBar content={this.state.content}/>
                 </div>
                 <div className="show-list">
                     <h1>Create workshop</h1>
-                    <div className="dropdown-divider"></div>
-                    <div>
-                        <CreateForm id="form" username={this.state.username} tags={this.state.tags}/>
-                    </div>
+                <div className="dropdown-divider"></div>
+                <div>
+                    <CreateForm id="form" username={this.state.username} tags={this.state.tags}/>
+                </div>
                 </div>
                 <div id="sidebar">
                     <SideBar content={this.state.content}/>

@@ -45,6 +45,7 @@ class Login extends React.Component {
         //this means user is in database
         axios.post('http://localhost:3001/auth/login', data).then(res => {
             console.log(res.status)
+            console.log(res.data)
             if (res.status === 201) {
                 //pass login
                 if(res.data.isSuspended !== true){

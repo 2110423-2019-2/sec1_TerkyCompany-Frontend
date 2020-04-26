@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./UserItem.css";
 import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
 
 class UserItem extends React.Component {
     constructor(props) {
@@ -25,15 +26,31 @@ class UserItem extends React.Component {
 
     handleDelete = () => {
         console.log("del "+this.state.username);
+        Axios.delete(`http://localhost:3001/members-t/${this.state.username}/delete`)
         
     }
 
     handleBan = () => {
         console.log("ban "+this.state.username)
+        let sendData = {
+            "username": this.state.username,
+            "isSuspended" : "1"
+        }
+        Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
+            console.log(res.data)
+        })
     }
 
     handleUnban = () => {
         console.log("unban "+this.state.username)
+        let sendData = {
+            "username": this.state.username,
+            "isSuspended" : "0"
+        }
+        Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
+            console.log(res.data)
+        })
+        this.forceUpdate()
     }
 
     render() {

@@ -49,36 +49,34 @@ class EditForm extends Component {
 
 
     handleChange = (e) => {
-        e.preventDefault() 
-        const {name,value} = e.target 
-        let err = this.state.errMsg 
-        let content = this.state.content 
-        switch(name) {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let err = this.state.errMsg;
+        let content = this.state.content;
+        switch (name) {
             case "workshopName":
-                if (value.length < 5) {
-                    err.workshopName = "Workshop's name must be at least 5 character"
-                }
-                else if (value.length > 40) {
-                    err.workshopName = "Workshop's name must be at most 40 character"
+                if (value.length < 5 || value.length > 40) {
+                    err.workshopName = "must be between 5-40 characters"
                 }
                 else {
-                    err.workshopName = ''
-                    content.workshopName = value
+                    err.workshopName = ""
                 }
-                break
+                content.workshopName = value;
+                break;
             case "speakerName":
                 if (value === '') {
                     err.speakerName = "This cannot be empty"
                 }
-                else if (value.length > 80) {
-                    err.speakerName = "Speaker's name must be at most 80 character"
+                else if (value.length > 40) {
+                    err.speakerName = "must not exceed 40 characters"
                 }
                 else {
-                    err.speakerName = ''
-                    content.speakerName = value
+                    err.speakerName = ""
+                    
                 }
-                break
-            case "workshopPic" :
+                content.speakerName = value;
+                break;
+            case "workshopPic":
                 if (value === '') {
                     err.workshopPic = "This cannot be empty"
                 }
@@ -87,59 +85,112 @@ class EditForm extends Component {
                 }
                 else {
                     err.workshopPic = ""
-                    //console.log(e.target.files)
-                    content.workshopPic = e.target.files[0] 
+                    
+                    console.log("hard debug > ",e.target.files)
                 }
+                content.workshopPic = e.target.files[0];
                 break;
-            case "date" :
-                err.date = value == null ? "This cannot be empty" : '' 
-                content.date = value 
-                break
-            case "sTime" :
-                err.sTime = value == null ? "This cannot be empty" : '' 
-                content.sTime = value 
-                break
-            case "eTime" :
-                err.eTime = value == null ? "This cannot be empty" : '' 
-                content.eTime = value 
-                break
+            case "date":
+                if (value === '') {
+                    err.date = "This cannot be empty"
+                }
+                else {
+                    err.date = ""
+                    
+                }
+                content.date = value;
+                break;
+            case "sTime":
+                if (value === '') {
+                    err.sTime = "This cannot be empty"
+                }
+                else {
+                    err.sTime = ""
+                    
+                }
+                content.sTime = value;
+                break;
+            case "eTime":
+                if (value === '') {
+                    err.eTime = "This cannot be empty"
+                }
+                else {
+                    err.eTime = ""
+                    
+                }
+                content.eTime = value;
+                break;
             case "cap":
-                err.cap = (value < 0 || value > 1000) ? "Capacity must be number between 0-1000" : '' 
-                content.cap = value 
-                break
+                if (value <= 0 || value > 1000) {
+                    err.cap = "must be number between 0-1000"
+                }
+                else {
+                    
+                    err.cap = ""
+                }
+                content.cap = value;
+                break;
             case "cost":
-                err.cost = value < 0 ? "Cost must be positive number" : '' 
-                content.cost = value 
-                break
-            case "place" :
+                if (value < 0) {
+                    err.cost = "must be positive number"
+                }
+                else {
+                    err.cost = ""
+                    
+                }
+                content.cost = value
+                break;
+            case "place":
                 if (value === '') {
                     err.place = "This cannot be empty"
                 }
                 else if (value.length > 40) {
-                    err.place = "Place must be at most 40 character"
+                    err.place = "must not exceed 40 characters"
                 }
                 else {
-                    err.place = ''
-                    content.place = value
+                    err.place = ""
+                    
                 }
-                break
-            case "ddate" :
-                err.ddate = value == null ? "This cannot be empty" : '' 
-                content.ddate = value 
-                break
-            case "dtime" :
-                err.dtime = value == null ? "This cannot be empty" : '' 
-                content.dtime = value 
-                break
-            case "description" :
-                err.description = value.length === 0 ? "This cannot be empty" : '' 
-                content.description = value 
-                break
+                content.place = value;
+                break;
+            case "ddate":
+                if (value === '') {
+                    err.ddate = "This cannot be empty"
+                }
+                else {
+                    err.ddate = ""
+                    
+                }
+                content.ddate = value;
+                break;
+            case "dtime":
+                if (value === '') {
+                    err.dtime = "This cannot be empty"
+                }
+                else {
+                    err.dtime = ""
+                    
+                }
+                content.dtime = value;
+                break;
+            case "description":
+                if (value === '') {
+                    err.description = "This cannot be empty"
+                }
+                else if (value.length > 300) {
+                    err.description = "must not exceed 300 characters"
+                }
+                else {
+                    err.description = ""
+                    
+                }
+                content.description = value;
+                break;
             default:
                 console.log(name)
-                break
+                break;
         }
-        this.setState({errMsg:err, content:content})
+        this.setState({ errMsg: err, content: content });
     }
 
     onSelect = (selectedList, selectedItem) => {
@@ -231,21 +282,7 @@ class EditForm extends Component {
     }
     cancelclick() {
         console.log("cancel clicked")
-        console.log(window.location.host)
-        let err = this.state.errMsg 
-        let content = this.state.content
-        content.workshopName = "miw.tanakorn"
-        this.setState({errMsg:err, content:content})
-        console.log(this.state.content);
-        
-        //let content = this.state.content
-        content.workshopName = "miw.tanakorn"
-        let timeAndDate = this.convertTimeStampToTime("2015-12-20T03:01:01.000z")
-        content.dtime = timeAndDate["time"]
-        content.ddate = timeAndDate["date"]
-        this.setState({content:content})
-        console.log(this.state.content)
-        console.log(this.convertTimeStampToTime("2015-12-20T03:01:01.000z"))
+        window.location.assign('/workshop-detail/'+this.props.workshopid);
     }   
 
     convertTimeStampToTime = (timeStamp) => {
@@ -360,7 +397,7 @@ class EditForm extends Component {
                         <InputBox label="Tags"                          type="dropD"        options={this.state.options}    onSelect = {this.onSelect}   onRemove = {this.onRemove}  selectedValues={this.state.selectedValues} errMsg={this.state.errMsg.tags}/>
                     </form>
                 </div>
-                <div id="button-body" class="text-center">
+                <div id="button-body" className="text-center">
                     <button class="btn btn-primary btn-lg" onClick={() => this.submitclick()}>Submit</button>
                     <button class="btn btn-primary btn-lg" onClick={() => this.cancelclick()}>Cancel</button>
                 </div>
