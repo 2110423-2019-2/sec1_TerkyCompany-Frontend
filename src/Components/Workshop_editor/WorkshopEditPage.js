@@ -51,18 +51,18 @@ class WorkshopEditPage extends React.Component {
 
     render() {
         if(this.state.isLoading) return null
-        // if (document.cookie === ""){ 
-        //     window.alert("Please login first");
-        //     window.location.assign('/login');
-        //     return null
-        // }
-        // if (this.state.role != "owner" && this.state.role != "admin") {
-        //     console.log("cookie");
-        //     console.log(this.state);
-        //     window.alert("Participant can't edit a workshop, please login as an Owner");
-        //     window.location.assign('/');
-        //     return null
-        // }
+        if (document.cookie === ""){ 
+            window.alert("Please login first");
+            window.location.assign('/login');
+            return null
+        }
+        if (this.state.role != "owner" && this.state.role != "admin") {
+            console.log("cookie");
+            console.log(this.state);
+            window.alert("Participant can't edit a workshop, please login as an Owner");
+            window.location.assign('/');
+            return null
+        }
         return (
             <div className="flex-container" id="flex-container">
                 <div id="sidebar">
