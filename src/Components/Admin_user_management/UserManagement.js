@@ -11,7 +11,7 @@ class UserManagement extends Component {
         super(props)
         this.state = {
             isLoading: true,
-            users: [{username:"user1",role:"owner",isBanned:false},{username:"user2",role:"participant",isBanned:true}],
+            users: [],
             username: '',
             role: ''
             
