@@ -113,7 +113,7 @@ class Edit extends React.Component {
         
         window.alert('Edit data complete')
         console.log('Jobs done!');
-        //window.location.assign('/')
+        window.location.assign('/')
     }
 
     convertMonthToDate = (date) => {
