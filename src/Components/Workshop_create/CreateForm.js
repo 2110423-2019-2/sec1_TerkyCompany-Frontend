@@ -366,6 +366,7 @@ class Form extends React.Component {
 
     handleCancel() {
         console.log("cancel clicked")
+        window.location.assign('/workshoplist')
     }
 
     convertTimeStampToTime = (timeStamp) => {
