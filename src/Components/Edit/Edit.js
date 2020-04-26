@@ -22,7 +22,9 @@ class Edit extends React.Component {
             organization: '',
             nationalId: '',
             registerFlag: 'owner',
+            isSuspended:'',
             checkConfirmPassword: 'white',
+            previousUsername:'',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -65,6 +67,8 @@ class Edit extends React.Component {
                 "organization": initUsers.organization,
                 "nationalId": initUsers.nationalID,
                 "registerFlag": initUsers.userType,
+                "isSuspended" : initUsers.isSuspended,
+                "previousUsername":initUsers.username,
             }
             console.log(initState)
             this.setState(initState)
@@ -84,7 +88,7 @@ class Edit extends React.Component {
         this.setState({[e.target.name]:e.target.value});
     }
     
-    handleEdit(e){
+    async handleEdit(e){
         e.preventDefault();
         // handle with database to confirm the user
         console.log(this.state.dateOfBirth)
@@ -98,18 +102,19 @@ class Edit extends React.Component {
             "dateOfBirth": this.convertMonthToDate(this.state.dateOfBirth),
             "fullname": this.state.firstName + " " + this.state.lastName,
             "gender": this.state.gender,
-            "isSuspended": false,
+            "isSuspended": this.state.isSuspended,
             "userType": this.state.registerFlag,
             "organization": this.state.organization,
             "nationalID": this.state.nationalId,
-            "profileURL": "test.jpg"
         }
         console.log("sending")
         console.log(sendData)
-        axios.post(`http://localhost:3001/members-t/create`, sendData ).then(res => {
+        await axios.delete(`http://localhost:3001/members-t/${this.state.previousUsername}/delete`)
+        await axios.post(`http://localhost:3001/members-t/create`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })
+        
         window.alert('You are now our member!')
         console.log('Jobs done!');
         window.location.assign('/')
