@@ -354,7 +354,7 @@ class Form extends React.Component {
             //     }).catch((error) => {
             // });
             alert("submited picture")
-
+            windows.assign("/workshoplist")
         })
     }
         else {
@@ -384,7 +384,7 @@ class Form extends React.Component {
     render() {
         if (this.state.isLoading) return null;
         console.log("hello Create form")
-        const style = { chips: { background: "#cc670a" }, searchBox: { background: "white" } }
+        const style = { chips: { background: "#182978" }, searchBox: { background: "white" } }
         return (
             <div id="flex-container-create">
                 <div className="form-body">
