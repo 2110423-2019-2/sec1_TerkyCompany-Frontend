@@ -60,7 +60,7 @@ class App extends Component {
               {
                 this.state.workshops.map(workshop =>
                   <div id="wrap-item" onClick={() => this.goto(workshop.id)} >
-                    <img id="slick-item" alt="" src="test.jpg" />
+                    <img id="slick-item" alt="" src={workshop.pictureURL} />
                     <div id="slick-item-name" >{workshop.name}</div>
                   </div>
                 )

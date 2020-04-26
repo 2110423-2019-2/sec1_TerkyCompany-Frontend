@@ -79,25 +79,30 @@ class Button extends React.Component {
             this.omiseCardHandler()
         }
         else if (this.props.role == 'admin') {
-            window.location.assign("/management/workshop/"+this.props.workshop.id+"/edit")
+            window.location.assign("/management/workshop/" + this.props.workshop.id + "/edit")
         }
         else {
             //goto edit page
             ///workshopeditor/:username/:workshopId
-            window.location.assign("/workshopeditor/"+this.props.workshop.id)
+            window.location.assign("/workshopeditor/" + this.props.workshop.id)
         }
     }
 
-    deleteClick = e =>  {
+    deleteClick = e => {
         //del workshop
     }
 
 
     render() {
-        if (this.props.role === 'owner' || this.props.role === 'admin') {
+        if (this.props.role === 'admin') {
             return <div>
                 <button className='detail-button' onClick={this.handleClick} >Edit</button>
-                {<button className='detail-button' onClick={this.deleteClick} >Delete</button> && this.props.role === 'admin'}
+                <button className='detail-button' onClick={this.deleteClick} >Delete</button>
+            </div>
+        }
+        else if (this.props.role === 'owner') {
+            return <div>
+                <button className='detail-button' onClick={this.handleClick} >Edit</button>
             </div>
         }
         else {
