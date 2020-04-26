@@ -366,6 +366,7 @@ class Form extends React.Component {
 
     handleCancel() {
         console.log("cancel clicked")
+        window.location.assign('/workshoplist')
     }
 
     convertTimeStampToTime = (timeStamp) => {
@@ -404,7 +405,7 @@ class Form extends React.Component {
                         <InputBox label="Tags" name="tags" type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags" />
                     </form>
                 </div>
-                <div id="button-body">
+                <div id="button-body" className="text-center">
                     <button class="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>Submit</button>
                     <button class="btn btn-primary btn-lg" onClick={() => this.handleCancel()}>Cancel</button>
                 </div>

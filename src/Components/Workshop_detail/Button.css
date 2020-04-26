@@ -1,6 +1,21 @@
-.button {
-    background-color: whitesmoke !important;
-    font-family: B612;
-    font-style: normal;
-    font-weight: normal;
-}
+
+
+.detail-button button {
+    background-color:#182978;
+    border-radius:20px;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:17px;
+    padding:16px 31px;
+    text-decoration:none;
+    margin: 10px;
+  }
+
+  .detail-button button:hover {
+    background-color:#6688CC;
+  }
+
+  .detail-button button:active {
+    position:relative;
+    top:1px;
+  }
