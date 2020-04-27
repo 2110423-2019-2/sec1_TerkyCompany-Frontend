@@ -16,10 +16,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('cookie now : ',document.cookie)
+    // console.log('cookie now : ',document.cookie)
     axios.get('http://localhost:3001/workshops')
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.setState({
           workshops: res.data.slice(0, 5)
         })
@@ -28,7 +28,7 @@ class App extends Component {
 
   goto(id) {
     // let check = this.props.item.id
-    // console.log(this.state.workshop_id)
+    // // console.log(this.state.workshop_id)
     window.location.assign('/workshop-detail/' + id)
   }
   render() {
@@ -42,7 +42,7 @@ class App extends Component {
       speed: 1000,
     }
     if (this.state.isLoading) return null
-    console.log("hello Homepage")
+    // console.log("hello Homepage")
     return (
       <div className="App">
 

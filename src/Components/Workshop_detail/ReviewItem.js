@@ -18,7 +18,7 @@ class ReviewItem extends React.Component {
     }
 
     convertTimeStampToTime = (timeStamp) => {
-        console.log('in convert')
+        // console.log('in convert')
         var temp = new Date(timeStamp)
         let time = timeStamp.slice(11, 16)
         time = temp.getHours()+time.slice(2,)

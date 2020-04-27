@@ -15,7 +15,7 @@ class WorkshopCreatePage extends React.Component {
     }
     componentWillMount(){
         //format cookie
-        console.log("component did mount")
+        // console.log("component did mount")
         let spl = document.cookie.split(';')
         let ck = {}
         let s=0
@@ -42,8 +42,8 @@ class WorkshopCreatePage extends React.Component {
             return null
         }
         if (this.state.role != "owner" && this.state.role != "admin") {
-            console.log("cookie");
-            console.log(this.state);
+            // console.log("cookie");
+            // console.log(this.state);
             window.alert("Participant can't create a workshop, please login as an Owner");
             window.location.assign('/');
             return null

@@ -86,7 +86,7 @@ class EditForm extends Component {
                 else {
                     err.workshopPic = ""
 
-                    console.log("hard debug > ", e.target.files)
+                    // console.log("hard debug > ", e.target.files)
                 }
                 content.workshopPic = e.target.files[0];
                 break;
@@ -187,7 +187,7 @@ class EditForm extends Component {
                 content.description = value;
                 break;
             default:
-                console.log(name)
+                // console.log(name)
                 break;
         }
         this.setState({ errMsg: err, content: content });
@@ -214,8 +214,8 @@ class EditForm extends Component {
     }
 
     submitclick = () => {
-        console.log("submit clicked")
-        console.log(window.location.host)
+        // console.log("submit clicked")
+        // console.log(window.location.host)
         let err = this.state.errMsg
         let errorCheck = false
         for (let key in err) {
@@ -231,8 +231,8 @@ class EditForm extends Component {
             let nowState = this.state.content
             let formData = new FormData();
             formData.append('upload', this.state.content.workshopPic);
-            console.log("sending")
-            console.log(this.props.workshopid)
+            // console.log("sending")
+            // console.log(this.props.workshopid)
             let sendData = {
                 "image": nowState.pictureURL,
                 "req": {
@@ -251,29 +251,29 @@ class EditForm extends Component {
                 }
             }
             axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req).then(res => {
-                console.log(res);
-                console.log(res.data);
+                // console.log(res);
+                // console.log(res.data);
             })
 
             /*axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
-                console.log(res);
-                console.log(res.data);
+                // console.log(res);
+                // console.log(res.data);
             })*/
             alert("Submitted")
-            //console.log(this.state.content)
+            // console.log(this.state.content)
             //---------------------------------------------------tag-------------------------------
             axios.get(`http://localhost:3001/tags/deletebyid/${this.props.workshopid}`).then(res => {
-                console.log(res)
+                // console.log(res)
             })
-            console.log(this.state.selectedValues)
-            console.log(this.state.content.tags)
+            // console.log(this.state.selectedValues)
+            // console.log(this.state.content.tags)
             this.state.content.tags.forEach(element => {
                 let sendTag = {
                     "workshop": this.props.workshopid,
                     "tag": element.name,
                     "workshopId": this.props.workshopid
                 }
-                console.log(sendTag)
+                // console.log(sendTag)
                 axios.post(`http://localhost:3001/tags/create`, sendTag)
                 .then(window.location.assign('/workshoplist'))
             }
@@ -281,7 +281,7 @@ class EditForm extends Component {
         }
     }
     cancelclick() {
-        console.log("cancel clicked")
+        // console.log("cancel clicked")
         window.location.assign('/workshop-detail/' + this.props.workshopid);
     }
 
@@ -298,26 +298,26 @@ class EditForm extends Component {
 
     componentDidMount() {
         //get workshopid from workshopEditPage
-        //console.log(this.props.workshopid)
+        // console.log(this.props.workshopid)
 
         axios.get(`http://localhost:3001/workshops/${this.props.workshopid}`).then(res => {
             let initData = res.data
-            console.log(initData.owner)
-            console.log(this.state.username)
-            console.log(this.props.urlUsername)
+            // console.log(initData.owner)
+            // console.log(this.state.username)
+            // console.log(this.props.urlUsername)
             //check real owner
             if (!this.onCorrectUser(initData.owner, this.state.username, this.props.urlUsername)) {
                 alert("Invalid user")
                 return
             }
-            //console.log(initData[0])
+            // console.log(initData[0])
             let initState = this.state.content
             let startTime = this.convertTimeStampToTime(initData.startTime)
             let endTime = this.convertTimeStampToTime(initData.endTime)
             let deadTime = this.convertTimeStampToTime(initData.deadlineTime)
-            console.log(`\\${initData.pictureURL.split(`\\`)[2]}`)
-            console.log(initData)
-            // console.log(initData.place)
+            // console.log(`\\${initData.pictureURL.split(`\\`)[2]}`)
+            // console.log(initData)
+            // // console.log(initData.place)
             initState.workshopName = initData.name
             initState.speakerName = initData.speakerName
             initState.date = startTime.date
@@ -332,24 +332,24 @@ class EditForm extends Component {
             initState.description = initData.description
             //initState.workshopPic = `\\${initData.pictureURL.split(`\\`)[2]}` 
             this.setState(initState)
-            console.log(this.state.content)
+            // console.log(this.state.content)
         })
         axios.get(`http://localhost:3001/tags/findbyid/${this.props.workshopid}`).then(res => {
             let initTag = res.data
-            console.log(initTag)
-            //console.log(initTag[1])
+            // console.log(initTag)
+            // console.log(initTag[1])
             let initState = this.state
             Object.values(initTag).forEach(element => {
-                //console.log(element.tag)
+                // console.log(element.tag)
                 let tagData = {
                     name: element.tag.toLowerCase(),
                 }
-                //console.log(Object.values(initState.selectedValues))
+                // console.log(Object.values(initState.selectedValues))
                 initState.selectedValues = initState.selectedValues.concat(tagData)
                 initState.content.tags.push(tagData)
             })
             this.setState(initState)
-            //console.log(this.state.selectedValues)
+            // console.log(this.state.selectedValues)
         })
     }
     componentWillMount() {
@@ -359,7 +359,7 @@ class EditForm extends Component {
         let s = 0
         for (let i = 0; i < spl.length; i++) {
             let temp = spl[i].split('=')
-            console.log('temp: ', temp)
+            // console.log('temp: ', temp)
             ck[temp[0].trim()] = temp[1]
             if (temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s += 1
@@ -376,7 +376,7 @@ class EditForm extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log("hello Workshopeditor")
+        // console.log("hello Workshopeditor")
         return (
             <div>
                 <div className="form-body">

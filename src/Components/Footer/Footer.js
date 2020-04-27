@@ -15,7 +15,7 @@ class Footer extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log("hello footer")
+        // console.log("hello footer")
         return (
             <div className="footer" >
                 <div className="flex-container">

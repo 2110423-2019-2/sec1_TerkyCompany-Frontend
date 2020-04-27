@@ -89,7 +89,7 @@ class Form extends React.Component {
                 else {
                     err.workshopPic = ""
                     content.workshopPic = e.target.files[0];
-                    console.log("hard debug > ",e.target.files)
+                    // console.log("hard debug > ",e.target.files)
                 }
                 break;
             case "date":
@@ -181,7 +181,7 @@ class Form extends React.Component {
                 }
                 break;
             default:
-                console.log(name)
+                // console.log(name)
                 break;
         }
         this.setState({ errMsg: err, content: content });
@@ -198,7 +198,7 @@ class Form extends React.Component {
             content.tags = selectedList;
         }
         this.setState({ errMsg: err, content: content });
-        console.log(this.state.content)
+        // console.log(this.state.content)
     }
 
     handleRemove(selectedList, removedItem) {
@@ -213,10 +213,10 @@ class Form extends React.Component {
         }
         content.tags = selectedList
         this.setState({ errMsg: err, content: content })
-        console.log(this.state.content)
+        // console.log(this.state.content)
     }
     handleSubmit() {
-        console.log("submit clicked")
+        // console.log("submit clicked")
         let content = this.state.content
         let err = this.state.errMsg
         let valid = true
@@ -297,15 +297,15 @@ class Form extends React.Component {
             // let nowState = this.state.content
             let formData = new FormData();
             formData.append('upload',this.state.content.workshopPic);
-            console.log(formData)
-            console.log("image > ",this.state.content.workshopPic)
-            console.log("sending")
-            // console.log(sendData)
-            // console.log(this.state.workshopPic)
+            // console.log(formData)
+            // console.log("image > ",this.state.content.workshopPic)
+            // console.log("sending")
+            // // console.log(sendData)
+            // // console.log(this.state.workshopPic)
             let data = {upload:this.state.content.workshopPic}
-            console.log(data)
+            // console.log(data)
             axios.post(`http://localhost:3001/workshops/fileupload`,formData).then(res=>{
-                console.log(res.data)
+                // console.log(res.data)
                 let nowState = this.state.content
                 let sendData = {
                     "image": res.data,
@@ -324,11 +324,11 @@ class Form extends React.Component {
                         "owner": nowState.owner
                     }
                 }
-                console.log("send:",sendData)
+                // console.log("send:",sendData)
                 axios.post(`http://localhost:3001/workshops/create`, sendData.request).then(res => {
-                    //console.log(res);
-                    console.log(res.data);
-                    //console.log(nowState.tags)
+                    // console.log(res);
+                    // console.log(res.data);
+                    // console.log(nowState.tags)
                     let workshopId = res.data.id
                     nowState.tags.forEach(element => {
                         let sendTag = {
@@ -336,7 +336,7 @@ class Form extends React.Component {
                             "tag": element.name,
                             "workshopId": workshopId
                         }
-                        console.log(sendTag)
+                        // console.log(sendTag)
                         axios.post(`http://localhost:3001/tags/create`, sendTag).then(() =>{
                             if(this.props.role === 'admin')
                             {
@@ -370,12 +370,12 @@ class Form extends React.Component {
         else {
             alert("Please valid your information")
         }
-        console.log(this.state.errMsg)
-        console.log(this.state.content)
+        // console.log(this.state.errMsg)
+        // console.log(this.state.content)
     }
 
     handleCancel() {
-        console.log("cancel clicked")
+        // console.log("cancel clicked")
         window.location.assign('/workshoplist')
     }
 
@@ -394,7 +394,7 @@ class Form extends React.Component {
 
     render() {
         if (this.state.isLoading) return null;
-        console.log("hello Create form")
+        // console.log("hello Create form")
         const style = { chips: { background: "#182978" }, searchBox: { background: "white" } }
         return (
             <div id="flex-container-create">

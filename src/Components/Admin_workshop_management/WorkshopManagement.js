@@ -23,7 +23,7 @@ class WorkshopManagement extends React.Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -42,14 +42,14 @@ class WorkshopManagement extends React.Component {
     }
     render() {
         if(this.state.isLoading) return null
-        console.log(ck);
+        // console.log(ck);
         if (document.cookie === ""){ 
             window.alert("Please login first");
             window.location.assign('/login');
             return null
         }
         if (ck['userType'] !== "admin") {
-            console.log("cookie");
+            // console.log("cookie");
             
             window.alert("Permission Denied");
             window.location.assign('/');

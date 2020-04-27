@@ -51,10 +51,10 @@ class Edit extends React.Component {
         // get init data into state
         const { username} = this.props.match.params
         axios.get(`http://localhost:3001/members-t/findbyusername/${username}`).then(res => {
-            //console.log(res.data)
+            // console.log(res.data)
             let initUsers = res.data
             let initState = this.state
-            console.log(initUsers)
+            // console.log(initUsers)
             initState = {
                 "username": initUsers.username,
                 "password": '',
@@ -69,17 +69,17 @@ class Edit extends React.Component {
                 "registerFlag": initUsers.userType,
                 "isSuspended" : initUsers.isSuspended,
             }
-            console.log(initState)
+            // console.log(initState)
             this.setState(initState)
 
         })
     }
 
     handleChangeDate(value,e){
-        //console.log(value.toString()[0])
-        //console.log(value)
+        // console.log(value.toString()[0])
+        // console.log(value)
         //let arr = value.toString().split(" ");
-        // console.log(arr)
+        // // console.log(arr)
         this.setState({dateOfBirth: value});
     }
 
@@ -90,8 +90,8 @@ class Edit extends React.Component {
     async handleEdit(e){
         e.preventDefault();
         // handle with database to confirm the user
-        console.log(this.state.dateOfBirth)
-        console.log(typeof this.state.dateOfBirth)
+        // console.log(this.state.dateOfBirth)
+        // console.log(typeof this.state.dateOfBirth)
         
         let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
@@ -104,34 +104,34 @@ class Edit extends React.Component {
             "organization": this.state.organization,
             "nationalID": this.state.nationalId,
         }
-        console.log("sending")
-        console.log(sendData)
+        // console.log("sending")
+        // console.log(sendData)
             axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
-            console.log(res);
-            console.log(res.data);
+            // console.log(res);
+            // console.log(res.data);
         })
         
         window.alert('Edit data complete')
-        console.log('Jobs done!');
+        // console.log('Jobs done!');
         window.location.assign('/management/user')
     }
 
     convertMonthToDate = (date) => {
         let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
         let arr = date.toString().split(" ");
-        //console.log(arr)
+        // console.log(arr)
         let inputM = arr[1]
-        console.log(inputM)
+        // console.log(inputM)
         let outD = arr[2]
         let outY = arr[3]
-        console.log(outY)
-        console.log(outD)
+        // console.log(outY)
+        // console.log(outD)
         let outM = month.findIndex(element=>{
-            console.log(element)
+            // console.log(element)
             return element === inputM
         })
         outM = outM+1
-        console.log(outM)  
+        // console.log(outM)  
         return outY+"-"+outM+"-"+outD
     }
     handleChangeConfirmPassword(e){

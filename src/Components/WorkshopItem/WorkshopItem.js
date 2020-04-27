@@ -4,7 +4,7 @@ import "./WorkshopItem.css";
 class WorkshopItem extends Component {
     constructor(props) {
         super(props)
-        console.log("check item >", this.props.item.id)
+        // console.log("check item >", this.props.item.id)
         this.state = {
             workshop_id: this.props.item.id,
             image_name: this.props.item.pictureURL,
@@ -30,7 +30,7 @@ class WorkshopItem extends Component {
 
     goto() {
         // let check = this.props.item.id
-        // console.log(this.state.workshop_id)
+        // // console.log(this.state.workshop_id)
         window.location.assign('/workshop-detail/' + this.state.workshop_id)
     }
 

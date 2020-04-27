@@ -15,7 +15,7 @@ class UserItem extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Get role,isbanned from backend");
+        // console.log("Get role,isbanned from backend");
         
     }
 
@@ -25,31 +25,31 @@ class UserItem extends React.Component {
     }
 
     handleDelete = () => {
-        console.log("del "+this.state.username);
+        // console.log("del "+this.state.username);
         Axios.delete(`http://localhost:3001/members-t/${this.state.username}/delete`).then(window.location.reload())
         
     }
 
     handleBan = () => {
-        console.log("ban "+this.state.username)
+        // console.log("ban "+this.state.username)
         let sendData = {
             "username": this.state.username,
             "isSuspended" : "1"
         }
         Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             window.location.reload()
         })
     }
 
     handleUnban = () => {
-        console.log("unban "+this.state.username)
+        // console.log("unban "+this.state.username)
         let sendData = {
             "username": this.state.username,
             "isSuspended" : "0"
         }
         Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             window.location.reload()
         })
         this.forceUpdate()
@@ -57,7 +57,7 @@ class UserItem extends React.Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log(this.state.isBanned);
+        // console.log(this.state.isBanned);
         
         return(
             <div className="user-item" >

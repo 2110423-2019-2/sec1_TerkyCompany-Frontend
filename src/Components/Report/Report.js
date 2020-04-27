@@ -26,7 +26,7 @@ class Report extends React.Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -60,11 +60,11 @@ class Report extends React.Component {
           'memberT' : this.state.username,
           'memberTUsername': this.state.username,
         }
-        console.log("sending")
-        console.log(sendData)
+        // console.log("sending")
+        // console.log(sendData)
         axios.post('http://localhost:3001/feedbacks/create', sendData ).then(res => {
-            console.log(res);
-            console.log(res.data);
+            // console.log(res);
+            // console.log(res.data);
         })
         
     }

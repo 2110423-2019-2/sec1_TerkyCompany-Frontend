@@ -20,7 +20,7 @@ class UserManagement extends Component {
 
     componentDidMount() {
         axios.get('http://localhost:3001/members-t/').then(res => {
-            //console.log(res.data)
+            // console.log(res.data)
             let initUsers = res.data
             let initState = this.state
                 Object.values(initUsers).forEach(element => {
@@ -29,10 +29,10 @@ class UserManagement extends Component {
                         "role":element.userType,
                         "isBanned":element.isSuspended
                         }
-                    //console.log(getUser)
-                    console.log(initState.users)
+                    // console.log(getUser)
+                    // console.log(initState.users)
                     initState.users.push(getUser)
-                    //console.log(initState.users)
+                    // console.log(initState.users)
                 })
                 this.setState(initState)
             this.setState({isLoading:false})
@@ -44,7 +44,7 @@ class UserManagement extends Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -77,8 +77,8 @@ class UserManagement extends Component {
             return null
         }
         if (this.state.role !== "admin") {
-            console.log("cookie");
-            console.log(this.state);
+            // console.log("cookie");
+            // console.log(this.state);
             window.alert("Permission Denied");
             window.location.assign('/');
             return null
