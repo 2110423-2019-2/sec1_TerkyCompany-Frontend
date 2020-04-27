@@ -337,7 +337,7 @@ class Form extends React.Component {
                             "workshopId": workshopId
                         }
                         console.log(sendTag)
-                        axios.post(`http://localhost:3001/tags/create`, sendTag)
+                        axios.post(`http://localhost:3001/tags/create`, sendTag).then(window.location.assign('/workshoplist'))
                     }
                     )
             })
@@ -353,7 +353,7 @@ class Form extends React.Component {
             //         alert("The file is successfully uploaded");
             //     }).catch((error) => {
             // });
-            alert("submited picture")
+            alert("Workshop Created")
 
         })
     }
@@ -385,7 +385,7 @@ class Form extends React.Component {
     render() {
         if (this.state.isLoading) return null;
         console.log("hello Create form")
-        const style = { chips: { background: "#cc670a" }, searchBox: { background: "white" } }
+        const style = { chips: { background: "#182978" }, searchBox: { background: "white" } }
         return (
             <div id="flex-container-create">
                 <div className="form-body">
