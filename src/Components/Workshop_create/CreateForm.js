@@ -354,7 +354,7 @@ class Form extends React.Component {
             //     }).catch((error) => {
             // });
             alert("submited picture")
-            windows.assign("/workshoplist")
+            window.location.assign("/workshoplist")
         })
     }
         else {
