@@ -6,12 +6,30 @@ import Axios from 'axios';
 
 let OmiseCard
 
+let ck = {}
+
 class Button extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: false,
+            join: false
         }
+    }
+
+    componentDidMount() {
+        Axios.get('http://localhost:3001/books/findbyparticipant/'+this.props.username)
+            .then(res => {
+                console.log('test')
+                console.log(res.data)
+                res.data.map(i => {
+                    if (i.id === this.props.workshopID)
+                    {
+                        this.setState({join:true})
+                    }
+                        
+                })
+            })
     }
 
     creditCardConfigure = () => {
@@ -114,8 +132,15 @@ class Button extends React.Component {
                         onLoad={this.handleLoad}
                     />
                     <form >
-                        <button id='credit-card' className='detail-button' onClick={this.handleClick} >Join</button>
+                        {!this.state.join && <button id='credit-card' className='detail-button' onClick={this.handleClick} >Join</button>}
                     </form>
+                    {this.state.join && <button className='detail-button' id='delete-button' onClick={()=> {
+                        Axios.delete(`http://localhost:3001/books/${this.props.workshopID}/${this.props.username}/delete`).then(res=> {
+                            console.log(res.data)
+                            alert('Already Unbooked, Your money will refund in 5 days')
+                            window.location.reload()
+                        })
+                    }} >Unbook</button>}
                 </div>
             );
         }

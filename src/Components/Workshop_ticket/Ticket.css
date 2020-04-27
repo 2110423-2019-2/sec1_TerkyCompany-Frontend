@@ -18,6 +18,14 @@
     
 }
 
+#img-ticket {
+    border-radius: 18% 0% 0% 18%;
+    padding: 3%;
+    margin: 0 0 auto;
+    height: 100%;
+    width: 100%;
+}
+
 #text-box{
     display: flex;
     flex-direction: column;

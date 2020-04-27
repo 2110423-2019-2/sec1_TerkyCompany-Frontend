@@ -17,7 +17,7 @@ class Ticket extends React.Component {
     render() {
         return (
         <div id='ticket'>
-            <div id='workshopPic'><img alt='' src={this.props.workShopPic}></img></div>
+            <div id='workshopPic'><img id='img-ticket' alt='' src={this.props.workShopPic}></img></div>
             <div id='text-box'>
                 <div id='workshopName'><h2>{this.props.workShopName}</h2></div>
                 <div className='desc'>
