@@ -6,8 +6,6 @@ import Axios from 'axios';
 
 let OmiseCard
 
-let ck = {}
-
 class Button extends React.Component {
     constructor(props) {
         super(props);
@@ -108,6 +106,7 @@ class Button extends React.Component {
 
     deleteClick = e => {
         //del workshop
+        Axios.delete(`http://localhost:3001/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/management/workshop'))
     }
 
 

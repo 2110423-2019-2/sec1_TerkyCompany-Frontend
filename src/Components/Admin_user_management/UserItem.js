@@ -26,7 +26,7 @@ class UserItem extends React.Component {
 
     handleDelete = () => {
         console.log("del "+this.state.username);
-        Axios.delete(`http://localhost:3001/members-t/${this.state.username}/delete`)
+        Axios.delete(`http://localhost:3001/members-t/${this.state.username}/delete`).then(window.location.reload())
         
     }
 
