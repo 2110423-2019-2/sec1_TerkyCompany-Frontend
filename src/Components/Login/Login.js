@@ -63,7 +63,10 @@ class Login extends React.Component {
                     const cookies = new Cookies();
                     cookies.set('username', res.data.username)
                     cookies.set('userType', res.data.userType)
-                    window.location.assign('/')
+                    if(res.data.userType === 'admin')
+                        window.location.assign('/management/user')
+                    else
+                        window.location.assign('/')
                 }
                 
             },e => {
