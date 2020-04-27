@@ -85,7 +85,7 @@ class Workshoplistpage extends Component {
                         <div id="textzone">
                             <ul id="link-side">
                                 <li><a id="link-side" href="/workshoplist">My Workshop</a></li>
-                                {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
+                                {((this.state.role === "owner" || this.state.role === 'admin') && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
                                 <li><a id="link-side" href="/workshoplist">Certificate</a></li>
                                 <li><a id="link-side" href="/workshoplist">Payment</a></li>
                                 <li><a id="link-side" href="/workshoplist">Confirmation</a></li>
