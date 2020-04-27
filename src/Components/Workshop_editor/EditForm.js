@@ -131,8 +131,8 @@ class EditForm extends Component {
                 content.cap = value;
                 break;
             case "cost":
-                if (value < 0) {
-                    err.cost = "must be positive number"
+                if (value < 20) {
+                    err.cost = "must be more than 20 Baht"
                 }
                 else {
                     err.cost = ""

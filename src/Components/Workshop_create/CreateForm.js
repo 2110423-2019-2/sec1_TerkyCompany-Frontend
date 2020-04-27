@@ -129,8 +129,8 @@ class Form extends React.Component {
                 }
                 break;
             case "cost":
-                if (value < 0) {
-                    err.cost = "must be positive number"
+                if (value < 20) {
+                    err.cost = "must be more than 20 Baht"
                 }
                 else {
                     err.cost = ""
@@ -224,8 +224,8 @@ class Form extends React.Component {
             err.cap = "must be number between 0-1000"
             valid = false
         }
-        if (content.cost < 0 || content.cost === "") {
-            err.cost = "must be positive number"
+        if (content.cost < 20 || content.cost === "") {
+            err.cost = "must be more than 20 Baht"
             valid = false
         }
         if (content.date === "") {
