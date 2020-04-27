@@ -63,6 +63,16 @@ class Workshoplistpage extends Component {
                 })
             })
         }
+        else if(ck['userType'] === "admin")
+        {
+            axios.get('http://localhost:3001/workshops')
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
     }
 
     render() {
