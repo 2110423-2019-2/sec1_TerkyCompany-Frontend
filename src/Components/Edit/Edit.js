@@ -22,7 +22,9 @@ class Edit extends React.Component {
             organization: '',
             nationalId: '',
             registerFlag: 'owner',
+            isSuspended:'',
             checkConfirmPassword: 'white',
+            previousUsername:'',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -65,6 +67,7 @@ class Edit extends React.Component {
                 "organization": initUsers.organization,
                 "nationalId": initUsers.nationalID,
                 "registerFlag": initUsers.userType,
+                "isSuspended" : initUsers.isSuspended,
             }
             console.log(initState)
             this.setState(initState)
@@ -84,7 +87,7 @@ class Edit extends React.Component {
         this.setState({[e.target.name]:e.target.value});
     }
     
-    handleEdit(e){
+    async handleEdit(e){
         e.preventDefault();
         // handle with database to confirm the user
         console.log(this.state.dateOfBirth)
@@ -92,25 +95,23 @@ class Edit extends React.Component {
         
         let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
-            "username": this.state.username,
             "password":this.state.password,
             "email": this.state.email,
             "dateOfBirth": this.convertMonthToDate(this.state.dateOfBirth),
             "fullname": this.state.firstName + " " + this.state.lastName,
             "gender": this.state.gender,
-            "isSuspended": false,
-            "userType": this.state.registerFlag,
+            "isSuspended": this.state.isSuspended,
             "organization": this.state.organization,
             "nationalID": this.state.nationalId,
-            "profileURL": "test.jpg"
         }
         console.log("sending")
         console.log(sendData)
-        axios.post(`http://localhost:3001/members-t/create`, sendData ).then(res => {
+            axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
             console.log(res);
             console.log(res.data);
         })
-        window.alert('You are now our member!')
+        
+        window.alert('Edit data complete')
         console.log('Jobs done!');
         window.location.assign('/')
     }
