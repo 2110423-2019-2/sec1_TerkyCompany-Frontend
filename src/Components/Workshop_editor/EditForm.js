@@ -255,7 +255,7 @@ class EditForm extends Component {
                 // console.log(res.data);
             })
 
-            /*axios.put(`http://localhost:3001/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
+            /*axios.put(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopid}/update`, sendData.req ).then(res => {
                 // console.log(res);
                 // console.log(res.data);
             })*/
@@ -274,7 +274,7 @@ class EditForm extends Component {
                     "workshopId": this.props.workshopid
                 }
                 // console.log(sendTag)
-                axios.post(`http://localhost:3001/tags/create`, sendTag)
+                axios.post(`${process.env.REACT_APP_URL}/tags/create`, sendTag)
                 .then(window.location.assign('/workshoplist'))
             }
             )

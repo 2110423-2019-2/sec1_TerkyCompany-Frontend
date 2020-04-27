@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./UserItem.css";
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
@@ -26,7 +26,7 @@ class UserItem extends React.Component {
 
     handleDelete = () => {
         // console.log("del "+this.state.username);
-        Axios.delete(`http://localhost:3001/members-t/${this.state.username}/delete`).then(window.location.reload())
+        Axios.delete(`${process.env.REACT_APP_URL}/members-t/${this.state.username}/delete`).then(window.location.reload())
         
     }
 
@@ -36,7 +36,7 @@ class UserItem extends React.Component {
             "username": this.state.username,
             "isSuspended" : "1"
         }
-        Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
+        Axios.put(`${process.env.REACT_APP_URL}/members-t/${this.state.username}/update`,sendData).then(res => {
             // console.log(res.data)
             window.location.reload()
         })
@@ -48,7 +48,7 @@ class UserItem extends React.Component {
             "username": this.state.username,
             "isSuspended" : "0"
         }
-        Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
+        Axios.put(`${process.env.REACT_APP_URL}/members-t/${this.state.username}/update`,sendData).then(res => {
             // console.log(res.data)
             window.location.reload()
         })

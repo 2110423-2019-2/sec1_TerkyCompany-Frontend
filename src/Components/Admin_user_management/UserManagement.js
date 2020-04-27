@@ -19,7 +19,7 @@ class UserManagement extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/members-t/').then(res => {
+        axios.get(`${process.env.REACT_APP_URL}/members-t/`).then(res => {
             // console.log(res.data)
             let initUsers = res.data
             let initState = this.state

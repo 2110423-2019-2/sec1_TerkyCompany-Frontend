@@ -16,11 +16,11 @@ class Button extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:3001/books/findbyparticipant/'+this.props.username)
+        Axios.get(`${process.env.REACT_APP_URL}/books/findbyparticipant/`+this.props.username)
             .then(res => {
                 // console.log('test')
                 // console.log(res.data)
-                res.data.foreach(i => {
+                res.data.map(i => {
                     if (i.id === this.props.workshopID)
                     {
                         this.setState({join:true})
@@ -106,7 +106,7 @@ class Button extends React.Component {
 
     deleteClick = e => {
         //del workshop
-        Axios.delete(`http://localhost:3001/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/management/workshop'))
+        Axios.delete(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/management/workshop'))
     }
 
 
@@ -134,7 +134,7 @@ class Button extends React.Component {
                         {!this.state.join && <button id='credit-card' className='detail-button' onClick={this.handleClick} >Join</button>}
                     </form>
                     {this.state.join && <button className='detail-button' id='delete-button' onClick={()=> {
-                        Axios.delete(`http://localhost:3001/books/${this.props.workshopID}/${this.props.username}/delete`).then(res=> {
+                        Axios.delete(`${process.env.REACT_APP_URL}/books/${this.props.workshopID}/${this.props.username}/delete`).then(res=> {
                             // console.log(res.data)
                             alert('Already Unbooked, Your money will refund in 5 days')
                             window.location.reload()

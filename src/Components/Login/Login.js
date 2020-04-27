@@ -57,7 +57,7 @@ class Login extends React.Component {
                     this.setState({
                         token: res.data.access_token
                     })
-                return axios.get(`${process.env.REACT_APP_URL}/auth/login`, { headers: { "Authorization": `Bearer ${this.state.token}` } }).then(res => {
+                return axios.get(`${process.env.REACT_APP_URL}/profile`, { headers: { "Authorization": `Bearer ${this.state.token}` } }).then(res => {
                     if (res !== "fail") {
                         // console.log('data after authen: ', res.data)
                         const cookies = new Cookies();

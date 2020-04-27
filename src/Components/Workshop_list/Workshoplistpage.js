@@ -65,7 +65,7 @@ class Workshoplistpage extends Component {
         }
         else if(ck['userType'] === "admin")
         {
-            axios.get('http://localhost:3001/workshops')
+            axios.get(`${process.env.REACT_APP_URL}/workshops`)
             .then(res => {
                 // console.log(res)
                 this.setState({

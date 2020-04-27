@@ -54,19 +54,21 @@ const ReviewButton  = (props) => {
             axios.delete(`${process.env.REACT_APP_URL}/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
                 return axios.post(`${process.env.REACT_APP_URL}/reviews/create`, sendData )
             }).then(res => {
+                window.location.reload()
                 // console.log(res.data)
             })
-            // axios.put(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
+            // axios.put(`${process.env.REACT_APP_URL}/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
             //     // console.log(res.data)
             // })
         }
         else {
             console.log("post")
             axios.post(`${process.env.REACT_APP_URL}/reviews/create`, sendData ).then(res => {
-                console.log(res.data)
+                //console.log(res.data)
+                window.location.reload()
             })
         }
-        // axios.put(`http://localhost:3001/reviews/create`, sendData ).then(res => {
+        // axios.put(`${process.env.REACT_APP_URL}/reviews/create`, sendData ).then(res => {
         //     // console.log(res);
         //     // console.log(res.data);
         // })

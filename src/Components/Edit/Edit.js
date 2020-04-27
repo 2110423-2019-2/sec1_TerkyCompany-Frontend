@@ -50,7 +50,7 @@ class Edit extends React.Component {
     componentDidMount(){
         // get init data into state
         const { username} = this.props.match.params
-        axios.get(`http://localhost:3001/members-t/findbyusername/${username}`).then(res => {
+        axios.get(`${process.env.REACT_APP_URL}/members-t/findbyusername/${username}`).then(res => {
             // console.log(res.data)
             let initUsers = res.data
             let initState = this.state
@@ -93,7 +93,7 @@ class Edit extends React.Component {
         // console.log(this.state.dateOfBirth)
         // console.log(typeof this.state.dateOfBirth)
         
-        let date  = this.convertMonthToDate(this.state.dateOfBirth)
+        // let date  = this.convertMonthToDate(this.state.dateOfBirth)
         let sendData = {
             "password":this.state.password,
             "email": this.state.email,
@@ -106,7 +106,7 @@ class Edit extends React.Component {
         }
         // console.log("sending")
         // console.log(sendData)
-            axios.put(`http://localhost:3001/members-t/${this.state.username}/update`, sendData ).then(res => {
+            axios.put(`${process.env.REACT_APP_URL}/members-t/${this.state.username}/update`, sendData ).then(res => {
             // console.log(res);
             // console.log(res.data);
         })
@@ -188,11 +188,11 @@ class Edit extends React.Component {
                             <div className='edit-component-half'>
                                 <label className='label'>Gender</label><br/>
                                 <div className='edit-subcontainer-radio' onChange={this.handleChange} >
-                                    {this.state.gender == 'male' && <input className='input-radio' id='r1' type='radio' value='male' name='gender' defaultChecked />}
-                                    {this.state.gender == 'female' && <input className='input-radio' id='r1' type='radio' value='male' name='gender' /> }
+                                    {this.state.gender === 'male' && <input className='input-radio' id='r1' type='radio' value='male' name='gender' defaultChecked />}
+                                    {this.state.gender === 'female' && <input className='input-radio' id='r1' type='radio' value='male' name='gender' /> }
                                     Male
-                                    {this.state.gender == 'male' && <input className='input-radio' id='r2' type='radio' value='female' name='gender' /> }
-                                    {this.state.gender == 'female' && <input className='input-radio' id='r2' type='radio' value='female' name='gender' defaultChecked /> }
+                                    {this.state.gender === 'male' && <input className='input-radio' id='r2' type='radio' value='female' name='gender' /> }
+                                    {this.state.gender === 'female' && <input className='input-radio' id='r2' type='radio' value='female' name='gender' defaultChecked /> }
                                     Female
                                 </div>
                             </div>
@@ -209,11 +209,11 @@ class Edit extends React.Component {
                             <div className='edit-component-half'>
                                 <label className='label'>Role</label><br/>
                                 <div className='edit-subcontainer-radio' onChange={this.handleChange} >
-                                    {this.state.registerFlag == 'owner' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag' defaultChecked /> }
-                                    {this.state.registerFlag == 'participant' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag' /> }
+                                    {this.state.registerFlag === 'owner' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag' defaultChecked /> }
+                                    {this.state.registerFlag === 'participant' && <input className='input-radio' id='r3' type='radio' value='owner' name='registerFlag' /> }
                                     Owner
-                                    {this.state.registerFlag == 'participant' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag' defaultChecked /> }
-                                    {this.state.registerFlag == 'owner' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag' /> }
+                                    {this.state.registerFlag === 'participant' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag' defaultChecked /> }
+                                    {this.state.registerFlag === 'owner' && <input className='input-radio' id='r4' type='radio' value='participant' name='registerFlag' /> }
                                     Participant
                                 </div>
                             </div>

@@ -47,7 +47,7 @@ class About extends Component {
               </ol>
             </p>
             </div>
-            <img src="/Matcher_logo.png" id="center"/>
+            <img src="/Matcher_logo.png" alt='' id="center"/>
             <h2>Below are our name and position</h2>
             <br/>
             <div id="member-wrapper">

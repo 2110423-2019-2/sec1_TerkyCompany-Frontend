@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ReviewItem.css";
 import ReactStars from 'react-rating-stars-component'
-import moment from 'moment'
+
 
 class ReviewItem extends React.Component {
     constructor(props) {
