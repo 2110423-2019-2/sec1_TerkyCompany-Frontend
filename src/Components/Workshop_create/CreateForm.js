@@ -337,7 +337,17 @@ class Form extends React.Component {
                             "workshopId": workshopId
                         }
                         console.log(sendTag)
-                        axios.post(`http://localhost:3001/tags/create`, sendTag).then(window.location.assign('/workshoplist'))
+                        axios.post(`http://localhost:3001/tags/create`, sendTag).then(() =>{
+                            if(this.props.role === 'admin')
+                            {
+                                window.location.assign('/management/workshop')
+                            }
+                            else
+                            {
+                                window.location.assign('/workshoplist')
+                            }
+                        })
+                            
                     }
                     )
             })

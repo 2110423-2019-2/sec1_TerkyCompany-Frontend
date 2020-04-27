@@ -38,6 +38,7 @@ class UserItem extends React.Component {
         }
         Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
             console.log(res.data)
+            window.location.reload()
         })
     }
 
@@ -49,6 +50,7 @@ class UserItem extends React.Component {
         }
         Axios.put(`http://localhost:3001/members-t/${this.state.username}/update`,sendData).then(res => {
             console.log(res.data)
+            window.location.reload()
         })
         this.forceUpdate()
     }

@@ -68,7 +68,7 @@ class Menubar extends Component {
                                     //clear cookie somehow
                                     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                                     document.cookie = "userType=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                    
+                                    window.location.assign('/')
                                 } }>Logout</button>
                             </form>
                         </ul>

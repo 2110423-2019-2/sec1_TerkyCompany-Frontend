@@ -113,7 +113,7 @@ class Edit extends React.Component {
         
         window.alert('Edit data complete')
         console.log('Jobs done!');
-        window.location.assign('/')
+        window.location.assign('/management/user')
     }
 
     convertMonthToDate = (date) => {
@@ -154,7 +154,7 @@ class Edit extends React.Component {
                     <form onSubmit={this.handleEdit}>
                         <div className='edit-component-full'>
                             <label className='label'>Username</label><br/>
-                            <input className='input-box' type='text' name='username' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.username} required />
+                            <input className='input-box' type='text' name='username' onChange={this.handleChange} pattern="[A-Za-z0-9]{5,20}" value={this.state.username} readonly disabled />
                         </div>
                         <div className='edit-component-full'>
                             <label className='label'>Password</label><br/>

@@ -72,7 +72,7 @@ class UserManagement extends Component {
     render() {
         if(this.state.isLoading) return null
         if (document.cookie === ""){ 
-            window.alert("Please login first");
+            // window.alert("Please login first");
             window.location.assign('/login');
             return null
         }
