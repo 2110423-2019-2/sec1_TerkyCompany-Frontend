@@ -1,0 +1,42 @@
+.About {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+}
+
+
+#about-wrapper {
+    padding-right: 10%;
+    text-align: right;
+    align-items: center;
+}
+
+#member-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 20px;
+    text-align: left;
+}
+
+#abouttext {
+    display: flex;
+    flex-direction: column;
+}
+
+#left {
+    text-align: left;
+}
+
+#right {
+    text-align: right;
+}
+
+#center{
+    margin: 0 25%;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+

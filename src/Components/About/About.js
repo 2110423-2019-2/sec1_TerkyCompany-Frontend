@@ -1,0 +1,93 @@
+import React, { Component } from 'react';
+import './About.css'
+
+class About extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: false,
+
+    }
+  }
+
+  componentDidMount() {
+  }
+
+  render() {
+    if (this.state.isLoading) return null
+    console.log("hello about")
+    return (
+      <div className="About">
+          <div id= "about-wrapper">
+          <h1>About</h1>
+          <div className="dropdown-divider"></div>
+          <br/>
+            <div id="about-text">
+            <p id="left">
+              Hello everyone who really care to press the fucking "About" button.<br/>
+              This is a project of Software engineering class on 2019/2  prof.Taratip<br/>
+              The project is to build a matching system and our work is about workshop in unuiversity<br/>
+            </p>
+            <p id="right">
+              Why workshop?<br/>
+              For god sake I don't know prof just slab this project to our face<br/>
+            </p>
+            <p id="right">
+              Our team contribution and power is insane.<br/>
+              Every of us finish our works in just 1 hour (before deadline).<br/>
+              This project is made by 8 MAN<br/>
+            </p>
+            <p id="left">
+              Our team is 8 MAN walking like the beetles but twice!<br/>
+              The team divided into 3 subteam<br/>
+              <ol type="1">
+                <li>Front end the makeup artist (A bunch of know nothing guys without designer)</li>
+                <li>Back end the penetrator (Who penetrate Front)</li>
+                <li>Special force the carry of the game (If they die we all die)</li>
+              </ol>
+            </p>
+            </div>
+            <img src="/Matcher_logo.png" id="center"/>
+            <h2>Below is Our name and position</h2>
+            <br/>
+            <div id="member-wrapper">
+              <div>
+                <h2>Front guys</h2>
+                <ol type="1">
+                  <li>Charn ctkgit</li>
+                  <li>Terk tanac</li>
+                  <li>Win pasit</li>
+                </ol>
+              </div>
+              <div>
+                <h2>Back guys</h2>
+                <ol type="1">
+                  <li>Too thanit456</li>
+                  <li>Owen owenten</li>
+                  <li>Miw Endifly</li>
+                </ol>
+              </div>
+              <div>
+                <h2>Special force</h2>
+                <ol type="1">
+                  <li>Park sprkzoff</li>
+                  <li>Pon pjumruspun</li>
+                </ol>
+              </div>
+            </div>
+            <div>
+              <br/>
+              <h2>Special thank</h2>
+              <img id="center" src="https://media1.tenor.com/images/2060b012ce3ca527618ce1f100109109/tenor.gif?itemid=16728482" />
+              <h4 id="center">RESPECT THE MATCHER TEAM</h4>
+            </div>
+            <p>
+              
+            </p>
+          </div>
+      </div>
+    )
+  }
+}
+
+export default About;
