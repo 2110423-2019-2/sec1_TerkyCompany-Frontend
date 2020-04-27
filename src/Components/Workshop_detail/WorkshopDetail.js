@@ -37,11 +37,11 @@ class WorkshopDetail extends React.Component {
         return timeAndDate
     }
     componentWillMount() {
-        console.log('okkkkk');
+        // console.log('okkkkk');
         const { ID } = this.props.match.params
-        console.log(ID)
+        // console.log(ID)
         axios.get(`http://localhost:3001/workshops/${ID}`).then(res => {
-            console.log("from workshop > ", res.data)
+            // console.log("from workshop > ", res.data)
             //all workshop data is contain in json key "0"
             let initData = res.data
             this.setState({
@@ -61,7 +61,7 @@ class WorkshopDetail extends React.Component {
                     tags: []
                 }
             })
-            //console.log(this.state)
+            // console.log(this.state)
             axios.get(`http://localhost:3001/tags/findbyid/${ID}`).then(res => {
                 let initTag = res.data
                 let initState = this.state
@@ -69,7 +69,7 @@ class WorkshopDetail extends React.Component {
                     initState.workshop.tags = initState.workshop.tags.concat(`${element.tag}`)
                 })
                 this.setState(initState)
-                //console.log(this.state.workshop.id)
+                // console.log(this.state.workshop.id)
             })
         })
         //format cookie
@@ -78,7 +78,7 @@ class WorkshopDetail extends React.Component {
         let s = 0
         for (let i = 0; i < spl.length; i++) {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()] = temp[1]
             if (temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s += 1
@@ -95,9 +95,9 @@ class WorkshopDetail extends React.Component {
 
     }
     render() {
-        console.log(this.state);
+        // console.log(this.state);
         if (this.state.isLoading) return null;
-        console.log("hello Workshop-Detail page");
+        // console.log("hello Workshop-Detail page");
         return (
             <div>
                 <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} workshopID={this.state.workshop.id} />

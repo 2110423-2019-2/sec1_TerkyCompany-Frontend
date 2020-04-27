@@ -44,8 +44,8 @@ class Login extends React.Component {
         }
         //this means user is in database
         axios.post('http://localhost:3001/auth/login', data).then(res => {
-            console.log(res.status)
-            console.log(res.data)
+            // console.log(res.status)
+            // console.log(res.data)
             if (res.status === 201) {
                 //pass login
                 if(res.data.isSuspended == true){
@@ -53,13 +53,13 @@ class Login extends React.Component {
                 this.setState({ errorMessage: 'you are banned' })
                 }
                 else{
-                    console.log(res.data.access_token)
+                    // console.log(res.data.access_token)
                     this.setState({
                         token: res.data.access_token
                     })
                 return axios.get('http://localhost:3001/profile', { headers: { "Authorization": `Bearer ${this.state.token}` } }).then(res => {
                     if (res !== "fail") {
-                        console.log('data after authen: ', res.data)
+                        // console.log('data after authen: ', res.data)
                         const cookies = new Cookies();
                         cookies.set('username', res.data.username)
                         cookies.set('userType', res.data.userType)

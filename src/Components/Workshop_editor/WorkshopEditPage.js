@@ -20,19 +20,19 @@ class WorkshopEditPage extends React.Component {
     componentWillMount(){
         //format cookie
         const { workshopId,username} = this.props.match.params
-        console.log(workshopId)
+        // console.log(workshopId)
         this.setState({
             workshopID:workshopId,
             urlname:username,
         })
-        console.log("component did mount")  
+        // console.log("component did mount")  
         let spl = document.cookie.split(';')
         let ck = {}
         let s=0
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -46,7 +46,7 @@ class WorkshopEditPage extends React.Component {
         }
     }
     componentDidMount() {
-        console.log(this.state.workshopID)
+        // console.log(this.state.workshopID)
     }
 
     render() {
@@ -57,8 +57,8 @@ class WorkshopEditPage extends React.Component {
             return null
         }
         if (this.state.role != "owner" && this.state.role != "admin") {
-            console.log("cookie");
-            console.log(this.state);
+            // console.log("cookie");
+            // console.log(this.state);
             window.alert("Participant can't edit a workshop, please login as an Owner");
             window.location.assign('/');
             return null

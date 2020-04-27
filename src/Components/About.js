@@ -15,7 +15,7 @@ class About extends Component {
 
   render() {
     if (this.state.isLoading) return null
-    console.log("hello about")
+    // console.log("hello about")
     return (
       <div className="About">
           <h1>About</h1>

@@ -15,7 +15,7 @@ class Menubar extends Component {
 
 
     componentWillMount() {
-        console.log(document.cookie)
+        // console.log(document.cookie)
         //format cookie
         let spl = document.cookie.split(';')
         let ck = {}
@@ -23,7 +23,7 @@ class Menubar extends Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 

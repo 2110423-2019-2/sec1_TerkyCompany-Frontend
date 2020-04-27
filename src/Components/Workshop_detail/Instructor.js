@@ -10,7 +10,7 @@ class Instructor extends React.Component {
     }
 
     render() {
-        console.log(this.props.workshop.instructorImageSrc)
+        // console.log(this.props.workshop.instructorImageSrc)
         return (
             <div className='instructor'>
                 <div className='instructor-image-div'>

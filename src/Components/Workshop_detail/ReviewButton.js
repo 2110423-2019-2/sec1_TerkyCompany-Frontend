@@ -15,9 +15,9 @@ const ReviewButton  = (props) => {
     const moment = require('moment');
     const today = moment().local();
     //print string of today
-    console.log(today.format());
-    // console.log(props.workshop)
-    // console.log(props.oldReview)
+    // console.log(today.format());
+    // // console.log(props.workshop)
+    // // console.log(props.oldReview)
     if (props.oldReview !== {} && props.oldReview) {
         oldComment = props.oldReview.comment
         oldRating = props.oldReview.rating
@@ -36,8 +36,8 @@ const ReviewButton  = (props) => {
         setShow(false);
         const moment = require('moment');
         const today = moment();
-        console.log(today.format())
-        // console.log(document.getElementById("comment").value);
+        // console.log(today.format())
+        // // console.log(document.getElementById("comment").value);
         let sendData = {
             //id : props.workshop.id,
             workshop: props.workshop.id,
@@ -48,27 +48,27 @@ const ReviewButton  = (props) => {
             workshopId : props.workshop.id,
             memberTUsername : props.username
         }
-        // console.log(sendData)
+        // // console.log(sendData)
         if (props.oldReview !== {} && props.oldReview !== undefined) {
-            console.log("put")
+            // console.log("put")
             axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {
                 return axios.post(`http://localhost:3001/reviews/create`, sendData )
             }).then(res => {
-                console.log(res.data)
+                // console.log(res.data)
             })
             // axios.put(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/update`,sendData).then(res => {
-            //     console.log(res.data)
+            //     // console.log(res.data)
             // })
         }
         else {
-            console.log("post")
+            // console.log("post")
             axios.post(`http://localhost:3001/reviews/create`, sendData ).then(res => {
-                console.log(res.data)
+                // console.log(res.data)
             })
         }
         // axios.put(`http://localhost:3001/reviews/create`, sendData ).then(res => {
-        //     console.log(res);
-        //     console.log(res.data);
+        //     // console.log(res);
+        //     // console.log(res.data);
         // })
     }
     const handleShow = () => {
@@ -76,7 +76,7 @@ const ReviewButton  = (props) => {
     }
     const ratingChanged = (newRating) => {
         rate = newRating
-        //console.log(rate)
+        // console.log(rate)
     }
     
     return (

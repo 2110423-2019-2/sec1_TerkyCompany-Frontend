@@ -26,7 +26,7 @@ class Workshoplistpage extends Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -41,13 +41,13 @@ class Workshoplistpage extends Component {
             })
         }
 
-        console.log("state >> ",ck['username'])
+        // console.log("state >> ",ck['username'])
 
         if(ck['userType'] === "owner")
         {
             axios.get('http://localhost:3001/workshops/findbyowner/'+ck['username'])
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     workshops: res.data
                 })
@@ -57,7 +57,7 @@ class Workshoplistpage extends Component {
         {
             axios.get('http://localhost:3001/books/findbyparticipant/'+ck['username'])
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     workshops: res.data
                 })
@@ -67,7 +67,7 @@ class Workshoplistpage extends Component {
         {
             axios.get('http://localhost:3001/workshops')
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     workshops: res.data
                 })
@@ -77,7 +77,7 @@ class Workshoplistpage extends Component {
 
     render() {
         if (document.cookie === '') return window.location.assign('/login')
-        console.log("hello Workshoplist")
+        // console.log("hello Workshoplist")
         return (
             <div>
                 <div className="flex-container" id="flex-container">

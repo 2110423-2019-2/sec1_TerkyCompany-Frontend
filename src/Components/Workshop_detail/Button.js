@@ -18,8 +18,8 @@ class Button extends React.Component {
     componentDidMount() {
         Axios.get('http://localhost:3001/books/findbyparticipant/'+this.props.username)
             .then(res => {
-                console.log('test')
-                console.log(res.data)
+                // console.log('test')
+                // console.log(res.data)
                 res.data.map(i => {
                     if (i.id === this.props.workshopID)
                     {
@@ -41,7 +41,7 @@ class Button extends React.Component {
     }
 
     handleLoad = () => {
-        console.log(window.OmiseCard)
+        // console.log(window.OmiseCard)
         OmiseCard = window.OmiseCard
         OmiseCard.configure({
             publicKey: 'pkey_test_5jat0453twxxl7wh47y',
@@ -58,11 +58,11 @@ class Button extends React.Component {
             amount: this.props.workshop['cost'] * 100,
             submitFormTarget: '#credit-card',
             onCreateTokenSuccess: (token) => {
-                console.log(token)
+                // console.log(token)
                 Axios.post("http://localhost:3001/payment/create", { 'email': 'test@gmail.com', 'name': this.props.username, 'amount': this.props.workshop['cost'], 'token': token }).then(res => {
 
                     if (res.data.status === 'successful') {
-                        console.log(res.data.status)
+                        // console.log(res.data.status)
                         return Axios.post("http://localhost:3001/books/create", {
                             "workshop": this.props.workshop['id'],
                             "memberT": this.props.username,
@@ -73,7 +73,7 @@ class Button extends React.Component {
                     }
                 })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         var workshopID = res.data.workshop
                         window.location.assign("/ticket/" + workshopID)
                     })
@@ -135,7 +135,7 @@ class Button extends React.Component {
                     </form>
                     {this.state.join && <button className='detail-button' id='delete-button' onClick={()=> {
                         Axios.delete(`http://localhost:3001/books/${this.props.workshopID}/${this.props.username}/delete`).then(res=> {
-                            console.log(res.data)
+                            // console.log(res.data)
                             alert('Already Unbooked, Your money will refund in 5 days')
                             window.location.reload()
                         })
