@@ -9,24 +9,31 @@ let OmiseCard
 class Button extends React.Component {
     constructor(props) {
         super(props);
+        // console.log(this.props)
         this.state = {
             isLoading: false,
-            join: false
+            join: false,
+            workshop_owner: '',
         }
     }
 
     componentDidMount() {
-        Axios.get(`${process.env.REACT_APP_URL}/books/findbyparticipant/`+this.props.username)
+        Axios.get(`${process.env.REACT_APP_URL}/books/findbyparticipant/` + this.props.username)
             .then(res => {
                 // console.log('test')
                 // console.log(res.data)
                 res.data.map(i => {
-                    if (i.id === this.props.workshopID)
-                    {
-                        this.setState({join:true})
+                    if (i.id === this.props.workshopID) {
+                        this.setState({ join: true })
                     }
-                        
+
                 })
+            })
+        // console.log(this.props.location)
+        Axios.get(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopID}`)
+            .then(res => {
+                //console.log('>>>',res.data)
+                this.setState({workshop_owner:res.data.owner})
             })
     }
 
@@ -106,7 +113,13 @@ class Button extends React.Component {
 
     deleteClick = e => {
         //del workshop
-        Axios.delete(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/management/workshop'))
+        if(this.props.role === 'admin') {
+            Axios.delete(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/management/workshop'))
+        }
+        else if(this.props.role === 'owner')
+        {
+            Axios.delete(`${process.env.REACT_APP_URL}/workshops/${this.props.workshopID}/delete`).then(window.location.assign('/workshoplist'))
+        }
     }
 
 
@@ -118,9 +131,16 @@ class Button extends React.Component {
             </div>
         }
         else if (this.props.role === 'owner') {
-            return <div>
-                <button className='detail-button' onClick={this.handleClick} >Edit</button>
-            </div>
+            //console.log(this.state.workshop_owner , this.props.username)
+            if (this.state.workshop_owner === this.props.username) {
+                return <div>
+                    <button className='detail-button' onClick={this.handleClick} >Edit</button>
+                    <button className='detail-button' id='delete-button' onClick={this.deleteClick} >Delete</button>
+                </div>
+            }
+            else {
+                return <div></div>
+            }
         }
         else {
             return (
@@ -133,8 +153,8 @@ class Button extends React.Component {
                     <form >
                         {!this.state.join && <button id='credit-card' className='detail-button' onClick={this.handleClick} >Join</button>}
                     </form>
-                    {this.state.join && <button className='detail-button' id='delete-button' onClick={()=> {
-                        Axios.delete(`${process.env.REACT_APP_URL}/books/${this.props.workshopID}/${this.props.username}/delete`).then(res=> {
+                    {this.state.join && <button className='detail-button' id='delete-button' onClick={() => {
+                        Axios.delete(`${process.env.REACT_APP_URL}/books/${this.props.workshopID}/${this.props.username}/delete`).then(res => {
                             // console.log(res.data)
                             alert('Already Unbooked, Your money will refund in 5 days')
                             window.location.reload()

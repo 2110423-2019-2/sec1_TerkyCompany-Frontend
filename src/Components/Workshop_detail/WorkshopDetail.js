@@ -11,6 +11,7 @@ class WorkshopDetail extends React.Component {
         this.state =
         {
             isLoading: false,
+            ID : this.props.match.params.ID,
             username: '',
             role: '',
             workshop: {
@@ -38,9 +39,9 @@ class WorkshopDetail extends React.Component {
     }
     componentWillMount() {
         // console.log('okkkkk');
-        const { ID } = this.props.match.params
-        //console.log(ID)
-        axios.get(`${process.env.REACT_APP_URL}/workshops/${ID}`).then(res => {
+        
+        // console.log(ID)
+        axios.get(`${process.env.REACT_APP_URL}/workshops/${this.state.ID}`).then(res => {
             //console.log("from workshop > ", res.data)
             //all workshop data is contain in json key "0"
             let initData = res.data
@@ -62,7 +63,7 @@ class WorkshopDetail extends React.Component {
                 }
             })
             //console.log(this.state)
-            axios.get(`${process.env.REACT_APP_URL}/tags/findbyid/${ID}`).then(res => {
+            axios.get(`${process.env.REACT_APP_URL}/tags/findbyid/${this.state.ID}`).then(res => {
                 let initTag = res.data
                 let initState = this.state
                 Object.values(initTag).forEach(element => {
@@ -100,7 +101,7 @@ class WorkshopDetail extends React.Component {
         // console.log("hello Workshop-Detail page");
         return (
             <div>
-                <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} workshopID={this.state.workshop.id} />
+                <WorkshopDetailHeader workshop={this.state.workshop} role={this.state.role} username={this.state.username} workshopID={this.state.ID} />
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#ACBFE6" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,154.7C640,192,800,256,960,250.7C1120,245,1280,171,1360,133.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
                 </svg>
