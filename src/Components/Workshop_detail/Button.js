@@ -78,7 +78,7 @@ class Button extends React.Component {
             this.creditCardConfigure()
             this.omiseCardHandler()
         }
-        else if (this.props.role == 'admin') {
+        else if (this.props.role === 'admin') {
             window.location.assign("/management/workshop/" + this.props.workshop.id + "/edit")
         }
         else {
@@ -95,9 +95,9 @@ class Button extends React.Component {
 
     render() {
         if (this.props.role === 'admin') {
-            return <div>
+            return <div className="flex-containter" id="button-wrap">
                 <button className='detail-button' onClick={this.handleClick} >Edit</button>
-                <button className='detail-button' onClick={this.deleteClick} >Delete</button>
+                <button className='detail-button' id='delete-button' onClick={this.deleteClick} >Delete</button>
             </div>
         }
         else if (this.props.role === 'owner') {

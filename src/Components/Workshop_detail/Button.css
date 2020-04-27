@@ -19,3 +19,12 @@
     position:relative;
     top:1px;
   }
+
+  #button-wrap {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  #delete-button {
+    margin-left: 10px;
+  }

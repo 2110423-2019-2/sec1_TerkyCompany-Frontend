@@ -13,11 +13,11 @@ const ReviewButton  = (props) => {
     let title;
     let rate=0;
     const moment = require('moment');
-    const today = moment();
+    const today = moment().local();
     //print string of today
     console.log(today.format());
-    console.log(props.workshop)
-    console.log(props.oldReview)
+    // console.log(props.workshop)
+    // console.log(props.oldReview)
     if (props.oldReview !== {} && props.oldReview) {
         oldComment = props.oldReview.comment
         oldRating = props.oldReview.rating
@@ -36,8 +36,8 @@ const ReviewButton  = (props) => {
         setShow(false);
         const moment = require('moment');
         const today = moment();
-        console.log(rate)
-        console.log(document.getElementById("comment").value);
+        console.log(today.format())
+        // console.log(document.getElementById("comment").value);
         let sendData = {
             //id : props.workshop.id,
             workshop: props.workshop.id,
@@ -48,7 +48,7 @@ const ReviewButton  = (props) => {
             workshopId : props.workshop.id,
             memberTUsername : props.username
         }
-        console.log(sendData)
+        // console.log(sendData)
         if (props.oldReview !== {} && props.oldReview !== undefined) {
             console.log("put")
             axios.delete(`http://localhost:3001/reviews/${props.workshop.id}/${props.username}/delete`).then(res => {

@@ -1,10 +1,13 @@
 import React from 'react';
 import "./ReviewItem.css";
 import ReactStars from 'react-rating-stars-component'
+import moment from 'moment'
 
 class ReviewItem extends React.Component {
     constructor(props) {
         super(props);
+        
+
         this.state = {
             isLoading: false,
             username: this.props.item.memberT,
@@ -15,7 +18,10 @@ class ReviewItem extends React.Component {
     }
 
     convertTimeStampToTime = (timeStamp) => {
+        console.log('in convert')
+        var temp = new Date(timeStamp)
         let time = timeStamp.slice(11, 16)
+        time = temp.getHours()+time.slice(2,)
         let date = timeStamp.slice(0, 10)
         let timeAndDate = { "time": time, "date": date }
         return timeAndDate
