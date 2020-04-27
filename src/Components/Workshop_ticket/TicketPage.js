@@ -24,14 +24,14 @@ class TicketPage extends React.Component {
         }
     }
     componentDidMount() {
-        console.log('ticket page did mount');
+        // console.log('ticket page did mount');
         //format cookie
         let spl = document.cookie.split(';')
         let ck = {}
         let s = 0
         for (let i = 0; i < spl.length; i++) {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()] = temp[1]
             if (temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s += 1
@@ -47,7 +47,7 @@ class TicketPage extends React.Component {
         }
         const { ID } = this.props.match.params
         axios.get(`${process.env.REACT_APP_URL}/books/findone/` + ID + '/' + ck['username']).then(res => {
-            console.log("from book > ", res.data)
+            //console.log("from book > ", res.data)
             this.setState({
                 data: {
                     holderName : res.data.memberT
@@ -55,7 +55,7 @@ class TicketPage extends React.Component {
             })
             return axios.get(`${process.env.REACT_APP_URL}/workshops/` + ID)
         }).then(res2 => {
-            console.log("from workshop > ", res2.data)
+            // console.log("from workshop > ", res2.data)
             this.setState({
                 data: {
                     workShopName: res2.data.name,

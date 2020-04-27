@@ -30,7 +30,7 @@ class App extends Component {
 
   goto(id) {
     // let check = this.props.item.id
-    // console.log(this.state.workshop_id)
+    // // console.log(this.state.workshop_id)
     window.location.assign('/workshop-detail/' + id)
   }
   render() {
@@ -62,7 +62,7 @@ class App extends Component {
               {
                 this.state.workshops.map(workshop =>
                   <div id="wrap-item" onClick={() => this.goto(workshop.id)} >
-                    <img id="slick-item" alt="" src="test.jpg" />
+                    <img id="slick-item" alt="" src={workshop.pictureURL} />
                     <div id="slick-item-name" >{workshop.name}</div>
                   </div>
                 )

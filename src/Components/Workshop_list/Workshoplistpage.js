@@ -26,7 +26,7 @@ class Workshoplistpage extends Component {
         for(let i=0 ;i< spl.length ; i++)
         {
             let temp = spl[i].split('=')
-            // console.log('temp: ',temp)
+            // // console.log('temp: ',temp)
             ck[temp[0].trim()]=temp[1]
             if(temp[0].trim() === 'username' || temp[0].trim() === 'userType')
                 s+=1 
@@ -41,13 +41,13 @@ class Workshoplistpage extends Component {
             })
         }
 
-        console.log("state >> ",ck['username'])
+        // console.log("state >> ",ck['username'])
 
         if(ck['userType'] === "owner")
         {
             axios.get(`${process.env.REACT_APP_URL}/workshops/findbyowner/`+ck['username'])
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     workshops: res.data
                 })
@@ -57,7 +57,17 @@ class Workshoplistpage extends Component {
         {
             axios.get(`${process.env.REACT_APP_URL}/books/findbyparticipant/`+ck['username'])
             .then(res => {
-                console.log(res)
+                // console.log(res)
+                this.setState({
+                    workshops: res.data
+                })
+            })
+        }
+        else if(ck['userType'] === "admin")
+        {
+            axios.get('http://localhost:3001/workshops')
+            .then(res => {
+                // console.log(res)
                 this.setState({
                     workshops: res.data
                 })
@@ -67,7 +77,7 @@ class Workshoplistpage extends Component {
 
     render() {
         if (document.cookie === '') return window.location.assign('/login')
-        console.log("hello Workshoplist")
+        // console.log("hello Workshoplist")
         return (
             <div>
                 <div className="flex-container" id="flex-container">
@@ -75,7 +85,7 @@ class Workshoplistpage extends Component {
                         <div id="textzone">
                             <ul id="link-side">
                                 <li><a id="link-side" href="/workshoplist">My Workshop</a></li>
-                                {(this.state.role === "owner" && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
+                                {((this.state.role === "owner" || this.state.role === 'admin') && <li><a id="link-side" href="/workshopCreatePage">Create workshop</a></li>)}
                                 <li><a id="link-side" href="/workshoplist">Certificate</a></li>
                                 <li><a id="link-side" href="/workshoplist">Payment</a></li>
                                 <li><a id="link-side" href="/workshoplist">Confirmation</a></li>

@@ -10,7 +10,7 @@ class InputBox extends Component {
         }
         this.style = {
             chips: {
-              background: "#cc670a"
+              background: "#182978"
             },
             searchBox: {
                 background: "#ffffff"

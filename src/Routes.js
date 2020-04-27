@@ -1,6 +1,6 @@
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter,Link,useParams } from 'react-router-dom';
 import App from './Components/Homepage/App';
-import About from './Components/About';
+import About from './Components/About/About';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import WorkshopDetail from './Components/Workshop_detail/WorkshopDetail';
@@ -14,7 +14,10 @@ import Login from './Components/Login/Login';
 import WorkshopCreatePage from './Components/Workshop_create/WorkshopCreatepage';
 import TicketPage from './Components/Workshop_ticket/TicketPage';
 import Register from './Components/Register/Register';
+import Edit from './Components/Edit/Edit';
 import Report from './Components/Report/Report';
+import UserManagement from './Components/Admin_user_management/UserManagement';
+import WorkshopManagement from './Components/Admin_workshop_management/WorkshopManagement';
 
 
 class Routes extends Component {
@@ -35,15 +38,18 @@ class Routes extends Component {
                         <Route exact path="/about" component={About} />
                         <Route exact path="/workshoplist" component={Workshoplistpage} />
                         <Route exact path="/login" component={Login} />
-                        <Route exact path="/workshopeditor" component={WorkshopeditPage} />
                         <Route exact path="/browse" component={WorkshopfilterPage} />
                         <Route exact path="/ticket" component={TicketPage} />
                         <Route path="/ticket/:ID" component={TicketPage} />
-                        <Route path="/workshopeditor/:username/:workshopId" component={WorkshopeditPage} />
+                        <Route path="/workshopeditor/:workshopId" component={WorkshopeditPage} />
                         <Route exact path="/workshopCreatePage" component={WorkshopCreatePage} />
                         <Route path="/workshop-detail/:ID" component={WorkshopDetail} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/report" component={Report} />
+                        <Route exact path="/management/user" component={UserManagement} />
+                        <Route exact path="/management/workshop" component={WorkshopManagement} />
+                        <Route exact path="/management/user/:username/edit" component={Edit} />
+                        <Route exact path="/management/workshop/:workshopId/edit" component={WorkshopeditPage} />
                     </Switch>
                 </BrowserRouter>
                 <Footer />

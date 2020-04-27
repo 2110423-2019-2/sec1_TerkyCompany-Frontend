@@ -15,7 +15,7 @@ class Footer extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log("hello footer")
+        // console.log("hello footer")
         return (
             <div className="footer" >
                 <div className="flex-container">
@@ -23,9 +23,10 @@ class Footer extends Component {
                         <div>
                             <h3>Our Workshops</h3>
                             <div id="link-footer">
-                                <div><a id="link-footer" href="/browse">Tech</a></div>
-                                <div><a id="link-footer" href="/browse">Art</a></div>
-                                <div><a id="link-footer" href="/browse">Economic</a></div>
+                                <div><a id="link-footer" href="/browse">Technology</a></div>
+                                <div><a id="link-footer" href="/browse">Business</a></div>
+                                <div><a id="link-footer" href="/browse">Data</a></div>
+                                <div><a id="link-footer" href="/browse">Design</a></div>
                             </div>
                         </div>
                     </div>

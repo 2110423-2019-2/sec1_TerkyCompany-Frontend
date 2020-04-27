@@ -4,10 +4,10 @@ import "./WorkshopItem.css";
 class WorkshopItem extends Component {
     constructor(props) {
         super(props)
-        console.log("check item >", this.props.item.id)
+        // console.log("check item >", this.props.item.id)
         this.state = {
             workshop_id: this.props.item.id,
-            image_name: "test.jpg",
+            image_name: this.props.item.pictureURL,
             workshop_name: this.props.item.name,
             workshop_detail: this.props.item.description.slice(0, 90),
             start: this.convertTimeStampToTime(this.props.item.startTime),
@@ -30,7 +30,7 @@ class WorkshopItem extends Component {
 
     goto() {
         // let check = this.props.item.id
-        // console.log(this.state.workshop_id)
+        // // console.log(this.state.workshop_id)
         window.location.assign('/workshop-detail/' + this.state.workshop_id)
     }
 

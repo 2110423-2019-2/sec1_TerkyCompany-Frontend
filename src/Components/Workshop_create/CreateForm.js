@@ -89,7 +89,7 @@ class Form extends React.Component {
                 else {
                     err.workshopPic = ""
                     content.workshopPic = e.target.files[0];
-                    console.log("hard debug > ",e.target.files)
+                    // console.log("hard debug > ",e.target.files)
                 }
                 break;
             case "date":
@@ -129,8 +129,8 @@ class Form extends React.Component {
                 }
                 break;
             case "cost":
-                if (value < 0) {
-                    err.cost = "must be positive number"
+                if (value < 20) {
+                    err.cost = "must be more than 20 Baht"
                 }
                 else {
                     err.cost = ""
@@ -181,7 +181,7 @@ class Form extends React.Component {
                 }
                 break;
             default:
-                console.log(name)
+                // console.log(name)
                 break;
         }
         this.setState({ errMsg: err, content: content });
@@ -198,7 +198,7 @@ class Form extends React.Component {
             content.tags = selectedList;
         }
         this.setState({ errMsg: err, content: content });
-        console.log(this.state.content)
+        // console.log(this.state.content)
     }
 
     handleRemove(selectedList, removedItem) {
@@ -213,10 +213,10 @@ class Form extends React.Component {
         }
         content.tags = selectedList
         this.setState({ errMsg: err, content: content })
-        console.log(this.state.content)
+        // console.log(this.state.content)
     }
     handleSubmit() {
-        console.log("submit clicked")
+        // console.log("submit clicked")
         let content = this.state.content
         let err = this.state.errMsg
         let valid = true
@@ -224,8 +224,8 @@ class Form extends React.Component {
             err.cap = "must be number between 0-1000"
             valid = false
         }
-        if (content.cost < 0 || content.cost === "") {
-            err.cost = "must be positive number"
+        if (content.cost < 20 || content.cost === "") {
+            err.cost = "must be more than 20 Baht"
             valid = false
         }
         if (content.date === "") {
@@ -294,46 +294,64 @@ class Form extends React.Component {
         }
         this.setState({ errMsg: err })
         if (valid) {
-            let nowState = this.state.content
-            // const formData = new FormData();
-            // formData.append('myImage',this.state.workshopPic);
-            console.log("image > ",this.state.workshopPic)
-            let sendData = {
-                "image": this.state.workshopPic,
-                "request": {
-                    "startTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.sTime),
-                    "endTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.eTime),
-                    "capacity": nowState.cap,
-                    "cost": nowState.cost,
-                    "name": nowState.workshopName,
-                    "place": nowState.place,
-                    "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate, nowState.dtime),
-                    "publishTime": "2015-12-20T03:01:01.000Z",
-                    "description": nowState.description,
-                    "speakerName": nowState.speakerName,
-                    "pictureURL": "",
-                    "owner": nowState.owner
-                }
-            }
-            console.log("sending")
-            console.log(sendData)
-            axios.post(`${process.env.REACT_APP_URL}/workshops/create`, sendData).then(res => {
-                //console.log(res);
-                console.log(res.data);
-                //console.log(nowState.tags)
-                let workshopId = res.data.id
-                nowState.tags.forEach(element => {
-                    let sendTag = {
-                        "workshop": workshopId,
-                        "tag": element.name,
-                        "workshopId": workshopId
+            // let nowState = this.state.content
+            let formData = new FormData();
+            formData.append('upload',this.state.content.workshopPic);
+            // console.log(formData)
+            // console.log("image > ",this.state.content.workshopPic)
+            // console.log("sending")
+            // // console.log(sendData)
+            // // console.log(this.state.workshopPic)
+            // let data = {upload:this.state.content.workshopPic}
+            // console.log(data)
+            axios.post(`${process.env.REACT_APP_URL}/workshops/fileupload`,formData).then(res=>{
+                // console.log(res.data)
+                let nowState = this.state.content
+                let sendData = {
+                    "image": res.data,
+                    "request": {
+                        "startTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.sTime),
+                        "endTime": this.convertDateAndTimeToTimeStamp(nowState.date, nowState.eTime),
+                        "capacity": nowState.cap,
+                        "cost": nowState.cost,
+                        "name": nowState.workshopName,
+                        "place": nowState.place,
+                        "deadlineTime": this.convertDateAndTimeToTimeStamp(nowState.ddate, nowState.dtime),
+                        "publishTime": "2015-12-20T03:01:01.000Z",
+                        "description": nowState.description,
+                        "speakerName": nowState.speakerName,
+                        "pictureURL": res.data,
+                        "owner": nowState.owner
                     }
-                    console.log(sendTag)
-                    axios.post(`${process.env.REACT_APP_URL}/tags/create`, sendTag)
                 }
-                )
-            }
-            )
+                // console.log("send:",sendData)
+                axios.post(`${process.env.REACT_APP_URL}/workshops/create`, sendData.request).then(res => {
+                    // console.log(res);
+                    // console.log(res.data);
+                    // console.log(nowState.tags)
+                    let workshopId = res.data.id
+                    nowState.tags.forEach(element => {
+                        let sendTag = {
+                            "workshop": workshopId,
+                            "tag": element.name,
+                            "workshopId": workshopId
+                        }
+                        // console.log(sendTag)
+                        axios.post(`${process.env.REACT_APP_URL}/tags/create`, sendTag).then(() =>{
+                            if(this.props.role === 'admin')
+                            {
+                                window.location.assign('/management/workshop')
+                            }
+                            else
+                            {
+                                window.location.assign('/workshoplist')
+                            }
+                        })
+                            
+                    }
+                    )
+            })
+            
 
             // const config = {
             //     headers: {
@@ -345,18 +363,20 @@ class Form extends React.Component {
             //         alert("The file is successfully uploaded");
             //     }).catch((error) => {
             // });
-            // alert("submited picture")
+            alert("Workshop Created")
 
-        }
+        })
+    }
         else {
             alert("Please valid your information")
         }
-        console.log(this.state.errMsg)
-        console.log(this.state.content)
+        // console.log(this.state.errMsg)
+        // console.log(this.state.content)
     }
 
     handleCancel() {
-        console.log("cancel clicked")
+        // console.log("cancel clicked")
+        window.location.assign('/workshoplist')
     }
 
     convertTimeStampToTime = (timeStamp) => {
@@ -374,8 +394,8 @@ class Form extends React.Component {
 
     render() {
         if (this.state.isLoading) return null;
-        console.log("hello Create form")
-        const style = { chips: { background: "#cc670a" }, searchBox: { background: "white" } }
+        // console.log("hello Create form")
+        const style = { chips: { background: "#182978" }, searchBox: { background: "white" } }
         return (
             <div id="flex-container-create">
                 <div className="form-body">
@@ -395,7 +415,7 @@ class Form extends React.Component {
                         <InputBox label="Tags" name="tags" type="dropD" options={this.state.options} tags={this.state.content.tags} onSelect={this.handleSelect} onRemove={this.handleRemove} style={style} errMsg="" placeholder="Choose tags" />
                     </form>
                 </div>
-                <div id="button-body">
+                <div id="button-body" className="text-center">
                     <button class="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>Submit</button>
                     <button class="btn btn-primary btn-lg" onClick={() => this.handleCancel()}>Cancel</button>
                 </div>

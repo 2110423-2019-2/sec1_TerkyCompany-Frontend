@@ -98,9 +98,9 @@ class FilterForm extends Component {
         }
         shownList.sort()
         this.setState({selectedFilter:filterList})
-        console.log(this.state.selectedFilter)
+        // console.log(this.state.selectedFilter)
         this.setState({shownWorkshop:shownList})
-        console.log(shownList)
+        // console.log(shownList)
     }
 
     handleChange = (e) => {
@@ -114,10 +114,10 @@ class FilterForm extends Component {
             console.log("got")
             //allWorkshop = res.data;
             allWorkshop = res.data
-            console.log(allWorkshop)
+            // console.log(allWorkshop)
             //this.setState({workshops:res.data})
-                //console.log(res);
-                //console.log(res.data);
+                // console.log(res);
+                // console.log(res.data);
             })
         allWorkshop.forEach(element => {
             element.tags = []
@@ -128,17 +128,17 @@ class FilterForm extends Component {
             })
         })
         
-        console.log(allWorkshop)
+        // console.log(allWorkshop)
 
         for(let index in allWorkshop) {
             if(!shownList.includes(allWorkshop[index].id))
             shownList.push(allWorkshop[index].id)
         }
-        console.log(shownList);
+        // console.log(shownList);
         
         this.setState({shownWorkshop:shownList})
         this.setState({workshops:allWorkshop})
-        console.log(allWorkshop)
+        // console.log(allWorkshop)
     }
 
     goto = (id) => {
@@ -158,7 +158,7 @@ class FilterForm extends Component {
 
     render() {
         if (this.state.isLoading) return null
-        console.log("hello Workshopfilter")
+        // console.log("hello Workshopfilter")
         return (
             <div className="container">
                 <div className="row">
